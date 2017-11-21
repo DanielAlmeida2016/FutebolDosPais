@@ -6,12 +6,12 @@
     android:background="@color/white"
     android:orientation="vertical"
     android:id="@+id/pai"
-    tools:context="br.com.futeboldospais.futeboldospais.controller.MainActivity">
+    tools:activity="br.com.futeboldospais.futeboldospais.controller.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="25dp"
         android:onClick="onClickView">
 
         <!--<android.support.v7.widget.CardView
@@ -36,14 +36,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentStart="false"
-            android:layout_marginBottom="230dp"
+            android:layout_marginBottom="200dp"
             android:gravity="center"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="165dp"
+                android:layout_height="165dp"
                 android:src="@drawable/futeboldospais" />
 
             <TextView
@@ -66,6 +66,21 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_dados_locais"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:text="Prosseguir   "
+            android:drawableEnd="@drawable/ic_prosseguir"
+            android:textSize="10sp"
+            android:padding="5dp"
+            android:gravity="center"
+            android:background="@color/transparent"
+            android:layout_marginBottom="100dp"
+            android:layout_above="@id/div1"
+            android:layout_alignParentEnd="true"
+            android:onClick="prosseguirSemAtualizar"/>
 
         <LinearLayout
             android:id="@+id/div4"
@@ -91,7 +106,6 @@
                 android:layout_height="wrap_content"
                 android:paddingEnd="2dp"
                 android:paddingStart="2dp"
-                android:text="26/10/2017 17:33"
                 android:textSize="12sp" />
 
         </LinearLayout>
@@ -147,18 +161,5 @@
 
     </RelativeLayout>
 
-    <Button
-        android:id="@+id/btn_dados_locais"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:text="Prosseguir   "
-        android:drawableEnd="@drawable/ic_prosseguir"
-        android:textSize="10sp"
-        android:padding="5dp"
-        android:gravity="center"
-        android:background="@color/transparent"
-        android:layout_marginBottom="565dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:onClick="prosseguirSemAtualizar"/>
+
 </RelativeLayout>

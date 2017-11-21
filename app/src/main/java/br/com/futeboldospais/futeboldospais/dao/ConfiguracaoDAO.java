@@ -30,15 +30,15 @@ public class ConfiguracaoDAO {
      */
     public void atualizarVersaoLocal(SQLiteDatabase bd, Configuracao configuracaoServidor, int campeonatoAnoLocal) {
 
-        Date dataHora = new Date();
+        //Date dataHora = new Date();
         ContentValues valores = new ContentValues();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        //SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
         Log.d("teste", "versao passada: " + campeonatoAnoLocal);
         if (campeonatoAnoLocal == -1) {
             Log.d("teste", "entrou no if");
-            Log.d("teste", dateFormat.format(dataHora));
-            valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_ULTIMA_ATUALIZACAO, dateFormat.format(dataHora));
+            //Log.d("teste", dateFormat.format(dataHora));
+            valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_ULTIMA_ATUALIZACAO, configuracaoServidor.getDataAtualizacao());
             valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_CAMPEONATO_ANO, configuracaoServidor.getCampeonatoAno());
             valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_HOMENAGEADO, configuracaoServidor.getHomenageado());
             valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_TEMA, configuracaoServidor.getTema());
@@ -48,8 +48,8 @@ public class ConfiguracaoDAO {
             Log.d("teste", "inseriu a versao");
         } else {
             Log.d("teste", "entrou no else");
-            Log.d("teste", dateFormat.format(dataHora));
-            valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_ULTIMA_ATUALIZACAO, dateFormat.format(dataHora));
+            //Log.d("teste", dateFormat.format(dataHora));
+            valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_ULTIMA_ATUALIZACAO, configuracaoServidor.getDataAtualizacao());
             valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_CAMPEONATO_ANO, configuracaoServidor.getCampeonatoAno());
             valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_HOMENAGEADO, configuracaoServidor.getHomenageado());
             valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_TEMA, configuracaoServidor.getTema());

@@ -64,76 +64,79 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceiveResult(int resultCode, Bundle dados) {
             super.onReceiveResult(resultCode, dados);
-            if (resultCode == Atualizacao.RESULT_CODE) {
+            if (resultCode == Atualizacao.RESULT_CODE_STATUS_CONEXAO) {
 
                 int statusConexao = dados.getInt(Atualizacao.STATUS_CONEXAO);
                 Log.d("teste", "status conexao: " + String.valueOf(statusConexao));
-                int verificarAtualizacao = dados.getInt(Atualizacao.VERIFICAR_ATUALIZACAO);
-                Log.d("teste", "atualizacao verificada: " + String.valueOf(verificarAtualizacao));
-                int statusAtualizacao = dados.getInt(Atualizacao.STATUS_ATUALIZACAO);
-                Log.d("teste", "status atualizacao: " + String.valueOf(statusAtualizacao));
 
                 verificarStatusConexao(statusConexao);
+            } else if (resultCode == Atualizacao.RESULT_CODE_VERIFICAR_ATUALIZACAO) {
+
+                int verificarAtualizacao = dados.getInt(Atualizacao.VERIFICAR_ATUALIZACAO);
+                Log.d("teste", "atualizacao verificada: " + String.valueOf(verificarAtualizacao));
 
                 verificarExistenciaAtualizacao(verificarAtualizacao);
+            } else if (resultCode == Atualizacao.RESULT_CODE_STATUS_ATUALIZACAO) {
+
+                int statusAtualizacao = dados.getInt(Atualizacao.STATUS_ATUALIZACAO);
+                Log.d("teste", "status atualizacao: " + String.valueOf(statusAtualizacao));
 
                 verificarStatusAtualizacao(statusAtualizacao);
             }
         }
 
         private void verificarStatusConexao(int statusConexao) {
-            if (statusConexao != 0) {
-                if (statusConexao == 1) {
-                    lblStatus.setText("Verificando atualizações...");
-                    btnProseguirDadosLocais.setVisibility(View.INVISIBLE);
-                    div3.setVisibility(View.VISIBLE);
-                    div2.setVisibility(View.INVISIBLE);
-                } else if (statusConexao == 2) {
-                    if (ultimaAtualizacao != null) {
-                        btnProseguirDadosLocais.setVisibility(View.VISIBLE);
-                    }
-                    div3.setVisibility(View.INVISIBLE);
-                    div2.setVisibility(View.VISIBLE);
-                    Toast.makeText(activity, "Não foi possível verificar atualizações", Toast.LENGTH_SHORT).show();
+
+            if (statusConexao == 1) {
+                lblStatus.setText("Verificando atualizações...");
+                btnProseguirDadosLocais.setVisibility(View.INVISIBLE);
+                div3.setVisibility(View.VISIBLE);
+                div2.setVisibility(View.INVISIBLE);
+            } else if (statusConexao == 0) {
+                if (ultimaAtualizacao != null) {
+                    btnProseguirDadosLocais.setVisibility(View.VISIBLE);
                 }
+                div3.setVisibility(View.INVISIBLE);
+                div2.setVisibility(View.VISIBLE);
+                Toast.makeText(activity, "Favor verifique sua conexão com a internet", Toast.LENGTH_SHORT).show();
             }
+
         }
 
         private void verificarExistenciaAtualizacao(int verificarAtualizacao) {
-            if (verificarAtualizacao != 0) {
-                if (verificarAtualizacao == 1) {
-                    lblStatus.setText("Atualizando dados...");
-                } else if (verificarAtualizacao == 2) {
-                    lblStatus.setText("Sem atualizações disponíveis.");
-                    if (!activity.isDestroyed()) {
-                        iniciarMenuPrincipalComAtraso();
-                    }
-                } else if (verificarAtualizacao == 3) {
-                    if (ultimaAtualizacao != null) {
-                        btnProseguirDadosLocais.setVisibility(View.VISIBLE);
-                    }
-                    div3.setVisibility(View.INVISIBLE);
-                    div2.setVisibility(View.VISIBLE);
-                    Toast.makeText(activity, "Erro ao tentar verificar atualizações", Toast.LENGTH_SHORT).show();
+
+            if (verificarAtualizacao == 2) {
+                lblStatus.setText("Atualizando dados...");
+            } else if (verificarAtualizacao == 1) {
+                lblStatus.setText("Sem atualizações disponíveis.");
+                if (!activity.isDestroyed()) {
+                    iniciarMenuPrincipalComAtraso();
                 }
+            } else if (verificarAtualizacao == 0) {
+                if (ultimaAtualizacao != null) {
+                    btnProseguirDadosLocais.setVisibility(View.VISIBLE);
+                }
+                div3.setVisibility(View.INVISIBLE);
+                div2.setVisibility(View.VISIBLE);
+                Toast.makeText(activity, "Erro ao tentar verificar atualizações", Toast.LENGTH_SHORT).show();
             }
+
         }
 
         private void verificarStatusAtualizacao(int statusAtualizacao) {
-            if (statusAtualizacao != 0) {
-                if (statusAtualizacao == 1) {
-                    lblStatus.setText("Dados atualizados com sucesso.");
-                    if (!activity.isDestroyed()) {
-                        iniciarMenuPrincipalComAtraso();
-                    }
-                } else if (statusAtualizacao == 2) {
-                    if (ultimaAtualizacao != null) {
-                        btnProseguirDadosLocais.setVisibility(View.VISIBLE);
-                    }
-                    div3.setVisibility(View.INVISIBLE);
-                    div2.setVisibility(View.VISIBLE);
-                    Toast.makeText(activity, "Ocorreu um erro ao tentar atualizar", Toast.LENGTH_SHORT).show();
+
+            if (statusAtualizacao == 1) {
+                lblStatus.setText("Dados atualizados com sucesso.");
+                if (!activity.isDestroyed()) {
+                    iniciarMenuPrincipalComAtraso();
                 }
+            } else if (statusAtualizacao == 0) {
+                if (ultimaAtualizacao != null) {
+                    btnProseguirDadosLocais.setVisibility(View.VISIBLE);
+                }
+                div3.setVisibility(View.INVISIBLE);
+                div2.setVisibility(View.VISIBLE);
+                Toast.makeText(activity, "Ocorreu um erro ao tentar atualizar", Toast.LENGTH_SHORT).show();
             }
         }
     }

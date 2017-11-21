@@ -30,7 +30,7 @@ public class ConfiguracaoRest {
         Response response = client.newCall(request).execute();
 
         if(client.connectTimeoutMillis() <= 10000 && client.readTimeoutMillis() <= 5000) {
-            rs = response.body().string();
+            rs = new String(response.body().bytes(), "ISO-8859-1");
         }
         else{
             rs = null;

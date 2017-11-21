@@ -5,8 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorPrimary2">#314697</color>
     <color name="colorPrimary3">#3c9d02</color>
-    <color name="colorPrimary4">#da0e409e</color>
-    #314697
+    <color name="colorPrimary4">#0e409e</color>
+    <!--da0e409e-->
 
     <color name="red">#ff0000</color>
     <color name="greenDark">#00600f</color>

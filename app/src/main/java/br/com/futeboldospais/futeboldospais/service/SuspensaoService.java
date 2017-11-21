@@ -45,38 +45,37 @@ public class SuspensaoService {
 
         List<Suspensao> lista;
 
-        String json = suspensaoRest.getSuspensao(ConfiguracaoService.urlBase(campeonatoAno));
+        //String json = suspensaoRest.getSuspensao(ConfiguracaoService.urlBase(campeonatoAno));
 
-        /*String json = "[" +
+        String json = "[" +
                 "  {" +
-                "   \"equipe\": \"Ponte Preta\"," +
+                "   \"equipe\": \"Ponte-Preta\"," +
                 "   \"jogador\": \"Amaro\"," +
                 "   \"numero\": \"10\"," +
                 "   \"categoria\": \"Master\"," +
                 "   \"criterio\": \"1\"," +
                 "   \"jogos\": \"1/1\"," +
-                "   \"motivo\": \"Cartao Vermelho\"" +
+                "   \"motivo\": \"cartao vermelho\"" +
                 "  }," +
                 "  {" +
                 "   \"equipe\": \"Botafogo\"," +
                 "   \"jogador\": \"Pina\"," +
                 "   \"numero\": \"9\"," +
                 "   \"categoria\": \"Master\"," +
-                "   \"criterio\": \"1\"," +
+                "   \"criterio\": \"2\"," +
                 "   \"jogos\": \"1/2\"," +
-                "   \"motivo\": \"Cartao Vermelho\"" +
+                "   \"motivo\": \"cartao amarelo\"" +
                 "  }," +
                 "  {" +
-                "   \"equipe\": \"São Bento\"," +
+                "   \"equipe\": \"Sao-Bento\"," +
                 "   \"jogador\": \"Nelson\"," +
                 "   \"numero\": \"23\"," +
                 "   \"categoria\": \"Senior\"," +
-                "   \"criterio\": \"1\"," +
+                "   \"criterio\": \"3\"," +
                 "   \"jogos\": \"1/1\"," +
-                "   \"motivo\": \"3 Cartões Amarelos\"" +
+                "   \"motivo\": \"julgamento\"" +
                 "  }" +
-                "]";*/
-
+                "]";
         Gson gson = new Gson();
         JSONArray jsonArray = null;
         try {

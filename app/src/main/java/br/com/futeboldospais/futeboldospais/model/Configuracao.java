@@ -8,11 +8,12 @@ import java.util.Date;
  * Classe de configuração
  */
 
-public class Configuracao implements Serializable{
+public class Configuracao implements Serializable {
 
     private int campeonatoAno;
     private String homenageado;
     private String tema;
+    private String dataAtualizacao;
     private int versaoAtualizacao;
 
     public int getCampeonatoAno() {
@@ -39,6 +40,14 @@ public class Configuracao implements Serializable{
         this.tema = tema;
     }
 
+    public String getDataAtualizacao() {
+        return dataAtualizacao;
+    }
+
+    public void setDataAtualizacao(String dataAtualizacao) {
+        this.dataAtualizacao = dataAtualizacao;
+    }
+
     public int getVersaoAtualizacao() {
         return versaoAtualizacao;
     }
@@ -53,6 +62,7 @@ public class Configuracao implements Serializable{
                 "campeonatoAno=" + campeonatoAno +
                 ", homenageado='" + homenageado + '\'' +
                 ", tema='" + tema + '\'' +
+                ", dataAtualizacao='" + dataAtualizacao + '\'' +
                 ", versaoAtualizacao=" + versaoAtualizacao +
                 '}';
     }

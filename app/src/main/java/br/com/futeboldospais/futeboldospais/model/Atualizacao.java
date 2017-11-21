@@ -3,12 +3,14 @@ package br.com.futeboldospais.futeboldospais.model;
 import java.io.Serializable;
 
 /**
- * Created by ThirdSystem on 26/10/2017.
+ * Created by Daniel Almeida on 26/10/2017.
  */
 
 public class Atualizacao implements Serializable{
 
-    public static final int RESULT_CODE = 1;
+    public static final int RESULT_CODE_STATUS_CONEXAO = 0;
+    public static final int RESULT_CODE_VERIFICAR_ATUALIZACAO = 1;
+    public static final int RESULT_CODE_STATUS_ATUALIZACAO = 2;
     public static final String STATUS_CONEXAO = "statusConexao";
     public static final String VERIFICAR_ATUALIZACAO = "verificarAtualizacao";
     public static final String  STATUS_ATUALIZACAO = "statusAtualizacao";

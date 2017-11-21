@@ -19,9 +19,7 @@ public class ServicoAtualizacao extends IntentService {
 
     private AtualizacaoService atualizacaoService;
     private ResultReceiver resultReceiver;
-    private Bundle dadosConexao;
-    private Bundle dadosAtualizacao;
-    private Bundle statusAtualizacao;
+    private Bundle dados;
 
 
     public ServicoAtualizacao() {
@@ -48,43 +46,43 @@ public class ServicoAtualizacao extends IntentService {
         int atualizacaoStatus;
         int conexao;
 
-        resultReceiver = intent.getParcelableExtra(Atualizacao.RECEPTOR);
-        dadosConexao = new Bundle();
-        dadosAtualizacao = new Bundle();
-        statusAtualizacao = new Bundle();
+        if (intent != null) {
+            resultReceiver = intent.getParcelableExtra(Atualizacao.RECEPTOR);
 
-        if (GerenciadorDeConectividade.isConnected(getBaseContext())) {
+            dados = new Bundle();
 
-            conexao = 1;
-            dadosConexao.putInt(Atualizacao.STATUS_CONEXAO, conexao);
-            resultReceiver.send(Atualizacao.RESULT_CODE, dadosConexao);
+            if (GerenciadorDeConectividade.isConnected(getBaseContext())) {
 
-            atualizacaoService = new AtualizacaoService(getBaseContext());
-            Log.d("teste", "1 - instanciou atualizacaoService");
+                conexao = 1;
+                dados.putInt(Atualizacao.STATUS_CONEXAO, conexao);
+                resultReceiver.send(Atualizacao.RESULT_CODE_STATUS_CONEXAO, dados);
 
-            verificarAtualizacao = atualizacaoService.verificarAtualizacao();
+                atualizacaoService = new AtualizacaoService(getBaseContext());
+                Log.d("teste", "1 - instanciou atualizacaoService");
 
-            statusAtualizacao.putInt(Atualizacao.VERIFICAR_ATUALIZACAO, verificarAtualizacao);
-            resultReceiver.send(Atualizacao.RESULT_CODE, statusAtualizacao);
+                verificarAtualizacao = atualizacaoService.verificarAtualizacao();
 
-            if (verificarAtualizacao == 1) {
-                status = atualizacaoService.executarAtualizacaoPorTipo();
+                dados.putInt(Atualizacao.VERIFICAR_ATUALIZACAO, verificarAtualizacao);
+                resultReceiver.send(Atualizacao.RESULT_CODE_VERIFICAR_ATUALIZACAO, dados);
 
-                if (status) {
-                    atualizacaoStatus = 1;
-                } else {
-                    atualizacaoStatus = 2;
+                if (verificarAtualizacao == 2) {
+                    status = atualizacaoService.executarAtualizacaoPorTipo();
+
+                    if (status) {
+                        atualizacaoStatus = 1;
+                    } else {
+                        atualizacaoStatus = 0;
+                    }
+
+                    dados.putInt(Atualizacao.STATUS_ATUALIZACAO, atualizacaoStatus);
+                    resultReceiver.send(Atualizacao.RESULT_CODE_STATUS_ATUALIZACAO, dados);
                 }
-
-                dadosAtualizacao.putInt(Atualizacao.STATUS_ATUALIZACAO, atualizacaoStatus);
-                resultReceiver.send(Atualizacao.RESULT_CODE, dadosAtualizacao);
+            } else {
+                conexao = 0;
+                dados.putInt(Atualizacao.STATUS_CONEXAO, conexao);
+                resultReceiver.send(Atualizacao.RESULT_CODE_STATUS_CONEXAO, dados);
             }
-        } else {
-            conexao = 2;
-            dadosConexao.putInt(Atualizacao.STATUS_CONEXAO, conexao);
-            resultReceiver.send(Atualizacao.RESULT_CODE, dadosConexao);
         }
-
         stopSelf();
         Log.d("teste", "serviço auto destruido");
     }

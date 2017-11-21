@@ -18,9 +18,9 @@ public class AdapterPadrao extends BaseAdapter {
     String[] vetor;
     private Context context;
 
-    public AdapterPadrao(Context context) {
+    public AdapterPadrao(Context context, String mensagem) {
         vetor = new String[1];
-        vetor[0] = "Opa, não tem ninguem aqui ainda!";
+        vetor[0] = mensagem;
         this.context = context;
     }
 

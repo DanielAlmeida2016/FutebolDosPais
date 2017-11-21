@@ -76,7 +76,7 @@ public class ClassificacaoAdapterEsquerda extends BaseAdapter{
 
         ViewHolderClassificacaoEsquerda viewHolderClassificacaoEsquerda = (ViewHolderClassificacaoEsquerda)view.getTag();
         Log.d("teste", "Pego a tag");
-        viewHolderClassificacaoEsquerda.getPosicao().setText(String.valueOf(position + 1) + "º");
+        viewHolderClassificacaoEsquerda.getPosicao().setText(String.valueOf(position + 1));
 
         try {
             viewHolderClassificacaoEsquerda.getEscudo().setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), listaClassificacao[position].getEquipe()));

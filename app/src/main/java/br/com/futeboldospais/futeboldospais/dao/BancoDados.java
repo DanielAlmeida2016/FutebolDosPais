@@ -13,7 +13,10 @@ public class BancoDados {
     /**
      * Construtor privado, classe não deve ser instanciada diretamente
      */
-    private BancoDados() {};
+    private BancoDados() {
+    }
+
+    ;
 
     /**
      * Versão do banco de dados da aplicação
@@ -28,7 +31,7 @@ public class BancoDados {
      * Esta classe interna contem todas as informações necessárias para criação
      * e acesso as tabelas do banco de dados
      */
-    public static class Tabela implements BaseColumns{
+    public static class Tabela implements BaseColumns {
 
         /**
          * Dados padrão SQL
@@ -61,18 +64,37 @@ public class BancoDados {
         /**
          * Dados da tabela de classificação geral
          */
-        public static final String TABELA_CLASSIFICACAO = "tabelaClassificacao";
-        public static final String COLUNA_CLASSIFICACAO_EQUIPE = "equipe";
-        public static final String COLUNA_CLASSIFICACAO_PONTOS_GANHOS = "pontosGanhos";
-        public static final String COLUNA_CLASSIFICACAO_JOGOS = "jogos";
-        public static final String COLUNA_CLASSIFICACAO_VITORIAS = "vitorias";
-        public static final String COLUNA_CLASSIFICACAO_EMPATES = "empates";
-        public static final String COLUNA_CLASSIFICACAO_DERROTAS = "derrotas";
-        public static final String COLUNA_CLASSIFICACAO_GOLS_PRO = "golsPro";
-        public static final String COLUNA_CLASSIFICACAO_GOLS_CONTRA = "golsContra";
-        public static final String COLUNA_CLASSIFICACAO_SALDO_GOLS = "saldoGols";
-        public static final String COLUNA_CLASSIFICACAO_CARTOES_AMARELOS = "cartoesAmarelos";
-        public static final String COLUNA_CLASSIFICACAO_CARTOES_VERMELHOS = "cartoesVermelhos";
+        public static final String TABELA_CLASSIFICACAO_GERAL = "tabelaClassificacaoGeral";
+        public static final String COLUNA_CLASSIFICACAO_GERAL_EQUIPE = "equipe";
+        public static final String COLUNA_CLASSIFICACAO_GERAL_PONTOS_GANHOS = "pontosGanhos";
+        public static final String COLUNA_CLASSIFICACAO_GERAL_JOGOS = "jogos";
+        public static final String COLUNA_CLASSIFICACAO_GERAL_VITORIAS = "vitorias";
+        public static final String COLUNA_CLASSIFICACAO_GERAL_EMPATES = "empates";
+        public static final String COLUNA_CLASSIFICACAO_GERAL_DERROTAS = "derrotas";
+        public static final String COLUNA_CLASSIFICACAO_GERAL_GOLS_PRO = "golsPro";
+        public static final String COLUNA_CLASSIFICACAO_GERAL_GOLS_CONTRA = "golsContra";
+        public static final String COLUNA_CLASSIFICACAO_GERAL_SALDO_GOLS = "saldoGols";
+        public static final String COLUNA_CLASSIFICACAO_GERAL_CARTOES_AMARELOS = "cartoesAmarelos";
+        public static final String COLUNA_CLASSIFICACAO_GERAL_CARTOES_VERMELHOS = "cartoesVermelhos";
+
+        /**
+         * @author Denilson Araújo on 24/10/2017
+         * @modifield Pâmela Fidelis and Vinicius Lopes on 28/10/2017
+         * Dados da tabela de quartasFinais
+         */
+        public static final String TABELA_CLASSIFICACAO_QUARTAS = "tabelaClassificacaoQuartas";
+        public static final String COLUNA_CLASSIFICACAO_QUARTAS_EQUIPE = "equipe";
+        public static final String COLUNA_CLASSIFICACAO_QUARTAS_CATEGORIA = "categoria";
+        public static final String COLUNA_CLASSIFICACAO_QUARTAS_GRUPO = "grupo";
+        public static final String COLUNA_CLASSIFICACAO_QUARTAS_POSICAO = "posicao";
+        public static final String COLUNA_CLASSIFICACAO_QUARTAS_PONTOS_GANHOS = "pontosGanhos";
+        public static final String COLUNA_CLASSIFICACAO_QUARTAS_JOGOS = "jogos";
+        public static final String COLUNA_CLASSIFICACAO_QUARTAS_VITORIAS = "vitorias";
+        public static final String COLUNA_CLASSIFICACAO_QUARTAS_EMPATES = "empates";
+        public static final String COLUNA_CLASSIFICACAO_QUARTAS_DERROTAS = "derrotas";
+        public static final String COLUNA_CLASSIFICACAO_QUARTAS_GOLS_PRO = "golsPro";
+        public static final String COLUNA_CLASSIFICACAO_QUARTAS_GOLS_CONTRA = "golsContra";
+        public static final String COLUNA_CLASSIFICACAO_QUARTAS_SALDO_GOLS = "saldoGols";
 
         /**
          * Dados da tabela de artilharia
@@ -145,19 +167,7 @@ public class BancoDados {
         public static final String COLUNA_RESULTADO_NOTA_ARBITRO_EQUIPE2 = "notaArbitroEquipe2";
         public static final String COLUNA_RESULTADO_RODADA = "rodada";
         public static final String COLUNA_RESULTADO_TURNO = "turno";
-
-        /**
-         * Dados da tabela de jogo
-         */
-        public static final String TABELA_JOGO = "tabelaJogo";
-        public static final String COLUNA_JOGO_RODADA = "rodada";
-        public static final String COLUNA_JOGO_TURNO = "turno";
-        public static final String COLUNA_JOGO_DATA = "data";
-        public static final String COLUNA_JOGO_HORARIO = "horario";
-        public static final String COLUNA_JOGO_EQUIPE1 = "equipe1";
-        public static final String COLUNA_JOGO_EQUIPE2 = "equipe2";
-        public static final String COLUNA_JOGO_CATEGORIA = "categoria";
-
+        public static final String COLUNA_RESULTADO_VENCEDOR = "vencedor";
     }
 
     /**
@@ -174,19 +184,39 @@ public class BancoDados {
     /**
      * Comando SQL para criar a tabela de classificaçao
      */
-    public static final String CRIAR_TABELA_CLASSIFICACAO = Tabela.CRIAR_TABELA + Tabela.TABELA_CLASSIFICACAO + Tabela.PARENTESES_ENTRADA +
+    public static final String CRIAR_TABELA_CLASSIFICACAO_GERAL = Tabela.CRIAR_TABELA + Tabela.TABELA_CLASSIFICACAO_GERAL + Tabela.PARENTESES_ENTRADA +
             Tabela._ID + Tabela.TIPO_INTEIRO + Tabela.CHAVE_PRIMARIA + Tabela.AUTO_INCREMENTO + Tabela.VIRGULA +
-            Tabela.COLUNA_CLASSIFICACAO_EQUIPE + Tabela.TIPO_TEXTO + Tabela.VIRGULA +
-            Tabela.COLUNA_CLASSIFICACAO_PONTOS_GANHOS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
-            Tabela.COLUNA_CLASSIFICACAO_JOGOS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
-            Tabela.COLUNA_CLASSIFICACAO_VITORIAS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
-            Tabela.COLUNA_CLASSIFICACAO_EMPATES + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
-            Tabela.COLUNA_CLASSIFICACAO_DERROTAS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
-            Tabela.COLUNA_CLASSIFICACAO_GOLS_PRO + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
-            Tabela.COLUNA_CLASSIFICACAO_GOLS_CONTRA + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
-            Tabela.COLUNA_CLASSIFICACAO_SALDO_GOLS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
-            Tabela.COLUNA_CLASSIFICACAO_CARTOES_AMARELOS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
-            Tabela.COLUNA_CLASSIFICACAO_CARTOES_VERMELHOS + Tabela.TIPO_INTEIRO + Tabela.PARENTESES_SAIDA;
+            Tabela.COLUNA_CLASSIFICACAO_GERAL_EQUIPE + Tabela.TIPO_TEXTO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_GERAL_PONTOS_GANHOS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_GERAL_JOGOS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_GERAL_VITORIAS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_GERAL_EMPATES + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_GERAL_DERROTAS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_GERAL_GOLS_PRO + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_GERAL_GOLS_CONTRA + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_GERAL_SALDO_GOLS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_GERAL_CARTOES_AMARELOS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_GERAL_CARTOES_VERMELHOS + Tabela.TIPO_INTEIRO + Tabela.PARENTESES_SAIDA;
+
+    /**
+     * @author : Denilson araújo on 24/10/2017
+     * @modifield : Pâmela Fidelis and Vinicius Lopes on 28/10/2017
+     * Comando SQL para criar a tabela de quartas de finais
+     */
+    public static final String CRIAR_TABELA_CLASSIFICACAO_QUARTAS = Tabela.CRIAR_TABELA + Tabela.TABELA_CLASSIFICACAO_QUARTAS + Tabela.PARENTESES_ENTRADA +
+            Tabela._ID + Tabela.TIPO_INTEIRO + Tabela.CHAVE_PRIMARIA + Tabela.AUTO_INCREMENTO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_QUARTAS_EQUIPE + Tabela.TIPO_TEXTO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_QUARTAS_CATEGORIA + Tabela.TIPO_TEXTO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_QUARTAS_GRUPO + Tabela.TIPO_TEXTO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_QUARTAS_POSICAO + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_QUARTAS_PONTOS_GANHOS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_QUARTAS_JOGOS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_QUARTAS_VITORIAS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_QUARTAS_EMPATES + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_QUARTAS_DERROTAS + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_QUARTAS_GOLS_PRO + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_QUARTAS_GOLS_CONTRA + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_CLASSIFICACAO_QUARTAS_SALDO_GOLS + Tabela.TIPO_INTEIRO + Tabela.PARENTESES_SAIDA;
 
     /**
      * Comando SQL para criar a tabela de artilharia
@@ -263,20 +293,8 @@ public class BancoDados {
             Tabela.COLUNA_RESULTADO_NOTA_ARBITRO_EQUIPE1 + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
             Tabela.COLUNA_RESULTADO_NOTA_ARBITRO_EQUIPE2 + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
             Tabela.COLUNA_RESULTADO_RODADA + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
-            Tabela.COLUNA_RESULTADO_TURNO + Tabela.TIPO_INTEIRO + Tabela.PARENTESES_SAIDA;
-
-    /**
-     * Comando SQL para criar a tabela de jogo
-     */
-    public static final String CRIAR_TABELA_JOGO = Tabela.CRIAR_TABELA + Tabela.TABELA_JOGO + Tabela.PARENTESES_ENTRADA +
-            Tabela._ID + Tabela.TIPO_INTEIRO + Tabela.CHAVE_PRIMARIA + Tabela.AUTO_INCREMENTO + Tabela.VIRGULA +
-            Tabela.COLUNA_JOGO_RODADA + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
-            Tabela.COLUNA_JOGO_TURNO + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
-            Tabela.COLUNA_JOGO_DATA + Tabela.TIPO_TEXTO + Tabela.VIRGULA +
-            Tabela.COLUNA_JOGO_HORARIO + Tabela.TIPO_TEXTO + Tabela.VIRGULA +
-            Tabela.COLUNA_JOGO_EQUIPE1 + Tabela.TIPO_TEXTO + Tabela.VIRGULA +
-            Tabela.COLUNA_JOGO_EQUIPE2 + Tabela.TIPO_TEXTO + Tabela.VIRGULA +
-            Tabela.COLUNA_JOGO_CATEGORIA + Tabela.TIPO_TEXTO + Tabela.PARENTESES_SAIDA;
+            Tabela.COLUNA_RESULTADO_TURNO + Tabela.TIPO_INTEIRO + Tabela.VIRGULA +
+            Tabela.COLUNA_RESULTADO_VENCEDOR + Tabela.TIPO_INTEIRO + Tabela.PARENTESES_SAIDA;
 
     /**
      * Comando SQL para excluir a tabela de configuração
@@ -287,8 +305,15 @@ public class BancoDados {
     /**
      * Comando SQL para excluir a tabela de classificação geral
      */
-    public static final String DELETAR_TABELA_CLASSIFICACAO =
-            Tabela.EXCLUIR_TABELA + Tabela.TABELA_CONFIGURACAO;
+    public static final String DELETAR_TABELA_CLASSIFICACAO_GERAL =
+            Tabela.EXCLUIR_TABELA + Tabela.TABELA_CLASSIFICACAO_GERAL;
+
+    /**
+     * @author: Pâmela Fidelis and Vinicius on 28/10/2017
+     * Comando SQL para excluir a tabela de Quartas de finais
+     */
+    public static final String DELETAR_TABELA_CLASSIFICACAO_QUARTAS =
+            Tabela.EXCLUIR_TABELA + Tabela.TABELA_CLASSIFICACAO_QUARTAS;
 
     /**
      * Comando SQL para excluir a tabela de artilharia
@@ -319,11 +344,5 @@ public class BancoDados {
      */
     public static final String DELETAR_TABELA_RESULTADO =
             Tabela.EXCLUIR_TABELA + Tabela.TABELA_RESULTADO;
-
-    /**
-     * Comando SQL para excluir a tabela de jogo
-     */
-    public static final String DELETAR_TABELA_JOGO =
-            Tabela.EXCLUIR_TABELA + Tabela.TABELA_JOGO;
 
 }

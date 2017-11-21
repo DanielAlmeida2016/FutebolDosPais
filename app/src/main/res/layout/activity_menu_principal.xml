@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="br.com.futeboldospais.futeboldospais.controller.MenuPrincipalActivity">
+    tools:activity="br.com.futeboldospais.futeboldospais.controller.MenuPrincipalActivity">
 
     <FrameLayout
         android:id="@+id/content"

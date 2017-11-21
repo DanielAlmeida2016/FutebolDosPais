@@ -33,6 +33,7 @@ public class SuspensaoDAO {
             valores.put(BancoDados.Tabela.COLUNA_SUSPENSAO_JOGADOR, suspensao.getJogador());
             valores.put(BancoDados.Tabela.COLUNA_SUSPENSAO_NUMERO, suspensao.getNumero());
             valores.put(BancoDados.Tabela.COLUNA_SUSPENSAO_CATEGORIA, suspensao.getCategoria());
+            valores.put(BancoDados.Tabela.COLUNA_SUSPENSAO_CRITERIO, suspensao.getCriterio());
             valores.put(BancoDados.Tabela.COLUNA_SUSPENSAO_JOGOS, suspensao.getJogos());
             valores.put(BancoDados.Tabela.COLUNA_SUSPENSAO_MOTIVO, suspensao.getMotivo());
 
@@ -70,6 +71,7 @@ public class SuspensaoDAO {
                     BancoDados.Tabela.COLUNA_SUSPENSAO_JOGADOR,
                     BancoDados.Tabela.COLUNA_SUSPENSAO_NUMERO,
                     BancoDados.Tabela.COLUNA_SUSPENSAO_CATEGORIA,
+                    BancoDados.Tabela.COLUNA_SUSPENSAO_CRITERIO,
                     BancoDados.Tabela.COLUNA_SUSPENSAO_JOGOS,
                     BancoDados.Tabela.COLUNA_SUSPENSAO_MOTIVO};
 
@@ -89,6 +91,7 @@ public class SuspensaoDAO {
                     suspensao.setJogador(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_SUSPENSAO_JOGADOR)));
                     suspensao.setNumero(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_SUSPENSAO_NUMERO)));
                     suspensao.setCategoria(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_SUSPENSAO_CATEGORIA)));
+                    suspensao.setCriterio(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_SUSPENSAO_CRITERIO)));
                     suspensao.setJogos(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_SUSPENSAO_JOGOS)));
                     suspensao.setMotivo(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_SUSPENSAO_MOTIVO)));
 

@@ -1,33 +1,31 @@
 package br.com.futeboldospais.futeboldospais.util;
 
+import android.media.Image;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Created by Bruno on 18/10/2017.
- * Created by Solange on 18/10/2017.
- * Created by Graziele on 18/10/2017.
- * Created by Tamires on 18/10/2017.
+ * Created by Bruno e Solange on 18/10/2017.
  */
 
 public class ViewHolderCartao {
 
     private TextView jogador;
-    private TextView equipe;
-    //Cartão que o jogador tomou em campo
-    private TextView cartaoJogo;
+    private ImageView equipe;
     private TextView data;
-    private TextView juiz;
-    private TextView adversario;
+    /*private TextView juiz;*/
+    private ImageView adversario;
     private TextView tempo;
+    private TextView numero;
 
-    public ViewHolderCartao(TextView jogador, TextView equipe, TextView cartaoJogo, TextView data, TextView juiz, TextView adversario, TextView tempo) {
+    public ViewHolderCartao(TextView jogador, ImageView equipe, TextView data,/* TextView juiz,*/ ImageView adversario, TextView tempo, TextView numero) {
         this.jogador = jogador;
         this.equipe = equipe;
-        this.cartaoJogo = cartaoJogo;
         this.data = data;
-        this.juiz = juiz;
+        /*this.juiz = juiz;*/
         this.adversario = adversario;
         this.tempo = tempo;
+        this.numero = numero;
     }
 
     public TextView getJogador() {
@@ -38,20 +36,12 @@ public class ViewHolderCartao {
         this.jogador = jogador;
     }
 
-    public TextView getEquipe() {
+    public ImageView getEquipe() {
         return equipe;
     }
 
-    public void setEquipe(TextView equipe) {
+    public void setEquipe(ImageView equipe) {
         this.equipe = equipe;
-    }
-
-    public TextView getCartaoJogo() {
-        return cartaoJogo;
-    }
-
-    public void setCartaoJogo(TextView cartaoJogo) {
-        this.cartaoJogo = cartaoJogo;
     }
 
     public TextView getData() {
@@ -62,19 +52,19 @@ public class ViewHolderCartao {
         this.data = data;
     }
 
-    public TextView getJuiz() {
+    /*public TextView getJuiz() {
         return juiz;
     }
 
     public void setJuiz(TextView juiz) {
         this.juiz = juiz;
-    }
+    }*/
 
-    public TextView getAdversario() {
+    public ImageView getAdversario() {
         return adversario;
     }
 
-    public void setAdversario(TextView adversario) {
+    public void setAdversario(ImageView adversario) {
         this.adversario = adversario;
     }
 
@@ -84,5 +74,13 @@ public class ViewHolderCartao {
 
     public void setTempo(TextView tempo) {
         this.tempo = tempo;
+    }
+
+    public TextView getNumero() {
+        return numero;
+    }
+
+    public void setNumero(TextView numero) {
+        this.numero = numero;
     }
 }

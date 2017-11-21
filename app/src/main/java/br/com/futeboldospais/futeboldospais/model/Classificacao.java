@@ -7,9 +7,10 @@ import java.io.Serializable;
  * Classe de negócio padrão
  */
 
-public class Classificacao implements Serializable{
+public class Classificacao implements Serializable {
 
     private String equipe;
+    private int posicao;
     private int pontosGanhos;
     private int jogos;
     private int vitorias;
@@ -27,6 +28,14 @@ public class Classificacao implements Serializable{
 
     public void setEquipe(String equipe) {
         this.equipe = equipe;
+    }
+
+    public int getPosicao() {
+        return posicao;
+    }
+
+    public void setPosicao(int posicao) {
+        this.posicao = posicao;
     }
 
     public int getPontosGanhos() {
@@ -113,6 +122,7 @@ public class Classificacao implements Serializable{
     public String toString() {
         return "Classificacao{" +
                 "equipe='" + equipe + '\'' +
+                ", posicao=" + posicao +
                 ", pontosGanhos=" + pontosGanhos +
                 ", jogos=" + jogos +
                 ", vitorias=" + vitorias +

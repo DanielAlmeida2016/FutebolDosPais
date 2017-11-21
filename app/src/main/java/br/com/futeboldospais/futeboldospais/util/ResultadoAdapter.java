@@ -86,8 +86,10 @@ public class ResultadoAdapter extends BaseAdapter {
         viewHolderResultado.getTimeCasa().setText(listaResultado[position].getEquipe1());
         viewHolderResultado.getTimeVisitante().setText(listaResultado[position].getEquipe2());
 
-        viewHolderResultado.getGolsCasa().setText(String.valueOf(listaResultado[position].getGolsEquipe1()));
-        viewHolderResultado.getGolsVisitante().setText(String.valueOf(listaResultado[position].getGolsEquipe2()));
+        if (listaResultado[position].getGolsEquipe1() != -1 && listaResultado[position].getGolsEquipe2() != -1) {
+            viewHolderResultado.getGolsCasa().setText(String.valueOf(listaResultado[position].getGolsEquipe1()));
+            viewHolderResultado.getGolsVisitante().setText(String.valueOf(listaResultado[position].getGolsEquipe2()));
+        }
 
         // Implementar
         try {

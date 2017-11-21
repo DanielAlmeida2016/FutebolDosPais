@@ -5,8 +5,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.google.gson.Gson;
 
-import java.util.List;
-
 import br.com.futeboldospais.futeboldospais.dao.ConfiguracaoDAO;
 import br.com.futeboldospais.futeboldospais.model.Configuracao;
 import br.com.futeboldospais.futeboldospais.rest.ConfiguracaoRest;
@@ -40,14 +38,11 @@ public class ConfiguracaoService {
 
         Configuracao configuracao;
 
-        String json = configuracaoRest.getConfiguracaoServidor();
+        //Codigos para teste de comportamento de atualizacao com base em fator de equivalencia
+        //String json = ObtemJsonDeConfiguracao.comParametrosASeremAlterados(1);
+        //String json = ObtemJsonDeConfiguracao.comValorDeAtributoIncorreto();
 
-        /*String json = "{" +
-                "\"campeonatoAno\":\"2017\"," +
-                "\"homenageado\":\"Torneio Luigi Cremasco\"," +
-                "\"tema\":\"Campeonato Paulista\"," +
-                "\"versaoAtualizacao\":\"1\"" +
-                "}";*/
+        String json = configuracaoRest.getConfiguracaoServidor();
 
         Gson gson = new Gson();
 

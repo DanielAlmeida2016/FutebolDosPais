@@ -29,19 +29,19 @@ public class ClassificacaoDAO {
         ContentValues valores = new ContentValues();
 
         for (Classificacao classificacao : lista) {
-            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_EQUIPE, classificacao.getEquipe());
-            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_PONTOS_GANHOS, classificacao.getPontosGanhos());
-            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_JOGOS, classificacao.getJogos());
-            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_VITORIAS, classificacao.getVitorias());
-            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_EMPATES, classificacao.getEmpates());
-            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_DERROTAS, classificacao.getDerrotas());
-            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GOLS_PRO, classificacao.getGolsPro());
-            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GOLS_CONTRA, classificacao.getGolsContra());
-            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_SALDO_GOLS, classificacao.getSaldoGols());
-            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_CARTOES_AMARELOS, classificacao.getCartoesAmarelos());
-            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_CARTOES_VERMELHOS, classificacao.getCartoesVermelhos());
+            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_EQUIPE, classificacao.getEquipe());
+            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_PONTOS_GANHOS, classificacao.getPontosGanhos());
+            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_JOGOS, classificacao.getJogos());
+            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_VITORIAS, classificacao.getVitorias());
+            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_EMPATES, classificacao.getEmpates());
+            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_DERROTAS, classificacao.getDerrotas());
+            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_GOLS_PRO, classificacao.getGolsPro());
+            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_GOLS_CONTRA, classificacao.getGolsContra());
+            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_SALDO_GOLS, classificacao.getSaldoGols());
+            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_CARTOES_AMARELOS, classificacao.getCartoesAmarelos());
+            valores.put(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_CARTOES_VERMELHOS, classificacao.getCartoesVermelhos());
 
-            long id = bd.insert(BancoDados.Tabela.TABELA_CLASSIFICACAO, null, valores);
+            long id = bd.insert(BancoDados.Tabela.TABELA_CLASSIFICACAO_GERAL, null, valores);
         }
     }
 
@@ -51,7 +51,7 @@ public class ClassificacaoDAO {
      * Metodo utilizado para deletar todos os dados da tabela no banco de dados
      */
     public void deletarDados(SQLiteDatabase bd) {
-        bd.delete(BancoDados.Tabela.TABELA_CLASSIFICACAO, null, null);
+        bd.delete(BancoDados.Tabela.TABELA_CLASSIFICACAO_GERAL, null, null);
     }
 
     /**
@@ -71,19 +71,19 @@ public class ClassificacaoDAO {
         try {
 
             String[] selectColunasFrom = {BancoDados.Tabela._ID,
-                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_EQUIPE,
-                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_PONTOS_GANHOS,
-                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_JOGOS,
-                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_VITORIAS,
-                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_EMPATES,
-                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_DERROTAS,
-                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_GOLS_PRO,
-                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_GOLS_CONTRA,
-                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_SALDO_GOLS,
-                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_CARTOES_AMARELOS,
-                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_CARTOES_VERMELHOS};
+                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_EQUIPE,
+                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_PONTOS_GANHOS,
+                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_JOGOS,
+                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_VITORIAS,
+                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_EMPATES,
+                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_DERROTAS,
+                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_GOLS_PRO,
+                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_GOLS_CONTRA,
+                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_SALDO_GOLS,
+                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_CARTOES_AMARELOS,
+                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_CARTOES_VERMELHOS};
 
-            c = bd.query(BancoDados.Tabela.TABELA_CLASSIFICACAO,
+            c = bd.query(BancoDados.Tabela.TABELA_CLASSIFICACAO_GERAL,
                     selectColunasFrom,
                     null,
                     null,
@@ -95,17 +95,17 @@ public class ClassificacaoDAO {
             if (c.getCount() != 0) {
                 while (c.moveToNext()) {
                     classificacao = new Classificacao();
-                    classificacao.setEquipe(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_EQUIPE)));
-                    classificacao.setPontosGanhos(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_PONTOS_GANHOS)));
-                    classificacao.setJogos(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_JOGOS)));
-                    classificacao.setVitorias(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_VITORIAS)));
-                    classificacao.setEmpates(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_EMPATES)));
-                    classificacao.setDerrotas(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_DERROTAS)));
-                    classificacao.setGolsPro(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GOLS_PRO)));
-                    classificacao.setGolsContra(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GOLS_CONTRA)));
-                    classificacao.setSaldoGols(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_SALDO_GOLS)));
-                    classificacao.setCartoesAmarelos(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_CARTOES_AMARELOS)));
-                    classificacao.setCartoesVermelhos(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_CARTOES_VERMELHOS)));
+                    classificacao.setEquipe(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_EQUIPE)));
+                    classificacao.setPontosGanhos(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_PONTOS_GANHOS)));
+                    classificacao.setJogos(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_JOGOS)));
+                    classificacao.setVitorias(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_VITORIAS)));
+                    classificacao.setEmpates(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_EMPATES)));
+                    classificacao.setDerrotas(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_DERROTAS)));
+                    classificacao.setGolsPro(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_GOLS_PRO)));
+                    classificacao.setGolsContra(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_GOLS_CONTRA)));
+                    classificacao.setSaldoGols(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_SALDO_GOLS)));
+                    classificacao.setCartoesAmarelos(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_CARTOES_AMARELOS)));
+                    classificacao.setCartoesVermelhos(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_CARTOES_VERMELHOS)));
 
                     Log.d("teste", classificacao.toString());
                     retLista.add(classificacao);
@@ -134,9 +134,9 @@ public class ClassificacaoDAO {
         try {
 
             String[] selectColunasFrom = {BancoDados.Tabela._ID,
-                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_EQUIPE};
+                    BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_EQUIPE};
 
-            c = bd.query(BancoDados.Tabela.TABELA_CLASSIFICACAO,
+            c = bd.query(BancoDados.Tabela.TABELA_CLASSIFICACAO_GERAL,
                     selectColunasFrom,
                     null,
                     null,
@@ -147,7 +147,7 @@ public class ClassificacaoDAO {
 
             while (c.moveToNext()) {
                 classificacao = new Classificacao();
-                classificacao.setEquipe(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_EQUIPE)));
+                classificacao.setEquipe(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CLASSIFICACAO_GERAL_EQUIPE)));
 
                 Log.d("teste", classificacao.toString());
                 lista.add(classificacao);

@@ -1,14 +1,25 @@
 package br.com.futeboldospais.futeboldospais.controller;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import br.com.futeboldospais.futeboldospais.R;
 import br.com.futeboldospais.futeboldospais.util.AdapterPadrao;
@@ -21,13 +32,18 @@ import br.com.futeboldospais.futeboldospais.service.ArtilhariaService;
  */
 public class ArtilhariaFragment extends Fragment {
 
+    private EditText valorBusca;
+    private Button buscar;
+    private Button encerrar;
+    private LinearLayout div_busca;
+    private RadioGroup toggle;
     private RadioButton rbtMaster;
     private RadioButton rbtSenior;
-    private ListView listView;
+    private ListView tabelaArtilharia;
     private Artilharia[] listaArtilharia;
     private ArtilhariaAdapter adapter;
-    private Fragment activity;
     private ArtilhariaService artilhariaService;
+    private int tipoBusca;
 
     /**
      * Created by Daniel Almeida on 08/09/2017.
@@ -62,32 +78,38 @@ public class ArtilhariaFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        this.activity = this;
-
         final View view = inflater.inflate(R.layout.fragment_artilharia, container, false);
 
+        valorBusca = (EditText) view.findViewById(R.id.valor_busca);
+        buscar = (Button) view.findViewById(R.id.btn_buscar_artilheiro);
+        encerrar = (Button) view.findViewById(R.id.btn_encerrar_busca_artilheiro);
+        div_busca = (LinearLayout) view.findViewById(R.id.div_busca);
+        toggle = (RadioGroup) view.findViewById(R.id.toggle);
+
+        div_busca.setVisibility(View.INVISIBLE);
+
+
         rbtSenior = (RadioButton) view.findViewById(R.id.rbt_senior);
-        rbtSenior.setChecked(false);
 
         rbtMaster = (RadioButton) view.findViewById(R.id.rbt_master);
         rbtMaster.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
         rbtMaster.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_esq_cinza));
-        rbtMaster.setChecked(true);
 
-        listView = (ListView) view.findViewById(R.id.lista_melhores_jogadores);
+        tabelaArtilharia = (ListView) view.findViewById(R.id.lista_melhores_jogadores);
 
         artilhariaService = new ArtilhariaService();
         listaArtilharia = artilhariaService.listarDadosPorCategoria(getActivity().getBaseContext(), "Master");
+        tipoBusca = 0;
         Log.d("teste", "lista por categoria");
         Log.d("teste", "listaartilharia: " + listaArtilharia.length);
 
         if (listaArtilharia.length > 0) {
             adapter = new ArtilhariaAdapter(listaArtilharia, getActivity());
             Log.d("teste", "adapter");
-            listView.setAdapter(adapter);
+            tabelaArtilharia.setAdapter(adapter);
         } else {
-            AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity());
-            listView.setAdapter(adapterPadrao);
+            AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, não tem ninguem aqui ainda!");
+            tabelaArtilharia.setAdapter(adapterPadrao);
         }
 
         rbtMaster.setOnClickListener(new View.OnClickListener() {
@@ -97,10 +119,10 @@ public class ArtilhariaFragment extends Fragment {
 
                 if (listaArtilharia.length > 0) {
                     adapter = new ArtilhariaAdapter(listaArtilharia, getActivity());
-                    listView.setAdapter(adapter);
+                    tabelaArtilharia.setAdapter(adapter);
                 } else {
-                    AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity());
-                    listView.setAdapter(adapterPadrao);
+                    AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, não tem ninguem aqui ainda!");
+                    tabelaArtilharia.setAdapter(adapterPadrao);
                 }
 
                 rbtMaster.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
@@ -108,6 +130,8 @@ public class ArtilhariaFragment extends Fragment {
 
                 rbtSenior.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
                 rbtSenior.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_dir_branco));
+
+                tipoBusca = 0;
             }
         });
 
@@ -119,10 +143,10 @@ public class ArtilhariaFragment extends Fragment {
 
                 if (listaArtilharia.length > 0) {
                     adapter = new ArtilhariaAdapter(listaArtilharia, getActivity());
-                    listView.setAdapter(adapter);
+                    tabelaArtilharia.setAdapter(adapter);
                 } else {
-                    AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity());
-                    listView.setAdapter(adapterPadrao);
+                    AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, não tem ninguem aqui ainda!");
+                    tabelaArtilharia.setAdapter(adapterPadrao);
                 }
 
                 rbtMaster.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
@@ -130,9 +154,96 @@ public class ArtilhariaFragment extends Fragment {
 
                 rbtSenior.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
                 rbtSenior.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_dir_cinza));
+
+                tipoBusca = 1;
+            }
+        });
+
+        buscar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view1) {
+                div_busca.setVisibility(View.VISIBLE);
+                buscar.setVisibility(View.INVISIBLE);
+                toggle.setVisibility(View.INVISIBLE);
+                mostrarTecladoComFocus(valorBusca, getActivity());
+            }
+        });
+
+        encerrar.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view1) {
+                div_busca.setVisibility(View.INVISIBLE);
+                buscar.setVisibility(View.VISIBLE);
+                toggle.setVisibility(View.VISIBLE);
+                valorBusca.setText(null);
+                fecharTeclado(getView(), getActivity());
+            }
+        });
+
+        valorBusca.addTextChangedListener(new TextWatcher() {
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                if (s.length() != 0) {
+                    if (tipoBusca == 0) {
+                        listaArtilharia = artilhariaService.listarDadosPorCategoriaENome(getActivity().getBaseContext(), "Master", valorBusca.getText().toString());
+                    } else {
+                        listaArtilharia = artilhariaService.listarDadosPorCategoriaENome(getActivity().getBaseContext(), "Senior", valorBusca.getText().toString());
+                    }
+
+                    if (listaArtilharia.length > 0) {
+                        adapter = new ArtilhariaAdapter(listaArtilharia, getActivity());
+                        tabelaArtilharia.setAdapter(adapter);
+                    } else {
+                        AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, ninguem foi encontrado!");
+                        tabelaArtilharia.setAdapter(adapterPadrao);
+                    }
+                } else {
+                    if (tipoBusca == 0) {
+                        listaArtilharia = artilhariaService.listarDadosPorCategoria(getActivity().getBaseContext(), "Master");
+                    } else {
+                        listaArtilharia = artilhariaService.listarDadosPorCategoria(getActivity().getBaseContext(), "Senior");
+                    }
+
+                    if (listaArtilharia.length > 0) {
+                        adapter = new ArtilhariaAdapter(listaArtilharia, getActivity());
+                        tabelaArtilharia.setAdapter(adapter);
+                    } else {
+                        AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, não tem ninguem aqui ainda!");
+                        tabelaArtilharia.setAdapter(adapterPadrao);
+                    }
+                }
             }
         });
 
         return view;
+    }
+
+    public static void mostrarTecladoComFocus(View view, Activity activity) {
+        try {
+            view.requestFocus();
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
+            activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void fecharTeclado(View view, Activity activity) {
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
     }
 }

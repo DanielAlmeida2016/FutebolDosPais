@@ -26,6 +26,7 @@ public class Resultado implements Serializable{
     private int notaArbitroEquipe2;
     private int rodada;
     private int turno;
+    private int vencedor;
 
     public String getData() {
         return data;
@@ -171,6 +172,14 @@ public class Resultado implements Serializable{
         this.turno = turno;
     }
 
+    public int getVencedor() {
+        return vencedor;
+    }
+
+    public void setVencedor(int vencedor) {
+        this.vencedor = vencedor;
+    }
+
     @Override
     public String toString() {
         return "Resultado{" +
@@ -192,6 +201,7 @@ public class Resultado implements Serializable{
                 ", notaArbitroEquipe2=" + notaArbitroEquipe2 +
                 ", rodada=" + rodada +
                 ", turno=" + turno +
+                ", vencedor=" + vencedor +
                 '}';
     }
 }

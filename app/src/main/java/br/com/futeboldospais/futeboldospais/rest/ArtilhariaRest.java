@@ -1,5 +1,7 @@
 package br.com.futeboldospais.futeboldospais.rest;
 
+import android.util.Log;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -14,11 +16,11 @@ import okhttp3.Response;
 public class ArtilhariaRest {
 
     /**
-     * @author Daniel Almeida
-     * Método utilizado para baixar o conteúdo em formato json do arquivo .txt no servidor
      * @param urlBase Inicio padrão da url do site www.futeboldospais.com.br/campeonatoXXXX/json
      * @return String no formato JSONArray
      * @throws Exception TimeoutException
+     * @author Daniel Almeida
+     * Método utilizado para baixar o conteúdo em formato json do arquivo .txt no servidor
      */
     public String getArtilharia(String urlBase) throws Exception {
 
@@ -30,10 +32,10 @@ public class ArtilhariaRest {
         Request request = new Request.Builder().url(url).build();
         Response response = client.newCall(request).execute();
 
-        if(client.connectTimeoutMillis() <= 10000 && client.readTimeoutMillis() <= 5000) {
-            rs = response.body().string();
-        }
-        else{
+        if (client.connectTimeoutMillis() <= 10000 && client.readTimeoutMillis() <= 5000) {
+            //rs = response.body().string();
+            rs = new String(response.body().bytes(), "ISO-8859-1");
+        } else {
             rs = null;
         }
 

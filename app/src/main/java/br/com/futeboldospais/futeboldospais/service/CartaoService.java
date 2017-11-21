@@ -207,4 +207,12 @@ public class CartaoService {
     public Cartao[] listarDadosCartaoVermelho(Context context){
         return dao.listarDadosCartaoVermelho(context);
     }
+
+    public Cartao[] listarDadosCartaoaAmareloPorJogadorEEquipe(Context context, String valorBusca) {
+        return dao.listarDadosCartaoaAmareloPorJogadorEEquipe(context, valorBusca);
+    }
+
+    public Cartao[] listarDadosCartaoVermelhoPorJogadorEEquipe(Context context, String valorBusca) {
+        return dao.listarDadosCartaoVermelhoPorJogadorEEquipe(context, valorBusca);
+    }
 }

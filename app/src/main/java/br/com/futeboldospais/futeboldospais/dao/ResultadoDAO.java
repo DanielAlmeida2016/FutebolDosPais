@@ -18,13 +18,16 @@ import br.com.futeboldospais.futeboldospais.model.Resultado;
 
 public class ResultadoDAO {
 
+    private int golsEquipe1 = -1;
+    private int golsEquipe2 = -1;
+
     /**
+     * @param bd    Conexão de gravação passada para execução do comando SQL
+     * @param lista ArrayList de objetos passados para carregar as informações no ContentValues
      * @author Daniel Almeida
      * Metodo utilizado para gravar novos dados na tabela do banco de dados
-     * @param bd Conexão de gravação passada para execução do comando SQL
-     * @param lista ArrayList de objetos passados para carregar as informações no ContentValues
      */
-    public void inserirDados(SQLiteDatabase bd, List<Resultado> lista) {
+    public void inserirDadosResultado(SQLiteDatabase bd, List<Resultado> lista) {
 
         ContentValues valores = new ContentValues();
 
@@ -47,6 +50,7 @@ public class ResultadoDAO {
             valores.put(BancoDados.Tabela.COLUNA_RESULTADO_NOTA_ARBITRO_EQUIPE2, resultado.getNotaArbitroEquipe2());
             valores.put(BancoDados.Tabela.COLUNA_RESULTADO_RODADA, resultado.getRodada());
             valores.put(BancoDados.Tabela.COLUNA_RESULTADO_TURNO, resultado.getTurno());
+            valores.put(BancoDados.Tabela.COLUNA_RESULTADO_VENCEDOR, resultado.getVencedor());
 
             long id = bd.insert(BancoDados.Tabela.TABELA_RESULTADO, null, valores);
         }
@@ -54,18 +58,43 @@ public class ResultadoDAO {
 
     /**
      * @author Daniel Almeida
-     * Metodo utilizado para deletar todos os dados da tabela no banco de dados
+     * Metodo utilizado para gravar novos dados na tabela do banco de dados
      * @param bd Conexão de gravação passada para execução do comando SQL
+     * @param lista ArrayList de objetos passados para carregar as informações no ContentValues
+     */
+    public void inserirDadosJogo(SQLiteDatabase bd, List<Resultado> lista) {
+
+        ContentValues valores = new ContentValues();
+
+        for (Resultado resultado : lista) {
+            valores.put(BancoDados.Tabela.COLUNA_RESULTADO_RODADA, resultado.getRodada());
+            valores.put(BancoDados.Tabela.COLUNA_RESULTADO_TURNO, resultado.getTurno());
+            valores.put(BancoDados.Tabela.COLUNA_RESULTADO_DATA, resultado.getData());
+            valores.put(BancoDados.Tabela.COLUNA_RESULTADO_HORARIO, resultado.getHorario());
+            valores.put(BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE1, resultado.getEquipe1());
+            valores.put(BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE2, resultado.getEquipe2());
+            valores.put(BancoDados.Tabela.COLUNA_RESULTADO_CATEGORIA, resultado.getCategoria());
+            valores.put(BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE1, golsEquipe1);
+            valores.put(BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE2, golsEquipe2);
+
+            long id = bd.insert(BancoDados.Tabela.TABELA_RESULTADO, null, valores);
+        }
+    }
+
+    /**
+     * @param bd Conexão de gravação passada para execução do comando SQL
+     * @author Daniel Almeida
+     * Metodo utilizado para deletar todos os dados da tabela no banco de dados
      */
     public void deletarDados(SQLiteDatabase bd) {
         bd.delete(BancoDados.Tabela.TABELA_RESULTADO, null, null);
     }
 
     /**
-     * @author Daniel Almeida
-     * Este metodo serve para buscar o cadastro de jogos com seus respectivos resultados no banco
      * @param context Contexto da aplicação passado para obter conexão de leitura com o banco de dados
      * @return Retorna um vetor do tipo Resultado
+     * @author Daniel Almeida
+     * Este metodo serve para buscar o cadastro de jogos com seus respectivos resultados no banco
      */
     public Resultado[] listarDadosPorRodadaETurno(Context context, int rodada, int turno) {
 
@@ -90,7 +119,7 @@ public class ResultadoDAO {
                     BancoDados.Tabela.COLUNA_RESULTADO_RODADA + " = ? AND " + BancoDados.Tabela.COLUNA_RESULTADO_TURNO + " = ?";
 
             String[] valorWhere =
-                    { String.valueOf(rodada), String.valueOf(turno) };
+                    {String.valueOf(rodada), String.valueOf(turno)};
 
             c = bd.query(BancoDados.Tabela.TABELA_RESULTADO,
                     selectColunasFrom,
@@ -101,7 +130,7 @@ public class ResultadoDAO {
                     null
             );
 
-            if(c.getCount() != 0) {
+            if (c.getCount() != 0) {
                 while (c.moveToNext()) {
                     resultado = new Resultado();
                     resultado.setData(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_DATA)));
@@ -116,8 +145,7 @@ public class ResultadoDAO {
                     retLista.add(resultado);
                 }
                 lista = retLista.toArray(new Resultado[0]);
-            }
-            else{
+            } else {
                 lista = new Resultado[0];
             }
         } catch (Exception e) {
@@ -129,5 +157,48 @@ public class ResultadoDAO {
         }
 
         return lista;
+    }
+
+    public int listarDadosRodadaAtual(Context context) {
+
+        SQLiteDatabase bd = BancoDadosHelper.FabricaDeConexao.getConexaoAplicacao(context);
+        Resultado resultado;
+        Cursor c = null;
+        int rodada = 0;
+
+        try {
+
+            String[] selectColunasFrom = {"MAX(" + BancoDados.Tabela.COLUNA_RESULTADO_RODADA + ")"};
+
+            String where =
+                    BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE1 + " != ? AND " + BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE2 + " != ?";
+
+            String[] valorWhere =
+                    {String.valueOf(golsEquipe1), String.valueOf(golsEquipe2)};
+
+            c = bd.query(BancoDados.Tabela.TABELA_RESULTADO,
+                    selectColunasFrom,
+                    where,
+                    valorWhere,
+                    null,
+                    null,
+                    null
+            );
+
+            if (c.moveToFirst()) {
+                rodada = c.getInt(0);
+            } else {
+                rodada = 1;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+
+        return rodada;
     }
 }

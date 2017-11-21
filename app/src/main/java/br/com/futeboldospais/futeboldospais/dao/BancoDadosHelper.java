@@ -29,13 +29,13 @@ public class BancoDadosHelper extends SQLiteOpenHelper{
      */
     public void onCreate(SQLiteDatabase bd){
         bd.execSQL(BancoDados.CRIAR_TABELA_CONFIGURACAO);
-        bd.execSQL(BancoDados.CRIAR_TABELA_CLASSIFICACAO);
+        bd.execSQL(BancoDados.CRIAR_TABELA_CLASSIFICACAO_GERAL);
+        bd.execSQL(BancoDados.CRIAR_TABELA_CLASSIFICACAO_QUARTAS);
         bd.execSQL(BancoDados.CRIAR_TABELA_ARTILHARIA);
         bd.execSQL(BancoDados.CRIAR_TABELA_CARTAO_AMARELO);
         bd.execSQL(BancoDados.CRIAR_TABELA_CARTAO_VERMELHO);
         bd.execSQL(BancoDados.CRIAR_TABELA_SUSPENSAO);
         bd.execSQL(BancoDados.CRIAR_TABELA_RESULTADO);
-        bd.execSQL(BancoDados.CRIAR_TABELA_JOGO);
         Log.d("teste", "Teste 1 - criou as tabelas");
     }
 
@@ -48,13 +48,13 @@ public class BancoDadosHelper extends SQLiteOpenHelper{
      */
     public void onUpgrade(SQLiteDatabase bd, int versaoAntiga, int novaVersao){
         bd.execSQL(BancoDados.DELETAR_TABELA_CONFIGURACAO);
-        bd.execSQL(BancoDados.DELETAR_TABELA_CLASSIFICACAO);
+        bd.execSQL(BancoDados.DELETAR_TABELA_CLASSIFICACAO_GERAL);
+        bd.execSQL(BancoDados.DELETAR_TABELA_CLASSIFICACAO_QUARTAS);
         bd.execSQL(BancoDados.DELETAR_TABELA_ARTILHARIA);
         bd.execSQL(BancoDados.DELETAR_TABELA_AMARELO);
         bd.execSQL(BancoDados.DELETAR_TABELA_VERMELHO);
         bd.execSQL(BancoDados.DELETAR_TABELA_SUSPENSAO);
         bd.execSQL(BancoDados.DELETAR_TABELA_RESULTADO);
-        bd.execSQL(BancoDados.DELETAR_TABELA_JOGO);
         onCreate(bd);
     }
 

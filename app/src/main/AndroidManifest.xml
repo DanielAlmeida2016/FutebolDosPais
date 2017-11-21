@@ -2,17 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.futeboldospais.futeboldospais">
 
+    <!-- Declaração de permissões necessárias -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_logo_2"
+        android:icon="@mipmap/ic_logo_laucherteste"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_logo_2"
+        android:roundIcon="@mipmap/ic_logo_laucherteste"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".controller.MainActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,8 +29,19 @@
             android:name=".controller.DocumentViewer"
             android:label="@string/title_activity_document_viewer"
             android:theme="@style/AppTheme" />
-
-        <activity android:name=".controller.MenuPrincipalActivity"/>
+        <activity android:name=".controller.MenuPrincipalActivity" />
+        <activity
+            android:name=".util.ModalJogos"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar.MinWidth" />
+        <activity
+            android:name=".util.ModalClassificacao"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar.MinWidth" />
+        <activity
+            android:name=".util.ModalSuspensao"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar.MinWidth" />
 
         <!-- Declaração de serviços da aplicação -->
         <service
@@ -33,9 +50,4 @@
 
     </application>
 
-    <!-- Declaração de permissões necessárias -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 </manifest>
