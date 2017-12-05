@@ -135,10 +135,10 @@ public class CartaoDAO {
                 }
                 lista = retLista.toArray(new Cartao[0]);
             } else {
-                lista = null;
+                lista = new Cartao[0];
             }
         } catch (Exception e) {
-            lista = null;
+            lista = new Cartao[0];
         } finally {
             if (c != null) {
                 c.close();
@@ -264,10 +264,10 @@ public class CartaoDAO {
                 }
                 lista = retLista.toArray(new Cartao[0]);
             } else {
-                lista = null;
+                lista = new Cartao[0];
             }
         } catch (Exception e) {
-            lista = null;
+            lista = new Cartao[0];
         } finally {
             if (c != null) {
                 c.close();

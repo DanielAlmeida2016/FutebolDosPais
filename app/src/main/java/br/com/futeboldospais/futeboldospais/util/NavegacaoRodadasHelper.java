@@ -1,6 +1,11 @@
 package br.com.futeboldospais.futeboldospais.util;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import br.com.futeboldospais.futeboldospais.controller.DecimaNonaRodadaFragment;
 import br.com.futeboldospais.futeboldospais.controller.DecimaOitavaRodadaFragment;
@@ -12,6 +17,7 @@ import br.com.futeboldospais.futeboldospais.controller.DecimaSegundaRodadaFragme
 import br.com.futeboldospais.futeboldospais.controller.DecimaSetimaRodadaFragment;
 import br.com.futeboldospais.futeboldospais.controller.DecimaSextaRodadaFragment;
 import br.com.futeboldospais.futeboldospais.controller.DecimaTerceiraRodadaFragment;
+import br.com.futeboldospais.futeboldospais.controller.DocumentViewer;
 import br.com.futeboldospais.futeboldospais.controller.NonaRodadaFragment;
 import br.com.futeboldospais.futeboldospais.controller.OitavaRodadaFragment;
 import br.com.futeboldospais.futeboldospais.controller.PrimeiraRodadaFragment;
@@ -30,6 +36,10 @@ import br.com.futeboldospais.futeboldospais.controller.VigesimaSegundaRodadaFrag
 import br.com.futeboldospais.futeboldospais.controller.VigesimaSetimaRodadaFragment;
 import br.com.futeboldospais.futeboldospais.controller.VigesimaSextaRodadaFragment;
 import br.com.futeboldospais.futeboldospais.controller.VigesimaTerceiraRodadaFragment;
+import br.com.futeboldospais.futeboldospais.model.Resultado;
+import br.com.futeboldospais.futeboldospais.service.ResultadoService;
+
+import static java.security.AccessController.getContext;
 
 /**
  * Created by Daniel Almeida on 15/09/2017.
@@ -384,5 +394,36 @@ public class NavegacaoRodadasHelper {
         return navegacaoRodadas;
     }
 
+    public static Resultado[] carregarAdapter(ListView tabelaResultado, Resultado[] listaResultado, int rodada, int turno, Activity activity) {
+        ResultadoService resultadoService = new ResultadoService();
+        listaResultado = resultadoService.listarDadosPorRodadaETurno(activity.getBaseContext(), rodada, turno);
 
+        if (listaResultado.length != 0) {
+            ResultadoAdapter resultadoAdapter = new ResultadoAdapter(listaResultado, activity.getBaseContext());
+            tabelaResultado.setAdapter(resultadoAdapter);
+        } else {
+            AdapterPadrao adapterPadrao = new AdapterPadrao(activity.getBaseContext(), "Ocorreu um erro nesta rodada!");
+            tabelaResultado.setAdapter(adapterPadrao);
+        }
+        return listaResultado;
+    }
+
+    public static void abrirSumula(Resultado[] listaResultado, int position, Activity activity) {
+        if(GerenciadorDeConectividade.isConnected(activity.getBaseContext())) {
+            String data = listaResultado[position].getData();
+            String hora = listaResultado[position].getHorario();
+            String categoria = listaResultado[position].getCategoria();
+            String dados = listaResultado[position].getEquipe1() + " x " + listaResultado[position].getEquipe2() +
+                    " " + listaResultado[position].getData() + " " + listaResultado[position].getHorario();
+
+            Intent intent = new Intent(activity.getBaseContext(), DocumentViewer.class);
+            intent.putExtra("dados", dados);
+            intent.putExtra("url", FabricaDeUrl.urlSumula(data, hora, categoria, activity.getBaseContext()));
+
+            activity.startActivity(intent);
+        }
+        else{
+            Toast.makeText(activity.getBaseContext(), "Para visualizar a súmula é necessário estar conectado à internet", Toast.LENGTH_SHORT).show();
+        }
+    }
 }

@@ -52,12 +52,12 @@ public class QuartasInstrumentedTest {
         }
     }
 
-    @Ignore
+    @Test
     public void testaCadastroDeQuartas() {
         assertEquals(16, classificacaoQuartasService.inserirDados(db, lista));
     }
 
-    @Test
+    @Ignore
     public void testaBuscaDeEquipePorGrupoCategoriaEPosicao() {
         assertEquals("Ponte-Preta", classificacaoQuartasService.buscarEquipeNaPosicao(appContext, "Senior", "Repescagem", 1));
     }

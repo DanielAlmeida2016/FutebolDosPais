@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import br.com.futeboldospais.futeboldospais.dao.ClassificacaoDAO;
 import br.com.futeboldospais.futeboldospais.model.Classificacao;
 import br.com.futeboldospais.futeboldospais.rest.ClassificacaoRest;
+import br.com.futeboldospais.futeboldospais.util.FabricaDeUrl;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,7 +46,7 @@ public class ClassificacaoService {
 
         List<Classificacao> lista;
 
-        String json = classificacaoRest.getClassificacao(ConfiguracaoService.urlBase(campeonatoAno));
+        String json = classificacaoRest.getClassificacao(FabricaDeUrl.urlBase(campeonatoAno));
 
         /*String json = "[\n" +
                 " {\n" +

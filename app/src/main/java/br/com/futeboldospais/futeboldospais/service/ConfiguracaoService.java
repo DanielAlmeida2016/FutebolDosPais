@@ -51,11 +51,6 @@ public class ConfiguracaoService {
         return configuracao;
     }
 
-    public static String urlBase(int campeonatoAno){
-        String urlBase = "http://www.futeboldospais.com.br/campeonato" + String.valueOf(campeonatoAno) + "/json/";
-        return urlBase;
-    }
-
     public void atualizarVersaoLocal(SQLiteDatabase bd, Configuracao configuracao, int versaoLocal) {
         dao.atualizarVersaoLocal(bd, configuracao, versaoLocal);
     }

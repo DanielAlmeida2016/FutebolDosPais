@@ -2,11 +2,11 @@ package br.com.futeboldospais.futeboldospais.controller;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,8 +44,10 @@ import br.com.futeboldospais.futeboldospais.rest.FileDownloadHelper;
 public class DocumentViewer extends AppCompatActivity {
 
     private String url;
+    private String erro;
     private PDFView pdfView;
-    private TextView jogo;
+    private TextView txtJogo;
+    private TextView txtStatus;
     private InputStream pdfDocument;
     private LinearLayout divStatus;
 
@@ -57,67 +59,97 @@ public class DocumentViewer extends AppCompatActivity {
         Intent intent = getIntent(); // Traz o intent para o nosso contexto
         // Pega do intent as variáveis necessárias
         String dados = intent.getStringExtra("dados");
+        int tipo = intent.getIntExtra("tipo", 0);
+        int subTipo = intent.getIntExtra("subTipo", 0);
         url = intent.getStringExtra("url");
-        /*
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // Instancia a barra superior...
-        setSupportActionBar(toolbar); // ...e a configura como barra superior.
 
-        // Configura o título da janela
-        toolbar.setTitle(title);
-        */
         divStatus = (LinearLayout) findViewById(R.id.div_status);
-        divStatus.setVisibility(View.VISIBLE);
-
-        jogo = (TextView) findViewById(R.id.jogo);
+        divStatus.setVisibility(View.INVISIBLE);
+        txtJogo = (TextView) findViewById(R.id.jogo);
+        txtStatus = (TextView) findViewById(R.id.txt_status);
         pdfView = (PDFView) findViewById(R.id.pdfView);
 
-        jogo.setText(dados);
-        // Joga o contexto como variável final; precisaremos disso ao chamar o FileDownloadHelper.
-        // Como vamos acessar ela a partir de uma inner class, ela tem que ser final. Java, né...
-        final Context context = this;
+        if (tipo == 0) {
 
-        // Aqui é que a onça bebe água. Instancia uma nova thread runnable...
-        new Thread(
-                new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            // Baixa o PDF.
-                            pdfDocument =
-                                    FileDownloadHelper.downloadBinary(context, url);
+            if (subTipo == 0) {
+                erro = "Ocorreu um erro ao carregar a súmula";
+                txtStatus.setText("Carregando súmula...");
+                divStatus.setVisibility(View.VISIBLE);
+            } else if (subTipo == 1) {
+                erro = "Ocorreu um erro ao carregar o regulamento";
+                txtStatus.setText("Carregando regulamento...");
+                divStatus.setVisibility(View.VISIBLE);
+            }
+            // Joga o contexto como variável final; precisaremos disso ao chamar o FileDownloadHelper.
+            // Como vamos acessar ela a partir de uma inner class, ela tem que ser final. Java, né...
+            final Context context = this;
+            // Aqui é que a onça bebe água. Instancia uma nova thread runnable...
+            new Thread(
+                    new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                // Baixa o PDF.
+                                pdfDocument =
+                                        FileDownloadHelper.downloadBinary(context, url);
 
-                            // Pega o PDF baixado e o exibe na PDFView da activity.
-                            runOnUiThread(
-                                    new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            divStatus.setVisibility(View.INVISIBLE);
-                                            // Exibe o PDF.
-                                            pdfView.fromStream(pdfDocument)
-                                                    .enableAnnotationRendering(true)
-                                                    .spacing(0) // in dp
-                                                    .load();
+                                // Pega o PDF baixado e o exibe na PDFView da activity.
+                                runOnUiThread(
+                                        new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                divStatus.setVisibility(View.INVISIBLE);
+                                                // Exibe o PDF.
+                                                pdfView.fromStream(pdfDocument)
+                                                        .enableAnnotationRendering(true)
+                                                        .spacing(0) // in dp
+                                                        .load();
+                                            }
                                         }
-                                    }
-                            );
-                        } catch (Exception e) {
-                            runOnUiThread(
-                                    new Runnable() {
-                                        @Override
-                                        public void run() {
-                                            divStatus.setVisibility(View.INVISIBLE);
-                                            Toast.makeText(getBaseContext(), "Ocorreu um erro ao carregar a súmula", Toast.LENGTH_SHORT).show();
-                                            finish();
+                                );
+                            } catch (Exception e) {
+                                runOnUiThread(
+                                        new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                divStatus.setVisibility(View.INVISIBLE);
+                                                Toast.makeText(getBaseContext(), erro, Toast.LENGTH_SHORT).show();
+                                                finish();
+                                            }
                                         }
-                                    }
-                            );
+                                );
+                            }
                         }
                     }
-                }
-        ).start();
+            ).start();
+
+        } else if (tipo == 1) {
+            pdfView.fromAsset("termos/TermoDeUsoDoAplicativo.pdf")
+                    .enableAnnotationRendering(true)
+                    .spacing(0) // in dp
+                    .load();
+        } else if (tipo == 2) {
+            pdfView.fromAsset("termos/PoliticaDePrivacidade.pdf")
+                    .enableAnnotationRendering(true)
+                    .spacing(0) // in dp
+                    .load();
+        } else if (tipo == 3) {
+            pdfView.fromAsset("termos/Licencas.pdf")
+                    .enableAnnotationRendering(true)
+                    .spacing(0) // in dp
+                    .load();
+
+        } else if (tipo == 4) {
+            pdfView.fromAsset("termos/Sobre.pdf")
+                    .enableAnnotationRendering(true)
+                    .spacing(0) // in dp
+                    .load();
+
+        }
+
     }
 
-    public void voltar(View view){
+    public void voltar(View view) {
         finish();
     }
 }

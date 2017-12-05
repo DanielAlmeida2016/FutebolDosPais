@@ -57,10 +57,10 @@ public class ResultadoDAO {
     }
 
     /**
+     * @param bd    Conexão de gravação passada para execução do comando SQL
+     * @param lista ArrayList de objetos passados para carregar as informações no ContentValues
      * @author Daniel Almeida
      * Metodo utilizado para gravar novos dados na tabela do banco de dados
-     * @param bd Conexão de gravação passada para execução do comando SQL
-     * @param lista ArrayList de objetos passados para carregar as informações no ContentValues
      */
     public void inserirDadosJogo(SQLiteDatabase bd, List<Resultado> lista) {
 
@@ -162,7 +162,6 @@ public class ResultadoDAO {
     public int listarDadosRodadaAtual(Context context) {
 
         SQLiteDatabase bd = BancoDadosHelper.FabricaDeConexao.getConexaoAplicacao(context);
-        Resultado resultado;
         Cursor c = null;
         int rodada = 0;
 
@@ -200,5 +199,256 @@ public class ResultadoDAO {
         }
 
         return rodada;
+    }
+
+    public Resultado getGolsPorEquipe(Context context, String equipe1, String equipe2, String categoria, int turno) {
+
+        SQLiteDatabase bd = BancoDadosHelper.FabricaDeConexao.getConexaoAplicacao(context);
+        Resultado resultado = null;
+        Cursor c = null;
+
+        try {
+
+            String[] selectColunasFrom = {BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE1,
+                    BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE2};
+
+            String where =
+                    BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE1 + " = ? AND "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE2 + " = ? AND "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_CATEGORIA + " = ? AND "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_TURNO + " = ?";
+
+            String[] valorWhere =
+                    {equipe1, equipe2, categoria, String.valueOf(turno)};
+
+            c = bd.query(BancoDados.Tabela.TABELA_RESULTADO,
+                    selectColunasFrom,
+                    where,
+                    valorWhere,
+                    null,
+                    null,
+                    null
+            );
+
+            if (c.moveToFirst()) {
+                resultado = new Resultado();
+                resultado.setGolsEquipe1(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE1)));
+                resultado.setGolsEquipe2(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE2)));
+                Log.d("teste", "" + resultado.toString());
+            } else {
+                resultado = new Resultado();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+
+        return resultado;
+    }
+
+    public Resultado getEquipeVencedora(Context context, String equipe1, String equipe2, String categoria) {
+
+        SQLiteDatabase bd = BancoDadosHelper.FabricaDeConexao.getConexaoAplicacao(context);
+        Resultado resultado = null;
+        Cursor c = null;
+
+        try {
+
+            String[] selectColunasFrom = {BancoDados.Tabela.COLUNA_RESULTADO_VENCEDOR,
+                    BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE1,
+                    BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE2};
+
+            String where =
+                    BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE1 + " = ? AND "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE2 + " = ? AND "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_CATEGORIA + " = ? AND "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_TURNO + " = ?";
+
+            String[] valorWhere =
+                    {equipe1, equipe2, categoria, String.valueOf(4)};
+
+            c = bd.query(BancoDados.Tabela.TABELA_RESULTADO,
+                    selectColunasFrom,
+                    where,
+                    valorWhere,
+                    null,
+                    null,
+                    null
+            );
+
+            if (c.moveToFirst()) {
+                resultado = new Resultado();
+                resultado.setVencedor(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_VENCEDOR)));
+                resultado.setEquipe1(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE1)));
+                resultado.setEquipe2(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE2)));
+            } else {
+                resultado = new Resultado();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+
+        return resultado;
+    }
+
+    public Resultado getGolsPorEquipeUnica(Context context, String equipe, String categoria, int turno) {
+
+        SQLiteDatabase bd = BancoDadosHelper.FabricaDeConexao.getConexaoAplicacao(context);
+        Resultado resultado = null;
+        Cursor c = null;
+
+        try {
+
+            String[] selectColunasFrom = {BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE1,
+                    BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE2,
+                    BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE1,
+                    BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE2};
+
+            String where =
+                    BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE1 + " = ? AND "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_CATEGORIA + " = ? AND "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_TURNO + " = ? OR "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE2 + " = ? AND "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_CATEGORIA + " = ? AND "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_TURNO + " = ?";
+
+            String[] valorWhere =
+                    {equipe, categoria, String.valueOf(turno), equipe, categoria, String.valueOf(turno)};
+
+            c = bd.query(BancoDados.Tabela.TABELA_RESULTADO,
+                    selectColunasFrom,
+                    where,
+                    valorWhere,
+                    null,
+                    null,
+                    null
+            );
+
+            if (c.moveToFirst()) {
+                resultado = new Resultado();
+                resultado.setEquipe1(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE1)));
+                resultado.setEquipe2(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE2)));
+                resultado.setGolsEquipe1(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE1)));
+                resultado.setGolsEquipe2(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE2)));
+                Log.d("teste", "" + resultado.toString());
+            } else {
+                resultado = new Resultado();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+
+        return resultado;
+    }
+
+    public Resultado getVencedorPorEquipeUnica(Context context, String equipe, String categoria, int turno) {
+
+        SQLiteDatabase bd = BancoDadosHelper.FabricaDeConexao.getConexaoAplicacao(context);
+        Resultado resultado = null;
+        Cursor c = null;
+
+        try {
+
+            String[] selectColunasFrom = {BancoDados.Tabela.COLUNA_RESULTADO_VENCEDOR,
+                    BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE1,
+                    BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE2};
+
+            String where =
+                    BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE1 + " = ? AND "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_CATEGORIA + " = ? AND "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_TURNO + " = ? OR "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE2 + " = ? AND "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_CATEGORIA + " = ? AND "
+                            + BancoDados.Tabela.COLUNA_RESULTADO_TURNO + " = ?";
+
+            String[] valorWhere =
+                    {equipe, categoria, String.valueOf(turno), equipe, categoria, String.valueOf(turno)};
+
+            c = bd.query(BancoDados.Tabela.TABELA_RESULTADO,
+                    selectColunasFrom,
+                    where,
+                    valorWhere,
+                    null,
+                    null,
+                    null
+            );
+
+            if (c.moveToFirst()) {
+                resultado = new Resultado();
+                resultado.setEquipe1(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE1)));
+                resultado.setEquipe2(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE2)));
+                resultado.setVencedor(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_VENCEDOR)));
+                Log.d("teste", "" + resultado.toString());
+            } else {
+                resultado = new Resultado();
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+
+        return resultado;
+    }
+
+    public int getTurnoJogado(Context context, int turno) {
+
+        SQLiteDatabase bd = BancoDadosHelper.FabricaDeConexao.getConexaoAplicacao(context);
+        Cursor c = null;
+        int count = 0;
+
+        try {
+
+            String[] selectColunasFrom = {"COUNT(*)"};
+
+            String where =
+                    BancoDados.Tabela.COLUNA_RESULTADO_TURNO + " = ?";
+
+            String[] valorWhere =
+                    {String.valueOf(turno)};
+
+            String groupBy = BancoDados.Tabela.COLUNA_RESULTADO_TURNO;
+
+            c = bd.query(BancoDados.Tabela.TABELA_RESULTADO,
+                    selectColunasFrom,
+                    where,
+                    valorWhere,
+                    groupBy,
+                    null,
+                    null
+            );
+
+            if (c.moveToFirst()) {
+                count = c.getInt(0);
+            } else {
+                count = 0;
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+        }
+
+        return count;
     }
 }

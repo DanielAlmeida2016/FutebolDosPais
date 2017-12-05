@@ -42,6 +42,10 @@
             android:name=".util.ModalSuspensao"
             android:excludeFromRecents="true"
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar.MinWidth" />
+        <activity
+            android:name=".util.ModalConfiguracao"
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar.MinWidth" />
 
         <!-- Declaração de serviços da aplicação -->
         <service

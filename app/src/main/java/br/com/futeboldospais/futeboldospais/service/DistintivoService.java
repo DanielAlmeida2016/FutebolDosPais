@@ -8,6 +8,7 @@ import java.util.List;
 import br.com.futeboldospais.futeboldospais.dao.DistintivoDAO;
 import br.com.futeboldospais.futeboldospais.model.Classificacao;
 import br.com.futeboldospais.futeboldospais.rest.DistintivoRest;
+import br.com.futeboldospais.futeboldospais.util.FabricaDeUrl;
 
 /**
  * Created by Daniel Almeida on 22/10/2017.
@@ -22,12 +23,12 @@ public class DistintivoService {
 
     public void atualizarDistintivos(Context context, int campeonatoAnoServidor, int campeonatoAnoLocal, List<Classificacao> lista) throws Exception {
 
-        String urlBase = "http://www.futeboldospais.com.br/campeonato" + campeonatoAnoServidor + "/distintivos/";
+        String urlBase = FabricaDeUrl.urlDistintivo(campeonatoAnoServidor);
         String extensao = ".png";
 
         Bitmap b;
 
-        /*try {
+        try {
             dao = new DistintivoDAO();
             distintivoRest = new DistintivoRest();
             classificacaoService = new ClassificacaoService();
@@ -49,9 +50,9 @@ public class DistintivoService {
         }
         catch (Exception e){
             throw new Exception();
-        }*/
+        }
 
-        try {
+        /*try {
 
             dao = new DistintivoDAO();
             distintivoRest = new DistintivoRest();
@@ -100,7 +101,7 @@ public class DistintivoService {
         }
         catch (Exception e){
             throw new Exception();
-        }
+        }*/
     }
 
     public Bitmap carregarImagemDoArmazenamentoInterno(String diretorio, String nome) throws Exception {

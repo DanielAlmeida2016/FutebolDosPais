@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import br.com.futeboldospais.futeboldospais.dao.SuspensaoDAO;
 import br.com.futeboldospais.futeboldospais.model.Suspensao;
 import br.com.futeboldospais.futeboldospais.rest.SuspensaoRest;
+import br.com.futeboldospais.futeboldospais.util.FabricaDeUrl;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,9 +46,9 @@ public class SuspensaoService {
 
         List<Suspensao> lista;
 
-        //String json = suspensaoRest.getSuspensao(ConfiguracaoService.urlBase(campeonatoAno));
+        String json = suspensaoRest.getSuspensao(FabricaDeUrl.urlBase(campeonatoAno));
 
-        String json = "[" +
+        /*String json = "[" +
                 "  {" +
                 "   \"equipe\": \"Ponte-Preta\"," +
                 "   \"jogador\": \"Amaro\"," +
@@ -75,7 +76,7 @@ public class SuspensaoService {
                 "   \"jogos\": \"1/1\"," +
                 "   \"motivo\": \"julgamento\"" +
                 "  }" +
-                "]";
+                "]";*/
         Gson gson = new Gson();
         JSONArray jsonArray = null;
         try {

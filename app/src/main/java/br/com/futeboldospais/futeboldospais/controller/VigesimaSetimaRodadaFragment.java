@@ -15,6 +15,7 @@ import br.com.futeboldospais.futeboldospais.R;
 import br.com.futeboldospais.futeboldospais.model.Resultado;
 import br.com.futeboldospais.futeboldospais.service.ResultadoService;
 import br.com.futeboldospais.futeboldospais.util.AdapterPadrao;
+import br.com.futeboldospais.futeboldospais.util.NavegacaoRodadasHelper;
 import br.com.futeboldospais.futeboldospais.util.ResultadoAdapter;
 
 
@@ -78,29 +79,7 @@ public class VigesimaSetimaRodadaFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if (listaResultado[position].getGolsEquipe1() != -1 && listaResultado[position].getGolsEquipe2() != -1) {
-
-                    String data = listaResultado[position].getData();
-                    String hora = listaResultado[position].getHorario();
-                    String categoria = listaResultado[position].getCategoria();
-                    String dados = listaResultado[position].getEquipe1() + " x " + listaResultado[position].getEquipe2() +
-                            " " + listaResultado[position].getData() + " " + listaResultado[position].getHorario();
-
-                    String url = "" + data.charAt(6) + "" + data.charAt(7) + "" + data.charAt(8) + "" +
-                            data.charAt(9) + "" + data.charAt(3) + "" + data.charAt(4) + "" + data.charAt(0) + "" +
-                            data.charAt(1) + "_" + hora.charAt(0) + "" + hora.charAt(1) + "h" + hora.charAt(3) + "" +
-                            hora.charAt(4) + "_" + categoria + "_frente.pdf";
-
-                    String urlBase = "http://www.futeboldospais.com.br/campeonato2017/sumulas/Jogo_" + url;
-                    //resultadoAdapter = (ResultadoAdapter) parent.getItemAtPosition(position);
-                    //String url = resultadoAdapter.getItemUrl(position);
-
-                    Log.d("teste", urlBase);
-
-                    Intent intent = new Intent(getContext(), DocumentViewer.class);
-                    intent.putExtra("dados", dados);
-                    intent.putExtra("url", urlBase);
-
-                    startActivity(intent);
+                    NavegacaoRodadasHelper.abrirSumula(listaResultado, position, getActivity());
                 }
             }
         });

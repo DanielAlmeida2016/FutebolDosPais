@@ -14,6 +14,7 @@ import br.com.futeboldospais.futeboldospais.R;
 import br.com.futeboldospais.futeboldospais.model.Suspensao;
 import br.com.futeboldospais.futeboldospais.service.SuspensaoService;
 import br.com.futeboldospais.futeboldospais.util.AdapterPadrao;
+import br.com.futeboldospais.futeboldospais.util.ModalConfiguracao;
 import br.com.futeboldospais.futeboldospais.util.ModalSuspensao;
 import br.com.futeboldospais.futeboldospais.util.SuspensaoAdapter;
 
@@ -76,6 +77,17 @@ public class SuspensosFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        Button btnConfig = (Button) view.findViewById(R.id.btn_config);
+
+        btnConfig.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ModalConfiguracao.class);
+                startActivity(intent);
+            }
+        });
+
 
         return view;
     }

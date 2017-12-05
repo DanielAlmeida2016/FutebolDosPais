@@ -2,7 +2,6 @@ package br.com.futeboldospais.futeboldospais.service;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -11,13 +10,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 import br.com.futeboldospais.futeboldospais.dao.ClassificacaoQuartasDAO;
 import br.com.futeboldospais.futeboldospais.model.Classificacao;
 import br.com.futeboldospais.futeboldospais.model.ClassificacaoQuartas;
 import br.com.futeboldospais.futeboldospais.rest.ClassificacaoQuartasRest;
+import br.com.futeboldospais.futeboldospais.util.FabricaDeUrl;
 
 /**
  * Created by ThirdSystem on 20/11/2017.
@@ -40,9 +39,9 @@ public class ClassificacaoQuartasService {
 
         List<ClassificacaoQuartas> timesClassificados;
 
-        //String json = classificacaoQuartasRest.getQuartasFinais(ConfiguracaoService.urlBase(campeonatoAno));
+        String json = classificacaoQuartasRest.getQuartasFinais(FabricaDeUrl.urlBase(campeonatoAno));
 
-        String json =
+        /*String json =
                 "[" +
                         "{" +
                         "  \"categoria\": \"Master\"," +
@@ -260,7 +259,7 @@ public class ClassificacaoQuartasService {
                                 " }" +
                             " ]" +
                         " }" +
-                        "]";
+                        "]";*/
 
         Gson gson = new Gson();
         JSONArray jsonArray = null;
@@ -306,4 +305,5 @@ public class ClassificacaoQuartasService {
     public String buscarEquipeNaPosicao(Context context, String categoria, String grupo, int posicao){
         return dao.buscarEquipeNaPosicao(context, categoria, grupo, posicao);
     }
+
 }

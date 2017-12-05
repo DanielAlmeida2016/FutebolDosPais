@@ -7,9 +7,11 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import br.com.futeboldospais.futeboldospais.dao.BancoDadosHelper;
 import br.com.futeboldospais.futeboldospais.dao.ResultadoDAO;
 import br.com.futeboldospais.futeboldospais.model.Resultado;
 import br.com.futeboldospais.futeboldospais.rest.ResultadoRest;
+import br.com.futeboldospais.futeboldospais.util.FabricaDeUrl;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,387 +49,9 @@ public class ResultadoService {
 
         List<Resultado> lista;
 
-        //String json = resultadoRest.getResultado(ConfiguracaoService.urlBase(campeonatoAno));
+        String json = resultadoRest.getResultado(FabricaDeUrl.urlBase(campeonatoAno));
 
-        String json = "[\n" +
-                " {\n" +
-                "  \"data\": \"04/03/2017\",\n" +
-                "  \"horario\": \"08:30\",\n" +
-                "  \"equipe1\": \"Linense\",\n" +
-                "  \"golsEquipe1\": \"1\",\n" +
-                "  \"equipe2\": \"Mirassol\",\n" +
-                "  \"golsEquipe2\": \"4\",\n" +
-                "  \"cartoesAmarelos\": \"3\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"3\",\n" +
-                "  \"categoria\": \"Master\",\n" +
-                "  \"arbitro\": \"Jacildo Antonio de Paula\",\n" +
-                "  \"assistente1\": \"Carlos Alberto Farias\",\n" +
-                "  \"assistente2\": \"Eliton Lopes\",\n" +
-                "  \"notaArbitroMedia\": \"9\",\n" +
-                "  \"notaArbitroEquipe1\": \"9\",\n" +
-                "  \"notaArbitroEquipe2\": \"9\",\n" +
-                "  \"rodada\": \"1\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"04/03/2017\",\n" +
-                "  \"horario\": \"10:30\",\n" +
-                "  \"equipe1\": \"Linense\",\n" +
-                "  \"golsEquipe1\": \"0\",\n" +
-                "  \"equipe2\": \"Mirassol\",\n" +
-                "  \"golsEquipe2\": \"2\",\n" +
-                "  \"cartoesAmarelos\": \"0\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"0\",\n" +
-                "  \"categoria\": \"Senior\",\n" +
-                "  \"arbitro\": \"Carlos Alberto Farias\",\n" +
-                "  \"assistente1\": \"Giovanni Crescencio\",\n" +
-                "  \"assistente2\": \"Eliton Lopes\",\n" +
-                "  \"notaArbitroMedia\": \"9\",\n" +
-                "  \"notaArbitroEquipe1\": \"10\",\n" +
-                "  \"notaArbitroEquipe2\": \"8\",\n" +
-                "  \"rodada\": \"1\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"04/03/2017\",\n" +
-                "  \"horario\": \"12:30\",\n" +
-                "  \"equipe1\": \"Botafogo\",\n" +
-                "  \"golsEquipe1\": \"1\",\n" +
-                "  \"equipe2\": \"Ferroviaria\",\n" +
-                "  \"golsEquipe2\": \"1\",\n" +
-                "  \"cartoesAmarelos\": \"3\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"3\",\n" +
-                "  \"categoria\": \"Master\",\n" +
-                "  \"arbitro\": \"Jacildo Antonio de Paula\",\n" +
-                "  \"assistente1\": \"Giovanni Crescencio\",\n" +
-                "  \"assistente2\": \"Eliton Lopes\",\n" +
-                "  \"notaArbitroMedia\": \"8\",\n" +
-                "  \"notaArbitroEquipe1\": \"7\",\n" +
-                "  \"notaArbitroEquipe2\": \"8\",\n" +
-                "  \"rodada\": \"1\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"04/03/2017\",\n" +
-                "  \"horario\": \"14:30\",\n" +
-                "  \"equipe1\": \"Botafogo\",\n" +
-                "  \"golsEquipe1\": \"0\",\n" +
-                "  \"equipe2\": \"Ferroviaria\",\n" +
-                "  \"golsEquipe2\": \"1\",\n" +
-                "  \"cartoesAmarelos\": \"3\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"3\",\n" +
-                "  \"categoria\": \"Senior\",\n" +
-                "  \"arbitro\": \"Carlos Alberto Farias\",\n" +
-                "  \"assistente1\": \"Jacildo Antonio de Paula\",\n" +
-                "  \"assistente2\": \"Giovanni Crescencio\",\n" +
-                "  \"notaArbitroMedia\": \"9\",\n" +
-                "  \"notaArbitroEquipe1\": \"9\",\n" +
-                "  \"notaArbitroEquipe2\": \"9\",\n" +
-                "  \"rodada\": \"1\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"05/03/2017\",\n" +
-                "  \"horario\": \"09:00\",\n" +
-                "  \"equipe1\": \"Novorizontino\",\n" +
-                "  \"golsEquipe1\": \"2\",\n" +
-                "  \"equipe2\": \"Ponte-Preta\",\n" +
-                "  \"golsEquipe2\": \"1\",\n" +
-                "  \"cartoesAmarelos\": \"3\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"3\",\n" +
-                "  \"categoria\": \"Master\",\n" +
-                "  \"arbitro\": \"Wagner Rizo\",\n" +
-                "  \"assistente1\": \"Marco Motta\",\n" +
-                "  \"assistente2\": \"Willians Vilela\",\n" +
-                "  \"notaArbitroMedia\": \"9\",\n" +
-                "  \"notaArbitroEquipe1\": \"9\",\n" +
-                "  \"notaArbitroEquipe2\": \"9\",\n" +
-                "  \"rodada\": \"1\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"05/03/2017\",\n" +
-                "  \"horario\": \"11:00\",\n" +
-                "  \"equipe1\": \"Novorizontino\",\n" +
-                "  \"golsEquipe1\": \"3\",\n" +
-                "  \"equipe2\": \"Ponte-Preta\",\n" +
-                "  \"golsEquipe2\": \"2\",\n" +
-                "  \"cartoesAmarelos\": \"1\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"1\",\n" +
-                "  \"categoria\": \"Senior\",\n" +
-                "  \"arbitro\": \"Marco Motta\",\n" +
-                "  \"assistente1\": \"Wagner Rizo\",\n" +
-                "  \"assistente2\": \"Willians Vilela\",\n" +
-                "  \"notaArbitroMedia\": \"9\",\n" +
-                "  \"notaArbitroEquipe1\": \"9\",\n" +
-                "  \"notaArbitroEquipe2\": \"9\",\n" +
-                "  \"rodada\": \"1\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"11/03/2017\",\n" +
-                "  \"horario\": \"08:30\",\n" +
-                "  \"equipe1\": \"Red-Bull\",\n" +
-                "  \"golsEquipe1\": \"3\",\n" +
-                "  \"equipe2\": \"Sao-Bento\",\n" +
-                "  \"golsEquipe2\": \"5\",\n" +
-                "  \"cartoesAmarelos\": \"2\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"2\",\n" +
-                "  \"categoria\": \"Master\",\n" +
-                "  \"arbitro\": \"Alexandre Augusto\",\n" +
-                "  \"assistente1\": \"Jose Jenilton Santos\",\n" +
-                "  \"assistente2\": \"Lohan Alves dos Santos\",\n" +
-                "  \"notaArbitroMedia\": \"9\",\n" +
-                "  \"notaArbitroEquipe1\": \"9\",\n" +
-                "  \"notaArbitroEquipe2\": \"8\",\n" +
-                "  \"rodada\": \"2\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"11/03/2017\",\n" +
-                "  \"horario\": \"10:30\",\n" +
-                "  \"equipe1\": \"Red-Bull\",\n" +
-                "  \"golsEquipe1\": \"0\",\n" +
-                "  \"equipe2\": \"Sao-Bento\",\n" +
-                "  \"golsEquipe2\": \"0\",\n" +
-                "  \"cartoesAmarelos\": \"2\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"2\",\n" +
-                "  \"categoria\": \"Senior\",\n" +
-                "  \"arbitro\": \"Vladimir Vassoler\",\n" +
-                "  \"assistente1\": \"Jose Jenilton Santos\",\n" +
-                "  \"assistente2\": \"Alexandre Augusto\",\n" +
-                "  \"notaArbitroMedia\": \"8\",\n" +
-                "  \"notaArbitroEquipe1\": \"8\",\n" +
-                "  \"notaArbitroEquipe2\": \"8\",\n" +
-                "  \"rodada\": \"2\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"11/03/2017\",\n" +
-                "  \"horario\": \"12:30\",\n" +
-                "  \"equipe1\": \"Linense\",\n" +
-                "  \"golsEquipe1\": \"5\",\n" +
-                "  \"equipe2\": \"Ponte-Preta\",\n" +
-                "  \"golsEquipe2\": \"0\",\n" +
-                "  \"cartoesAmarelos\": \"2\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"2\",\n" +
-                "  \"categoria\": \"Master\",\n" +
-                "  \"arbitro\": \"Alexandre Augusto\",\n" +
-                "  \"assistente1\": \"Jose Jenilton Santos\",\n" +
-                "  \"assistente2\": \"Lohan Alves dos Santos\",\n" +
-                "  \"notaArbitroMedia\": \"10\",\n" +
-                "  \"notaArbitroEquipe1\": \"10\",\n" +
-                "  \"notaArbitroEquipe2\": \"9\",\n" +
-                "  \"rodada\": \"2\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"11/03/2017\",\n" +
-                "  \"horario\": \"14:30\",\n" +
-                "  \"equipe1\": \"Linense\",\n" +
-                "  \"golsEquipe1\": \"0\",\n" +
-                "  \"equipe2\": \"Ponte-Preta\",\n" +
-                "  \"golsEquipe2\": \"1\",\n" +
-                "  \"cartoesAmarelos\": \"1\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"1\",\n" +
-                "  \"categoria\": \"Senior\",\n" +
-                "  \"arbitro\": \"Vladimir Vassoler\",\n" +
-                "  \"assistente1\": \"Lohan Alves dos Santos\",\n" +
-                "  \"assistente2\": \"Jose Jenilton Santos\",\n" +
-                "  \"notaArbitroMedia\": \"10\",\n" +
-                "  \"notaArbitroEquipe1\": \"10\",\n" +
-                "  \"notaArbitroEquipe2\": \"10\",\n" +
-                "  \"rodada\": \"2\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"12/03/2017\",\n" +
-                "  \"horario\": \"09:00\",\n" +
-                "  \"equipe1\": \"Botafogo\",\n" +
-                "  \"golsEquipe1\": \"3\",\n" +
-                "  \"equipe2\": \"Mirassol\",\n" +
-                "  \"golsEquipe2\": \"3\",\n" +
-                "  \"cartoesAmarelos\": \"6\",\n" +
-                "  \"cartoesVermelhos\": \"4\",\n" +
-                "  \"totalCartoes\": \"10\",\n" +
-                "  \"categoria\": \"Master\",\n" +
-                "  \"arbitro\": \"Marco Antonio Pereira Camargo\",\n" +
-                "  \"assistente1\": \"Antonio Carlos L. Mendes\",\n" +
-                "  \"assistente2\": \"Adriana de Almeida\",\n" +
-                "  \"notaArbitroMedia\": \"6\",\n" +
-                "  \"notaArbitroEquipe1\": \"9\",\n" +
-                "  \"notaArbitroEquipe2\": \"3\",\n" +
-                "  \"rodada\": \"2\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"12/03/2017\",\n" +
-                "  \"horario\": \"11:00\",\n" +
-                "  \"equipe1\": \"Botafogo\",\n" +
-                "  \"golsEquipe1\": \"6\",\n" +
-                "  \"equipe2\": \"Mirassol\",\n" +
-                "  \"golsEquipe2\": \"0\",\n" +
-                "  \"cartoesAmarelos\": \"0\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"0\",\n" +
-                "  \"categoria\": \"Senior\",\n" +
-                "  \"arbitro\": \"Adriana de Almeida\",\n" +
-                "  \"assistente1\": \"Antonio Carlos L. Mendes\",\n" +
-                "  \"assistente2\": \"Marco Antonio Pereira Camargo\",\n" +
-                "  \"notaArbitroMedia\": \"9\",\n" +
-                "  \"notaArbitroEquipe1\": \"9\",\n" +
-                "  \"notaArbitroEquipe2\": \"9\",\n" +
-                "  \"rodada\": \"2\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"18/03/2017\",\n" +
-                "  \"horario\": \"08:30\",\n" +
-                "  \"equipe1\": \"Red-Bull\",\n" +
-                "  \"golsEquipe1\": \"1\",\n" +
-                "  \"equipe2\": \"Ferroviaria\",\n" +
-                "  \"golsEquipe2\": \"2\",\n" +
-                "  \"cartoesAmarelos\": \"0\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"0\",\n" +
-                "  \"categoria\": \"Master\",\n" +
-                "  \"arbitro\": \"Márcio Bastos\",\n" +
-                "  \"assistente1\": \"Marcos Silva Santos Goncalves\",\n" +
-                "  \"assistente2\": \"Guilherme Nunes\",\n" +
-                "  \"notaArbitroMedia\": \"10\",\n" +
-                "  \"notaArbitroEquipe1\": \"9\",\n" +
-                "  \"notaArbitroEquipe2\": \"10\",\n" +
-                "  \"rodada\": \"3\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"18/03/2017\",\n" +
-                "  \"horario\": \"10:30\",\n" +
-                "  \"equipe1\": \"Red-Bull\",\n" +
-                "  \"golsEquipe1\": \"1\",\n" +
-                "  \"equipe2\": \"Ferroviaria\",\n" +
-                "  \"golsEquipe2\": \"1\",\n" +
-                "  \"cartoesAmarelos\": \"2\",\n" +
-                "  \"cartoesVermelhos\": \"1\",\n" +
-                "  \"totalCartoes\": \"3\",\n" +
-                "  \"categoria\": \"Senior\",\n" +
-                "  \"arbitro\": \"Marcos Silva Santos Goncalves\",\n" +
-                "  \"assistente1\": \"Robson Ferreira\",\n" +
-                "  \"assistente2\": \"Márcio Bastos\",\n" +
-                "  \"notaArbitroMedia\": \"9\",\n" +
-                "  \"notaArbitroEquipe1\": \"9\",\n" +
-                "  \"notaArbitroEquipe2\": \"9\",\n" +
-                "  \"rodada\": \"3\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"18/03/2017\",\n" +
-                "  \"horario\": \"12:30\",\n" +
-                "  \"equipe1\": \"Novorizontino\",\n" +
-                "  \"golsEquipe1\": \"2\",\n" +
-                "  \"equipe2\": \"Sao-Bento\",\n" +
-                "  \"golsEquipe2\": \"3\",\n" +
-                "  \"cartoesAmarelos\": \"1\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"1\",\n" +
-                "  \"categoria\": \"Master\",\n" +
-                "  \"arbitro\": \"Guilherme Nunes\",\n" +
-                "  \"assistente1\": \"Robson Ferreira\",\n" +
-                "  \"assistente2\": \"Márcio Bastos\",\n" +
-                "  \"notaArbitroMedia\": \"8\",\n" +
-                "  \"notaArbitroEquipe1\": \"7\",\n" +
-                "  \"notaArbitroEquipe2\": \"8\",\n" +
-                "  \"rodada\": \"3\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"18/03/2017\",\n" +
-                "  \"horario\": \"14:30\",\n" +
-                "  \"equipe1\": \"Novorizontino\",\n" +
-                "  \"golsEquipe1\": \"2\",\n" +
-                "  \"equipe2\": \"Sao-Bento\",\n" +
-                "  \"golsEquipe2\": \"2\",\n" +
-                "  \"cartoesAmarelos\": \"4\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"4\",\n" +
-                "  \"categoria\": \"Senior\",\n" +
-                "  \"arbitro\": \"Marcos Silva Santos Goncalves\",\n" +
-                "  \"assistente1\": \"Robson Ferreira\",\n" +
-                "  \"assistente2\": \"Guilherme Nunes\",\n" +
-                "  \"notaArbitroMedia\": \"7\",\n" +
-                "  \"notaArbitroEquipe1\": \"4\",\n" +
-                "  \"notaArbitroEquipe2\": \"9\",\n" +
-                "  \"rodada\": \"3\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"19/03/2017\",\n" +
-                "  \"horario\": \"09:00\",\n" +
-                "  \"equipe1\": \"Botafogo\",\n" +
-                "  \"golsEquipe1\": \"3\",\n" +
-                "  \"equipe2\": \"Ponte-Preta\",\n" +
-                "  \"golsEquipe2\": \"1\",\n" +
-                "  \"cartoesAmarelos\": \"1\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"1\",\n" +
-                "  \"categoria\": \"Master\",\n" +
-                "  \"arbitro\": \"Marco Motta\",\n" +
-                "  \"assistente1\": \"Celso Batistini\",\n" +
-                "  \"assistente2\": \"Lohan Alves dos Santos\",\n" +
-                "  \"notaArbitroMedia\": \"10\",\n" +
-                "  \"notaArbitroEquipe1\": \"10\",\n" +
-                "  \"notaArbitroEquipe2\": \"9\",\n" +
-                "  \"rodada\": \"3\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
-                " {\n" +
-                "  \"data\": \"19/03/2017\",\n" +
-                "  \"horario\": \"11:00\",\n" +
-                "  \"equipe1\": \"Botafogo\",\n" +
-                "  \"golsEquipe1\": \"3\",\n" +
-                "  \"equipe2\": \"Ponte-Preta\",\n" +
-                "  \"golsEquipe2\": \"5\",\n" +
-                "  \"cartoesAmarelos\": \"3\",\n" +
-                "  \"cartoesVermelhos\": \"0\",\n" +
-                "  \"totalCartoes\": \"3\",\n" +
-                "  \"categoria\": \"Senior\",\n" +
-                "  \"arbitro\": \"Celso Batistini\",\n" +
-                "  \"assistente1\": \"Lohan Alves dos Santos\",\n" +
-                "  \"assistente2\": \"Marco Motta\",\n" +
-                "  \"notaArbitroMedia\": \"7\",\n" +
-                "  \"notaArbitroEquipe1\": \"7\",\n" +
-                "  \"notaArbitroEquipe2\": \"7\",\n" +
-                "  \"rodada\": \"3\",\n" +
-                "  \"turno\": \"1\",\n" +
-                "  \"vencedor\": \"0\"\n" +
-                " },\n" +
+        /*String json = "[\n" +
                 " {\n" +
                 "  \"data\": \"25/03/2017\",\n" +
                 "  \"horario\": \"08:30\",\n" +
@@ -2630,7 +2254,7 @@ public class ResultadoService {
                 "  \"notaArbitroEquipe1\": \"9\",\n" +
                 "  \"notaArbitroEquipe2\": \"8\",\n" +
                 "  \"rodada\": \"23\",\n" +
-                "  \"turno\": \"3\",\n" +
+                "  \"turno\": \"2\",\n" +
                 "  \"vencedor\": \"0\"\n" +
                 " },\n" +
                 " {\n" +
@@ -2671,8 +2295,8 @@ public class ResultadoService {
                 "  \"notaArbitroMedia\": \"5\",\n" +
                 "  \"notaArbitroEquipe1\": \"0\",\n" +
                 "  \"notaArbitroEquipe2\": \"10\",\n" +
-                "  \"rodada\": \"24\",\n" +
-                "  \"turno\": \"3\",\n" +
+                "  \"rodada\": \"0\",\n" +
+                "  \"turno\": \"0\",\n" +
                 "  \"vencedor\": \"0\"\n" +
                 " },\n" +
                 " {\n" +
@@ -2779,8 +2403,302 @@ public class ResultadoService {
                 "  \"rodada\": \"25\",\n" +
                 "  \"turno\": \"3\",\n" +
                 "  \"vencedor\": \"0\"\n" +
+                " },\n" +
+                " {\n" +
+                "  \"data\": \"28/10/2017\",\n" +
+                "  \"horario\": \"12:30\",\n" +
+                "  \"equipe1\": \"Ferroviaria\",\n" +
+                "  \"golsEquipe1\": \"0\",\n" +
+                "  \"equipe2\": \"Linense\",\n" +
+                "  \"golsEquipe2\": \"0\",\n" +
+                "  \"cartoesAmarelos\": \"1\",\n" +
+                "  \"cartoesVermelhos\": \"0\",\n" +
+                "  \"totalCartoes\": \"1\",\n" +
+                "  \"categoria\": \"Master\",\n" +
+                "  \"arbitro\": \"Vladimir Vassoler\",\n" +
+                "  \"assistente1\": \"Norberto Evangelista\",\n" +
+                "  \"assistente2\": \"Luiz Henrique Pimentel\",\n" +
+                "  \"notaArbitroMedia\": \"10\",\n" +
+                "  \"notaArbitroEquipe1\": \"10\",\n" +
+                "  \"notaArbitroEquipe2\": \"10\",\n" +
+                "  \"rodada\": \"25\",\n" +
+                "  \"turno\": \"3\",\n" +
+                "  \"vencedor\": \"0\"\n" +
+                " },\n" +
+                " {\n" +
+                "  \"data\": \"28/10/2017\",\n" +
+                "  \"horario\": \"14:30\",\n" +
+                "  \"equipe1\": \"Red-Bull\",\n" +
+                "  \"golsEquipe1\": \"1\",\n" +
+                "  \"equipe2\": \"Mirassol\",\n" +
+                "  \"golsEquipe2\": \"0\",\n" +
+                "  \"cartoesAmarelos\": \"4\",\n" +
+                "  \"cartoesVermelhos\": \"0\",\n" +
+                "  \"totalCartoes\": \"4\",\n" +
+                "  \"categoria\": \"Master\",\n" +
+                "  \"arbitro\": \"Marco Motta\",\n" +
+                "  \"assistente1\": \"Luiz Henrique Pimentel\",\n" +
+                "  \"assistente2\": \"Nelson Izidoro\",\n" +
+                "  \"notaArbitroMedia\": \"10\",\n" +
+                "  \"notaArbitroEquipe1\": \"10\",\n" +
+                "  \"notaArbitroEquipe2\": \"9\",\n" +
+                "  \"rodada\": \"25\",\n" +
+                "  \"turno\": \"3\",\n" +
+                "  \"vencedor\": \"0\"\n" +
+                " },\n" +
+                " {\n" +
+                "  \"data\": \"11/11/2017\",\n" +
+                "  \"horario\": \"08:30\",\n" +
+                "  \"equipe1\": \"Ponte-Preta\",\n" +
+                "  \"golsEquipe1\": \"2\",\n" +
+                "  \"equipe2\": \"Botafogo\",\n" +
+                "  \"golsEquipe2\": \"0\",\n" +
+                "  \"cartoesAmarelos\": \"0\",\n" +
+                "  \"cartoesVermelhos\": \"0\",\n" +
+                "  \"totalCartoes\": \"0\",\n" +
+                "  \"categoria\": \"Senior\",\n" +
+                "  \"arbitro\": \"Alexandre Augusto\",\n" +
+                "  \"assistente1\": \"Rogerio Luiz Gabrielli\",\n" +
+                "  \"assistente2\": \"Giovanni Crescencio\",\n" +
+                "  \"notaArbitroMedia\": \"9\",\n" +
+                "  \"notaArbitroEquipe1\": \"9\",\n" +
+                "  \"notaArbitroEquipe2\": \"9\",\n" +
+                "  \"rodada\": \"26\",\n" +
+                "  \"turno\": \"3\",\n" +
+                "  \"vencedor\": \"0\"\n" +
+                " },\n" +
+                " {\n" +
+                "  \"data\": \"11/11/2017\",\n" +
+                "  \"horario\": \"10:30\",\n" +
+                "  \"equipe1\": \"Sao-Bento\",\n" +
+                "  \"golsEquipe1\": \"2\",\n" +
+                "  \"equipe2\": \"Novorizontino\",\n" +
+                "  \"golsEquipe2\": \"2\",\n" +
+                "  \"cartoesAmarelos\": \"1\",\n" +
+                "  \"cartoesVermelhos\": \"0\",\n" +
+                "  \"totalCartoes\": \"1\",\n" +
+                "  \"categoria\": \"Senior\",\n" +
+                "  \"arbitro\": \"Wagner Rizo\",\n" +
+                "  \"assistente1\": \"Giovanni Crescencio\",\n" +
+                "  \"assistente2\": \"Rogerio Luiz Gabrielli\",\n" +
+                "  \"notaArbitroMedia\": \"10\",\n" +
+                "  \"notaArbitroEquipe1\": \"10\",\n" +
+                "  \"notaArbitroEquipe2\": \"10\",\n" +
+                "  \"rodada\": \"26\",\n" +
+                "  \"turno\": \"3\",\n" +
+                "  \"vencedor\": \"0\"\n" +
+                " },\n" +
+                " {\n" +
+                "  \"data\": \"11/11/2017\",\n" +
+                "  \"horario\": \"12:30\",\n" +
+                "  \"equipe1\": \"Red-Bull\",\n" +
+                "  \"golsEquipe1\": \"7\",\n" +
+                "  \"equipe2\": \"Mirassol\",\n" +
+                "  \"golsEquipe2\": \"1\",\n" +
+                "  \"cartoesAmarelos\": \"0\",\n" +
+                "  \"cartoesVermelhos\": \"0\",\n" +
+                "  \"totalCartoes\": \"0\",\n" +
+                "  \"categoria\": \"Senior\",\n" +
+                "  \"arbitro\": \"Alexandre Augusto\",\n" +
+                "  \"assistente1\": \"Giovanni Crescencio\",\n" +
+                "  \"assistente2\": \"Rogerio Luiz Gabrielli\",\n" +
+                "  \"notaArbitroMedia\": \"9\",\n" +
+                "  \"notaArbitroEquipe1\": \"9\",\n" +
+                "  \"notaArbitroEquipe2\": \"9\",\n" +
+                "  \"rodada\": \"26\",\n" +
+                "  \"turno\": \"3\",\n" +
+                "  \"vencedor\": \"0\"\n" +
+                " },\n" +
+                " {\n" +
+                "  \"data\": \"11/11/2017\",\n" +
+                "  \"horario\": \"14:30\",\n" +
+                "  \"equipe1\": \"Ferroviaria\",\n" +
+                "  \"golsEquipe1\": \"1\",\n" +
+                "  \"equipe2\": \"Linense\",\n" +
+                "  \"golsEquipe2\": \"1\",\n" +
+                "  \"cartoesAmarelos\": \"4\",\n" +
+                "  \"cartoesVermelhos\": \"1\",\n" +
+                "  \"totalCartoes\": \"5\",\n" +
+                "  \"categoria\": \"Senior\",\n" +
+                "  \"arbitro\": \"Wagner Rizo\",\n" +
+                "  \"assistente1\": \"Giovanni Crescencio\",\n" +
+                "  \"assistente2\": \"Rogerio Luiz Gabrielli\",\n" +
+                "  \"notaArbitroMedia\": \"9\",\n" +
+                "  \"notaArbitroEquipe1\": \"8\",\n" +
+                "  \"notaArbitroEquipe2\": \"10\",\n" +
+                "  \"rodada\": \"26\",\n" +
+                "  \"turno\": \"3\",\n" +
+                "  \"vencedor\": \"0\"\n" +
+                " },\n" +
+                " {\n" +
+                "  \"data\": \"25/11/2017\",\n" +
+                "  \"horario\": \"08:30\",\n" +
+                "  \"equipe1\": \"Red-Bull\",\n" +
+                "  \"golsEquipe1\": \"2\",\n" +
+                "  \"equipe2\": \"Novorizontino\",\n" +
+                "  \"golsEquipe2\": \"1\",\n" +
+                "  \"cartoesAmarelos\": \"6\",\n" +
+                "  \"cartoesVermelhos\": \"0\",\n" +
+                "  \"totalCartoes\": \"6\",\n" +
+                "  \"categoria\": \"Master\",\n" +
+                "  \"arbitro\": \"Marcos Silva Santos Goncalves\",\n" +
+                "  \"assistente1\": \"Jose Jenilton Santos\",\n" +
+                "  \"assistente2\": \"Robson Ferreira\",\n" +
+                "  \"notaArbitroMedia\": \"7\",\n" +
+                "  \"notaArbitroEquipe1\": \"3\",\n" +
+                "  \"notaArbitroEquipe2\": \"10\",\n" +
+                "  \"rodada\": \"1\",\n" +
+                "  \"turno\": \"4\",\n" +
+                "  \"vencedor\": \"1\"\n" +
+                " },\n" +
+                " {\n" +
+                "  \"data\": \"25/11/2017\",\n" +
+                "  \"horario\": \"10:30\",\n" +
+                "  \"equipe1\": \"Red-Bull\",\n" +
+                "  \"golsEquipe1\": \"2\",\n" +
+                "  \"equipe2\": \"Ponte-Preta\",\n" +
+                "  \"golsEquipe2\": \"0\",\n" +
+                "  \"cartoesAmarelos\": \"1\",\n" +
+                "  \"cartoesVermelhos\": \"0\",\n" +
+                "  \"totalCartoes\": \"1\",\n" +
+                "  \"categoria\": \"Senior\",\n" +
+                "  \"arbitro\": \"Joilson Lino\",\n" +
+                "  \"assistente1\": \"Robson Ferreira\",\n" +
+                "  \"assistente2\": \"Jose Jenilton Santos\",\n" +
+                "  \"notaArbitroMedia\": \"10\",\n" +
+                "  \"notaArbitroEquipe1\": \"10\",\n" +
+                "  \"notaArbitroEquipe2\": \"9\",\n" +
+                "  \"rodada\": \"1\",\n" +
+                "  \"turno\": \"4\",\n" +
+                "  \"vencedor\": \"1\"\n" +
+                " },\n" +
+                " {\n" +
+                "  \"data\": \"25/11/2017\",\n" +
+                "  \"horario\": \"12:30\",\n" +
+                "  \"equipe1\": \"Ferroviaria\",\n" +
+                "  \"golsEquipe1\": \"3\",\n" +
+                "  \"equipe2\": \"Linense\",\n" +
+                "  \"golsEquipe2\": \"1\",\n" +
+                "  \"cartoesAmarelos\": \"6\",\n" +
+                "  \"cartoesVermelhos\": \"0\",\n" +
+                "  \"totalCartoes\": \"6\",\n" +
+                "  \"categoria\": \"Master\",\n" +
+                "  \"arbitro\": \"Marcos Silva Santos Goncalves\",\n" +
+                "  \"assistente1\": \"Jose Jenilton Santos\",\n" +
+                "  \"assistente2\": \"Robson Ferreira\",\n" +
+                "  \"notaArbitroMedia\": \"8\",\n" +
+                "  \"notaArbitroEquipe1\": \"8\",\n" +
+                "  \"notaArbitroEquipe2\": \"8\",\n" +
+                "  \"rodada\": \"1\",\n" +
+                "  \"turno\": \"4\",\n" +
+                "  \"vencedor\": \"1\"\n" +
+                " },\n" +
+                " {\n" +
+                "  \"data\": \"25/11/2017\",\n" +
+                "  \"horario\": \"14:30\",\n" +
+                "  \"equipe1\": \"Linense\",\n" +
+                "  \"golsEquipe1\": \"0\",\n" +
+                "  \"equipe2\": \"Mirassol\",\n" +
+                "  \"golsEquipe2\": \"5\",\n" +
+                "  \"cartoesAmarelos\": \"0\",\n" +
+                "  \"cartoesVermelhos\": \"0\",\n" +
+                "  \"totalCartoes\": \"0\",\n" +
+                "  \"categoria\": \"Senior\",\n" +
+                "  \"arbitro\": \"Joilson Lino\",\n" +
+                "  \"assistente1\": \"Robson Ferreira\",\n" +
+                "  \"assistente2\": \"Jose Jenilton Santos\",\n" +
+                "  \"notaArbitroMedia\": \"10\",\n" +
+                "  \"notaArbitroEquipe1\": \"10\",\n" +
+                "  \"notaArbitroEquipe2\": \"10\",\n" +
+                "  \"rodada\": \"1\",\n" +
+                "  \"turno\": \"4\",\n" +
+                "  \"vencedor\": \"2\"\n" +
+                " },\n" +
+                " {\n" +
+                "  \"data\": \"02/12/2017\",\n" +
+                "  \"horario\": \"08:30\",\n" +
+                "  \"equipe1\": \"Red-Bull\",\n" +
+                "  \"golsEquipe1\": \"1\",\n" +
+                "  \"equipe2\": \"Mirassol\",\n" +
+                "  \"golsEquipe2\": \"2\",\n" +
+                "  \"cartoesAmarelos\": \"5\",\n" +
+                "  \"cartoesVermelhos\": \"0\",\n" +
+                "  \"totalCartoes\": \"5\",\n" +
+                "  \"categoria\": \"Senior\",\n" +
+                "  \"arbitro\": \"Marco Antonio Pereira Camargo\",\n" +
+                "  \"assistente1\": \"Jose Jenilton Santos\",\n" +
+                "  \"assistente2\": \"Giovanni Crescencio\",\n" +
+                "  \"notaArbitroMedia\": \"10\",\n" +
+                "  \"notaArbitroEquipe1\": \"10\",\n" +
+                "  \"notaArbitroEquipe2\": \"9\",\n" +
+                "  \"rodada\": \"1\",\n" +
+                "  \"turno\": \"5\",\n" +
+                "  \"vencedor\": \"2\"\n" +
+                " },\n" +
+                " {\n" +
+                "  \"data\": \"02/12/2017\",\n" +
+                "  \"horario\": \"10:30\",\n" +
+                "  \"equipe1\": \"Ferroviaria\",\n" +
+                "  \"golsEquipe1\": \"2\",\n" +
+                "  \"equipe2\": \"Red-Bull\",\n" +
+                "  \"golsEquipe2\": \"5\",\n" +
+                "  \"cartoesAmarelos\": \"1\",\n" +
+                "  \"cartoesVermelhos\": \"0\",\n" +
+                "  \"totalCartoes\": \"1\",\n" +
+                "  \"categoria\": \"Master\",\n" +
+                "  \"arbitro\": \"Wagner Rizo\",\n" +
+                "  \"assistente1\": \"Giovanni Crescencio\",\n" +
+                "  \"assistente2\": \"Jose Jenilton Santos\",\n" +
+                "  \"notaArbitroMedia\": \"10\",\n" +
+                "  \"notaArbitroEquipe1\": \"10\",\n" +
+                "  \"notaArbitroEquipe2\": \"10\",\n" +
+                "  \"rodada\": \"1\",\n" +
+                "  \"turno\": \"5\",\n" +
+                "  \"vencedor\": \"2\"\n" +
+                " },\n" +
+                " {\n" +
+                "  \"data\": \"02/12/2017\",\n" +
+                "  \"horario\": \"12:30\",\n" +
+                "  \"equipe1\": \"Linense\",\n" +
+                "  \"golsEquipe1\": \"3\",\n" +
+                "  \"equipe2\": \"Novorizontino\",\n" +
+                "  \"golsEquipe2\": \"1\",\n" +
+                "  \"cartoesAmarelos\": \"1\",\n" +
+                "  \"cartoesVermelhos\": \"0\",\n" +
+                "  \"totalCartoes\": \"1\",\n" +
+                "  \"categoria\": \"Master\",\n" +
+                "  \"arbitro\": \"Vladimir Vassoler\",\n" +
+                "  \"assistente1\": \"Mauro Lopes\",\n" +
+                "  \"assistente2\": \"Giovanni Crescencio\",\n" +
+                "  \"notaArbitroMedia\": \"10\",\n" +
+                "  \"notaArbitroEquipe1\": \"10\",\n" +
+                "  \"notaArbitroEquipe2\": \"10\",\n" +
+                "  \"rodada\": \"1\",\n" +
+                "  \"turno\": \"5\",\n" +
+                "  \"vencedor\": \"1\"\n" +
+                " },\n" +
+                " {\n" +
+                "  \"data\": \"02/12/2017\",\n" +
+                "  \"horario\": \"14:30\",\n" +
+                "  \"equipe1\": \"Ponte-Preta\",\n" +
+                "  \"golsEquipe1\": \"0\",\n" +
+                "  \"equipe2\": \"Linense\",\n" +
+                "  \"golsEquipe2\": \"2\",\n" +
+                "  \"cartoesAmarelos\": \"0\",\n" +
+                "  \"cartoesVermelhos\": \"0\",\n" +
+                "  \"totalCartoes\": \"0\",\n" +
+                "  \"categoria\": \"Senior\",\n" +
+                "  \"arbitro\": \"Mauro Lopes\",\n" +
+                "  \"assistente1\": \"Giovanni Crescencio\",\n" +
+                "  \"assistente2\": \"Jose Jenilton Santos\",\n" +
+                "  \"notaArbitroMedia\": \"10\",\n" +
+                "  \"notaArbitroEquipe1\": \"10\",\n" +
+                "  \"notaArbitroEquipe2\": \"10\",\n" +
+                "  \"rodada\": \"1\",\n" +
+                "  \"turno\": \"5\",\n" +
+                "  \"vencedor\": \"2\"\n" +
                 " }\n" +
-                "]";
+                "]";*/
 
         Gson gson = new Gson();
         JSONArray jsonArray = null;
@@ -2808,9 +2726,9 @@ public class ResultadoService {
 
         List<Resultado> lista;
 
-        //String json = resultadoRest.getJogo(ConfiguracaoService.urlBase(campeonatoAno));
+        String json = resultadoRest.getJogo(FabricaDeUrl.urlBase(campeonatoAno));
 
-        String json = "[\n" +
+        /*String json = "[\n" +
                 " {\n" +
                 "  \"rodada\": \"25\",\n" +
                 "  \"turno\": \"3\",\n" +
@@ -2865,7 +2783,7 @@ public class ResultadoService {
                 "  \"equipe2\": \"Linense\",\n" +
                 "  \"categoria\": \"Senior\"\n" +
                 " }\n" +
-                "]";
+                "]";*/
 
         Gson gson = new Gson();
         JSONArray jsonArray = null;
@@ -2922,5 +2840,23 @@ public class ResultadoService {
         return dao.listarDadosPorRodadaETurno(context, rodada, turno);
     }
 
+    public Resultado getGolsPorEquipe(Context context, String equipe1, String equipe2, String categoria, int turno){
+        return dao.getGolsPorEquipe(context, equipe1, equipe2, categoria, turno);
+    }
 
+    public Resultado getGolsPorEquipeUnica(Context context, String equipe, String categoria, int turno){
+        return dao.getGolsPorEquipeUnica(context, equipe, categoria, turno);
+    }
+
+    public Resultado getEquipeVencedora(Context context, String equipe1, String equipe2, String categoria) {
+        return dao.getEquipeVencedora(context, equipe1, equipe2, categoria);
+    }
+
+    public Resultado getVencedorPorEquipeUnica(Context context, String equipe, String categoria, int turno) {
+        return dao.getVencedorPorEquipeUnica(context, equipe, categoria, turno);
+    }
+
+    public int getTurnoJogado(Context context, int turno) {
+        return dao.getTurnoJogado(context, turno);
+    }
 }

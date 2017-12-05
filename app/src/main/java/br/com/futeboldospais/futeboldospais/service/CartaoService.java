@@ -15,6 +15,7 @@ import java.util.List;
 import br.com.futeboldospais.futeboldospais.dao.CartaoDAO;
 import br.com.futeboldospais.futeboldospais.model.Cartao;
 import br.com.futeboldospais.futeboldospais.rest.CartaoRest;
+import br.com.futeboldospais.futeboldospais.util.FabricaDeUrl;
 
 /**
  * Created by Daniel Almeida on 13/10/2017.
@@ -46,7 +47,7 @@ public class CartaoService {
 
         List<Cartao> lista;
 
-        String json = cartaoRest.getCartaoAmarelo(ConfiguracaoService.urlBase(campeonatoAno));
+        String json = cartaoRest.getCartaoAmarelo(FabricaDeUrl.urlBase(campeonatoAno));
 
         /*String json = "[" +
                 "  {" +
@@ -112,7 +113,7 @@ public class CartaoService {
 
         List<Cartao> lista;
 
-        String json = cartaoRest.getCartaoVermelho(ConfiguracaoService.urlBase(campeonatoAno));
+        String json = cartaoRest.getCartaoVermelho(FabricaDeUrl.urlBase(campeonatoAno));
 
         /*String json = "[" +
                 "  {" +

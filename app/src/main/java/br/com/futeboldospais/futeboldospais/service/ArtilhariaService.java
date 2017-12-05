@@ -8,6 +8,7 @@ import com.google.gson.reflect.TypeToken;
 import br.com.futeboldospais.futeboldospais.dao.ArtilhariaDAO;
 import br.com.futeboldospais.futeboldospais.model.Artilharia;
 import br.com.futeboldospais.futeboldospais.rest.ArtilhariaRest;
+import br.com.futeboldospais.futeboldospais.util.FabricaDeUrl;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,7 +54,7 @@ public class ArtilhariaService {
         //String json = ObtemJsonDeArtilharia.comValorDeAtributoIncorreto();
         //String json = ObtemJsonDeArtilharia.comStringVazia();
 
-        String json = artilhariaRest.getArtilharia(ConfiguracaoService.urlBase(campeonatoAno));
+        String json = artilhariaRest.getArtilharia(FabricaDeUrl.urlBase(campeonatoAno));
 
         Gson gson = new Gson();
         JSONArray jsonArray = null;

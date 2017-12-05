@@ -59,7 +59,7 @@
             android:layout_toEndOf="@+id/txt_1"
             android:gravity="center|start"
             android:text="Menor número de pontos disciplinares."
-            android:textSize="12sp" />
+            android:textSize="13sp" />
 
     </RelativeLayout>
 
@@ -86,7 +86,7 @@
             android:layout_toEndOf="@+id/txt_2"
             android:gravity="center|start"
             android:text="Maior número de vitórias."
-            android:textSize="12sp" />
+            android:textSize="13sp" />
 
     </RelativeLayout>
 
@@ -113,7 +113,7 @@
             android:layout_toEndOf="@+id/txt_3"
             android:gravity="center|start"
             android:text="Confronto direto, sem computar-se saldo de gols."
-            android:textSize="12sp" />
+            android:textSize="13sp" />
 
     </RelativeLayout>
 
@@ -140,7 +140,7 @@
             android:layout_toEndOf="@+id/txt_4"
             android:gravity="center|start"
             android:text="Menor número de cartões vermelhos."
-            android:textSize="12sp" />
+            android:textSize="13sp" />
 
     </RelativeLayout>
 
@@ -167,7 +167,7 @@
             android:layout_toEndOf="@+id/txt_5"
             android:gravity="center|start"
             android:text="Maior saldo de gols."
-            android:textSize="12sp" />
+            android:textSize="13sp" />
 
     </RelativeLayout>
 
@@ -194,7 +194,7 @@
             android:layout_toEndOf="@+id/txt_6"
             android:gravity="center|start"
             android:text="Maior número de gols a favor."
-            android:textSize="12sp" />
+            android:textSize="13sp" />
 
     </RelativeLayout>
 
@@ -222,7 +222,7 @@
             android:layout_toEndOf="@+id/txt_7"
             android:gravity="center|start"
             android:text="Sorteio."
-            android:textSize="12sp" />
+            android:textSize="13sp" />
 
     </RelativeLayout>
 
