@@ -1,14 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--Criado por: Pâmela Fidelis em 5/12/17 -->
 <resources>
-    <string name="app_name">Parents\' Soccer</string>
+    <string name="app_name">Parents Soccer</string>
+    <string name="item_artilharia">Artillery</string>
+    <string name="item_jogos">Matches</string>
+    <string name="item_cartoes">Cards</string>
+    <string name="item_tabela">Tables</string>
+    <string name="item_suspensos">Suspension</string>
+
     <string name="btn_master">Masters</string>
     <string name="btn_senior">Seniors</string>
     <string name="btn_todos">All</string>
-    <string name="item_artilharia">Artillery</string>
-    <string name="item_classificacao">Ranking</string>
-    <string name="item_jogos">Matches</string>
+
+    <string name="str_master_maiuscula">Master</string>
+    <string name="str_senior_maiscula">Senior</string>
+    <string name="str_principal_maiuscula">Principal</string>
+    <string name="str_repescagem_maiuscula">Repescagem</string>
+
+    <string name="str_master_minuscula">master</string>
+    <string name="str_senior_minuscula">senior</string>
+    <string name="str_principal_minuscula">principal</string>
+    <string name="str_repescagem_minuscula">repescagem</string>
+
+    <string name="lbl_master">Master</string>
+    <string name="lbl_senior">Senior</string>
+
+    <!-- Artilharia -->
+    <string name="lbl_gols">GOALS</string>
+    <string name="lbl_ranking">RANKING</string>
+    <string name="lbl_busca_jogador_equipe">Search player or team</string>
+
+    <!-- Mensagens -->
+    <string name="lbl_sem_dados">Oops, nobody here yet!</string>
+    <string name="lbl_insucesso_dados">Oops, no one was found.!</string>
+    <string name="lbl_erro_rodada">An error has occurred in this round!</string>
+    <string name="lbl_rodada_nao_alcancada">Oops, we still don\'t reach here!</string>
+    <string name="ok">Ok</string>
+
+    <!-- Classificacao  -->
+    <string name="lbl_rbt_geral">Overall</string>
+    <string name="lbl_rbt_quartas">Quarters</string>
+    <string name="lbl_rbt_finais">Finals</string>
+
+    <string name="lbl_empate_sigla">D</string>
+    <string name="lbl_derrota_sigla">L</string>
+    <string name="lbl_golsPro_sigla">PG</string>
+    <string name="lbl_golsContra_sigla">OG</string>
+    <string name="lbl_c_amarelos_sigla">YC</string>
+    <string name="lbl_c_vermelhos_sigla">RC</string>
+    <string name="lbl_pontos_disciplinares_sigla">DP</string>
+
+    <!-- Quartas Finais -->
+    <string name="lbl_repescagem">Repechage</string>
+    <string name="lbl_principal">Main</string>
+
+
+    <string name="lbl_pontos_ganhos_sigla">EP</string>
+    <string name="lbl_jogos_sigla">M</string>
+    <string name="lbl_vitorias_sigla">W</string>
+    <string name="lbl_saldo_sigla">GD</string>
+    <string name="lbl_equipe">TEAM</string>
+
+    <!-- SemiFinal -->
+    <string name="lbl_primeiro_master_principal">1º Main Master</string>
+    <string name="lbl_primeiro_senior_principal">1º Main Senior</string>
+    <string name="lbl_segundo_master_principal">2º Main Master</string>
+    <string name="lbl_segundo_senior_principal">2º Main Senior</string>
+    <string name="lbl_terceiro_master_principal">3º Main Master</string>
+    <string name="lbl_terceiro_senior_principal">3º Main Senior</string>
+    <string name="lbl_primeiro_master_repescagem">1º Repechage Master</string>
+    <string name="lbl_primeiro_senior_repescagem">1º Repechage Senior</string>
+
+    <!-- Supensos -->
+    <string name="lbl_jogador">PLAYER</string>
+    <string name="lbl_jogos">MATCHES</string>
+    <string name="lbl_criterio">CRITERION</string>
+    <string name="lbl_cartao_vermelho">Red Card</string>
+    <string name="lbl_cartao_amarelo">Yellow Card</string>
+    <string name="lbl_julgamento">Judgment</string>
+    <string name="lbl_motivo">MOTIVE</string>
+
+    <!-- Cartoes -->
+    <string name="lbl_buscar_jogador">Search player</string>
+
+    <string name="lbl_rbt_amarelo">Yellow</string>
+    <string name="lbl_rbt_vermelho">Red</string>
+
+    <string name="lbl_data">DATE</string>
+    <string name="lbl_tempo">TIME</string>
+    <string name="lbl_jogo">GAME</string>
+
+    <!-- Final-->
+    <string name="lbl_campeoes">CHAMPION</string>
+    <string name="lbl_campeao_master">Master Champion</string>
+    <string name="lbl_campeao_senior">Senior Champion</string>
+
+    <string name="lbl_final_master">Final Master</string>
+    <string name="lbl_final_senior">Final Senior</string>
+
+    <string name="lbl_versus">x</string>
+
+    <!-- Sumula -->
     <string name="title_activity_document_viewer">Document Viewer</string>
-    <string name="document_viewer_error">Error opening the document. Please check your connection.</string>
-    <string name="document_viewer_invalid">Invalid file type.</string>
-    <string name="item_suspensoes">Cards</string>
+    <string name="lbl_caregando_sumula">Loading dashboard...</string>
+    <string name="lbl_erro_sumula">Error while loading docket</string>
+    <string name="lbl_carregando_regulamento">Loading regulation...</string>
+    <string name="lbl_erro_regulamento">Error while loading regulation</string>
+    <string name="lbl_erro_conexao_sumula">To see dashboard a internet connection is needed</string>
+
+    <!-- SemiFinal-->
+    <string name="lbl_segundo_lugar_master">Second Place Master</string>
+    <string name="lbl_segundo_lugar_senior">Second Place Senior</string>
+    <string name="lbl_terceiro_lugar_master">Third Place Master</string>
+    <string name="lbl_terceiro_lugar_senior">Third Place Senior</string>
+
+    <!-- Modal Configuracao -->
+    <string name="lbl_opcoes">Options</string>
+    <string name="lbl_bt_regulamento">Championship Rules</string>
+    <string name="lbl_bt_termos">Terms and Conditions</string>
+    <string name="lbl_bt_politica">Privacy Policy</string>
+    <string name="lbl_bt_licencas">License</string>
+    <string name="lbl_bt_sobre">About</string>
+
+    <!-- Modal Suspensos -->
+    <string name="lbl_s_2">Suspended from his category, but free to play in Master.</string>
+    <string name="lbl_s_1">Suspended from his category.</string>
+    <string name="lbl_s_3">Suspended from his category, but free to play in the line in Senior.</string>
+    <string name="lbl_s_4">Suspended from his category, but free to play in the goal in the Senior.</string>
+    <string name="lbl_s_5">Suspended in both categories(Master and Senior).</string>
+    <string name="lbl_legendas">Subtitles</string>
+
+    <!-- Modal jogos -->
+    <string name="lbl_informacoes">Informations</string>
+    <string name="lbl_modal_jogos_1">You can navigate between rounds using the buttons or by sliding your finger on the title of the rounds!</string>
+    <string name="lbl_modal_jogos_2">You can see the scoresheet by touching the game you want to see!</string>
+
+    <!-- Modal Classificacao-->
+    <string name="lbl_criterio_desempate">Criterion Play-off</string>
+    <string name="lbl_menor_pontos_disciplinares"> Smaller number disciplinary points.</string>
+    <string name="lbl_maior_vitoria">Highest number of wins.</string>
+    <string name="lbl_confronto_direto">Direct confrontation, without counting goal balance.</string>
+    <string name="lbl_menor_n_c_vermelho">Smaller number de red cards.</string>
+    <string name="lbl_maior_saldo_gols">Highest goal difference.</string>
+    <string name="lbl_saldo_a_favor">Highest number goals scored.</string>
+    <string name="lbl_sorteio">Lottery.</string>
+
+    <!-- Rodadas -->
+    <string name="lbl_turno">TURN</string>
+    <string name="lbl_rodada">ROUND</string>
+    <string name="lbl_quartas_maiuscula">QUARTERS</string>
+    <string name="lbl_semifinais_maiuscula">SEMIFINALS</string>
+    <string name="lbl_finais">FINALS</string>
+
+    <!-- Atualização -->
+    <string name="lbl_prosseguir">Next    </string>
+    <string name="lbl_ultima_atualizacao">Last update: </string>
+    <string name="lbl_tentar_novamente">Try Again   </string>
+    <string name="lbl_tentando_verificar_atualizacao">Trying to check for updates ...</string>
+    <string name="lbl_erro_atualizacao">An error occurred while trying to update</string>
+    <string name="lbl_verificando_atualizacao">Checking for updates...</string>
+    <string name="lbl_verificar_conexao">Please check your internet connection</string>
+    <string name="lbl_atualizando_dados">Updating data...</string>
+    <string name="lbl_sem_atualizacao">No updates available.</string>
+    <string name="lbl_dados_atualizados">Data successfully updated</string>
 </resources>

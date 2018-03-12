@@ -13,6 +13,9 @@ import android.view.MenuItem;
 import br.com.futeboldospais.futeboldospais.R;
 import br.com.futeboldospais.futeboldospais.util.BottomNavigationViewHelper;
 
+/**
+ * Created by Daniel Almeida on 08/09/2017.
+ **/
 public class MenuPrincipalActivity extends AppCompatActivity {
 
     private Fragment fragmentoSelecionado = null;
@@ -23,7 +26,6 @@ public class MenuPrincipalActivity extends AppCompatActivity {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         outState.putInt(SAVED_EVENT, controleEvento);
-        Log.d("teste", String.valueOf(controleEvento));
     }
 
     /**
@@ -127,17 +129,6 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         transaction.replace(R.id.content, fragmentoSelecionado);
         transaction.commit();
 
-        /*new Thread(new Runnable() {
-            @Override
-            public void run() {
-                BancoDadosHelper.FabricaDeConexao.criarBancoDados(getBaseContext());
-
-                Intent intent = new Intent(getBaseContext(), ServicoAtualizacao.class);
-                Log.d("teste", "1 - instanciou o intent");
-                startService(intent);
-                Log.d("teste", "1 - iniciou o servico");
-            }
-        }).start();*/
 
     }
 }

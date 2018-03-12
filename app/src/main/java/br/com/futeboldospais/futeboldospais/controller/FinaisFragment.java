@@ -4,18 +4,12 @@ package br.com.futeboldospais.futeboldospais.controller;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.DragEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import br.com.futeboldospais.futeboldospais.R;
-import br.com.futeboldospais.futeboldospais.service.ClassificacaoQuartasService;
-import br.com.futeboldospais.futeboldospais.service.DistintivoService;
-import br.com.futeboldospais.futeboldospais.util.PageAdapter;
+import br.com.futeboldospais.futeboldospais.util.FinaisPageAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -48,26 +42,9 @@ public class FinaisFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_finais, container, false);
 
         final ViewPager viewPager = (ViewPager) view.findViewById(R.id.page_adapter);
-        PageAdapter pageAdapter = new PageAdapter(getChildFragmentManager());
-        viewPager.setAdapter(pageAdapter);
+        FinaisPageAdapter finaisPageAdapter = new FinaisPageAdapter(getChildFragmentManager());
+        viewPager.setAdapter(finaisPageAdapter);
         viewPager.setCurrentItem(0);
-
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
 
         return view;
     }

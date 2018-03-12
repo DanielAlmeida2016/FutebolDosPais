@@ -60,7 +60,7 @@
 
         <TextView
             android:id="@+id/jogador"
-            android:text="JOGADOR"
+            android:text="@string/lbl_jogador"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
@@ -69,7 +69,7 @@
             />
 
         <TextView
-            android:text="MOTIVO"
+            android:text="@string/lbl_motivo"
             android:id="@+id/motivo"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -80,7 +80,7 @@
 
         <TextView
             android:id="@+id/jogos"
-            android:text="JOGOS"
+            android:text="@string/lbl_jogos"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toStartOf="@id/motivo"
@@ -90,7 +90,7 @@
 
         <TextView
             android:id="@+id/criterio"
-            android:text="CRITERIO"
+            android:text="@string/lbl_criterio"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_toStartOf="@id/jogos"

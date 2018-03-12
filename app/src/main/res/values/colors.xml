@@ -20,6 +20,7 @@
     <color name="gray">#8b979f</color>
 	<color name="grayLight">#bbbbbb</color>
     <color name="superGrayLight">#88EEEEEE</color>
+    <color name="gray_light">#8a8a8b</color>
 
     <color name="transparent">#00000000 </color>
 </resources>

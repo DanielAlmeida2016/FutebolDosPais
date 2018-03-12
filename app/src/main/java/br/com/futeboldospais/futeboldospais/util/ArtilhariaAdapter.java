@@ -16,6 +16,7 @@ import br.com.futeboldospais.futeboldospais.service.DistintivoService;
 
 /**
  * Created by Pâmela e Vinicius on 30/09/2017.
+ * Alterado por: Pamela Fidelis em 04/12/17
  */
 
 public class ArtilhariaAdapter extends BaseAdapter  {
@@ -68,9 +69,6 @@ public class ArtilhariaAdapter extends BaseAdapter  {
         }
 
         count = count + 1;
-        Log.d("Teste", "Contador: " + String.valueOf(count));
-        Log.d("Teste", "Position: " + String.valueOf(position));
-        Log.d("Teste", "Tamanho passado: " + String.valueOf(listaArtilharia.length));
 
         ViewHolderArtilharia viewHolderArtilharia = (ViewHolderArtilharia) view.getTag();
         int gols = 0;

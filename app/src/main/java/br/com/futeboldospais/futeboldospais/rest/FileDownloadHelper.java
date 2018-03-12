@@ -28,29 +28,19 @@ import okhttp3.ResponseBody;
     Histórico de modificações:
     Data ______ Autor _________________ Resumo ___________________________________________________
     24.09.2017  Luis Andrade            Inicial
+    05.10.2018  Daniel Almeida          Ajustar para utilização sem context
  */
 
 public class FileDownloadHelper {
 
-    public static boolean checkConnectivity(Context context) {
-        ConnectivityManager cm =
-                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
-    }
-
-    private static ResponseBody downloadFile(Context context, String uri) throws Exception {
+    private static ResponseBody downloadFile(String uri) throws Exception {
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder().url(uri).build();
             return client.newCall(request).execute().body();
     }
 
-    public static String downloadText(Context context, String uri) throws Exception {
-        return downloadFile(context, uri).string();
-    }
-
-    public static InputStream downloadBinary(Context context, String uri) throws Exception {
-        return downloadFile(context, uri).byteStream();
+    public static InputStream downloadBinary(String uri) throws Exception {
+        return downloadFile(uri).byteStream();
     }
 
 }

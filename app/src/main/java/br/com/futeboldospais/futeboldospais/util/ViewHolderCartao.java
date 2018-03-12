@@ -22,7 +22,6 @@ public class ViewHolderCartao {
         this.jogador = jogador;
         this.equipe = equipe;
         this.data = data;
-        /*this.juiz = juiz;*/
         this.adversario = adversario;
         this.tempo = tempo;
         this.numero = numero;
@@ -51,14 +50,6 @@ public class ViewHolderCartao {
     public void setData(TextView data) {
         this.data = data;
     }
-
-    /*public TextView getJuiz() {
-        return juiz;
-    }
-
-    public void setJuiz(TextView juiz) {
-        this.juiz = juiz;
-    }*/
 
     public ImageView getAdversario() {
         return adversario;

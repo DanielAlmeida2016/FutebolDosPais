@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Critérios de Desempate"
+                android:text="@string/lbl_criterio_desempate"
                 android:textSize="16dp" />
 
         </RelativeLayout>
@@ -58,7 +58,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/txt_1"
             android:gravity="center|start"
-            android:text="Menor número de pontos disciplinares."
+            android:text="@string/lbl_menor_pontos_disciplinares"
             android:textSize="13sp" />
 
     </RelativeLayout>
@@ -85,7 +85,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/txt_2"
             android:gravity="center|start"
-            android:text="Maior número de vitórias."
+            android:text="@string/lbl_maior_vitoria"
             android:textSize="13sp" />
 
     </RelativeLayout>
@@ -112,7 +112,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/txt_3"
             android:gravity="center|start"
-            android:text="Confronto direto, sem computar-se saldo de gols."
+            android:text="@string/lbl_confronto_direto"
             android:textSize="13sp" />
 
     </RelativeLayout>
@@ -139,7 +139,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/txt_4"
             android:gravity="center|start"
-            android:text="Menor número de cartões vermelhos."
+            android:text="@string/lbl_menor_n_c_vermelho"
             android:textSize="13sp" />
 
     </RelativeLayout>
@@ -166,7 +166,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/txt_5"
             android:gravity="center|start"
-            android:text="Maior saldo de gols."
+            android:text="@string/lbl_maior_saldo_gols"
             android:textSize="13sp" />
 
     </RelativeLayout>
@@ -193,7 +193,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/txt_6"
             android:gravity="center|start"
-            android:text="Maior número de gols a favor."
+            android:text="@string/lbl_saldo_a_favor"
             android:textSize="13sp" />
 
     </RelativeLayout>
@@ -221,7 +221,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/txt_7"
             android:gravity="center|start"
-            android:text="Sorteio."
+            android:text="@string/lbl_sorteio"
             android:textSize="13sp" />
 
     </RelativeLayout>

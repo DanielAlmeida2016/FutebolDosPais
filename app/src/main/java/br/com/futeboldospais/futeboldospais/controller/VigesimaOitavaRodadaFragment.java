@@ -70,7 +70,7 @@ public class VigesimaOitavaRodadaFragment extends Fragment {
             resultadoAdapter = new ResultadoAdapter(listaResultado, getActivity().getBaseContext());
             tabelaResultado.setAdapter(resultadoAdapter);
         } else {
-            AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity().getBaseContext(), "Opa, não chegamos aqui ainda!");
+            AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity().getBaseContext(), getString(R.string.lbl_rodada_nao_alcancada));
             tabelaResultado.setAdapter(adapterPadrao);
         }
 

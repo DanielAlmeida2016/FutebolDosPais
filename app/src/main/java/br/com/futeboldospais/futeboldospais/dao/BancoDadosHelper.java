@@ -9,6 +9,8 @@ import android.util.Log;
  * Created by Daniel Almeida on 05/10/2017.
  * Esta classe serve para criar o banco de dados SQLite da aplicação e criar
  * conexão com este a partir de sua instanciação
+ * Alterado por: Pamela Fidelis em 04/12/17
+ * Objetivo: removeção de string e log no código
  */
 
 public class BancoDadosHelper extends SQLiteOpenHelper{
@@ -19,7 +21,6 @@ public class BancoDadosHelper extends SQLiteOpenHelper{
      */
     private BancoDadosHelper(Context context){
         super(context, BancoDados.BANCO_NOME, null, BancoDados.BANCO_VERSAO);
-        Log.d("teste", "6 - entrou no construtor da banco dados helper");
     }
 
     /**
@@ -36,7 +37,6 @@ public class BancoDadosHelper extends SQLiteOpenHelper{
         bd.execSQL(BancoDados.CRIAR_TABELA_CARTAO_VERMELHO);
         bd.execSQL(BancoDados.CRIAR_TABELA_SUSPENSAO);
         bd.execSQL(BancoDados.CRIAR_TABELA_RESULTADO);
-        Log.d("teste", "Teste 1 - criou as tabelas");
     }
 
     /**
@@ -90,16 +90,10 @@ public class BancoDadosHelper extends SQLiteOpenHelper{
          * pelo serviço android
          */
         public static SQLiteDatabase getConexaoServico(Context context){
-            Log.d("teste", "4 - entrou no get conexao servico");
 
             if(CONEXAO_SERVICO == null){
-                Log.d("teste", "5 - verificou a conexao servico");
-
                 BANCO_DADOS_HELPER = new BancoDadosHelper(context);
-                Log.d("teste", "7 - instanciou banco dados helper");
-
                 CONEXAO_SERVICO = BANCO_DADOS_HELPER.getWritableDatabase();
-                Log.d("teste", "8 - inseriu a conexao");
             }
             return CONEXAO_SERVICO;
         }

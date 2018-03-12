@@ -22,7 +22,10 @@ import br.com.futeboldospais.futeboldospais.util.NavegacaoRodadasHelper;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class JogosFragment extends Fragment {
+public class    /**
+ * Created by Daniel Almeida on 08/09/2017.
+ * Cria um singleton da classe
+ */JogosFragment extends Fragment {
 
     private Button btnProximaRodada;
     private Button btnRodadaAnterior;
@@ -58,8 +61,8 @@ public class JogosFragment extends Fragment {
 
         //Seleciona e exibe a titulo atual do campeonato
         resultadoService = new ResultadoService();
-        fragmentoSelecionado = NavegacaoRodadasHelper.rodadaAtual(resultadoService.listarDadosRodadaAtual(getActivity().getBaseContext())).getFragmentoSelecionado();
-        titulo = NavegacaoRodadasHelper.rodadaAtual(resultadoService.listarDadosRodadaAtual(getActivity().getBaseContext())).getTitulo();
+        fragmentoSelecionado = NavegacaoRodadasHelper.rodadaAtual(getActivity().getBaseContext(), resultadoService.listarDadosRodadaAtual(getActivity().getBaseContext())).getFragmentoSelecionado();
+        titulo = NavegacaoRodadasHelper.rodadaAtual(getActivity().getBaseContext(), resultadoService.listarDadosRodadaAtual(getActivity().getBaseContext())).getTitulo();
 
         txtRodada = (TextView) view.findViewById(R.id.txt_rodada);
         txtRodada.setText(titulo);

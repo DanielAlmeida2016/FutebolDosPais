@@ -5,7 +5,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 
 /**
- * Created by ThirdSystem on 20/11/2017.
+ * Created by Daniel Almeida on 20/11/2017.
  */
 
 public class CustomGestureDetector implements GestureDetector.OnGestureListener,

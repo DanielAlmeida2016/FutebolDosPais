@@ -27,7 +27,7 @@ import br.com.futeboldospais.futeboldospais.service.ClassificacaoQuartasService;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by ThirdSystem on 20/11/2017.
+ * Created by Daniel Almeida on 20/11/2017.
  */
 
 @RunWith(AndroidJUnit4.class)

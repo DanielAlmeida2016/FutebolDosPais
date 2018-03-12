@@ -5,7 +5,7 @@ import android.content.Context;
 import br.com.futeboldospais.futeboldospais.service.ConfiguracaoService;
 
 /**
- * Created by ThirdSystem on 05/12/2017.
+ * Created by Daniel Almeida on 05/12/2017.
  */
 
 public class FabricaDeUrl {

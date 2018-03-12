@@ -1,7 +1,7 @@
 package br.com.futeboldospais.futeboldospais.util;
 
 /**
- * Created by ThirdSystem on 05/11/2017.
+ * Created by Daniel Almeida on 05/11/2017.
  */
 
 public class ObtemJsonDeArtilharia {

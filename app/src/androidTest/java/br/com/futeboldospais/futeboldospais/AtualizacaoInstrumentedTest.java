@@ -22,7 +22,7 @@ import br.com.futeboldospais.futeboldospais.service.ArtilhariaService;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by ThirdSystem on 06/11/2017.
+ * Created by Daniel Almeida on 06/11/2017.
  * Classe de testes de atualização utilizando o critério de equivalencia,
  * levando em consideração que um arquivo json incorreto impacta em toda
  * a atualização de dados do aplicativo sem exceção

@@ -5,7 +5,7 @@ import android.widget.TextView;
 import org.w3c.dom.Text;
 
 /**
- * Created by ThirdSystem on 29/10/2017.
+ * Created by Daniel Almeida on 29/10/2017.
  */
 
 public class ViewHolderPadrao {

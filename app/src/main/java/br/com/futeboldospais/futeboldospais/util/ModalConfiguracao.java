@@ -10,6 +10,11 @@ import android.widget.Toast;
 import br.com.futeboldospais.futeboldospais.R;
 import br.com.futeboldospais.futeboldospais.controller.DocumentViewer;
 
+/**
+ * Created by Daniel Almeida on 12/10/2017.
+ */
+
+
 public class ModalConfiguracao extends Activity {
 
     @Override

@@ -56,8 +56,6 @@ public class ClassificacaoGeralFragment extends Fragment {
 
         tabelaClassificacaoEsq = (ListView) view.findViewById(R.id.classificacao_tabela_esq);
         tabelaClassificacaoDir = (ListView) view.findViewById(R.id.classificacao_tabela_dir);
-        Log.d("teste", "adapter fragment");
-
 
         classificacaoService = new ClassificacaoService();
         listaClassificacao = classificacaoService.listarDados(getActivity().getBaseContext());

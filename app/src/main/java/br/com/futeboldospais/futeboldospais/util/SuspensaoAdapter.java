@@ -25,7 +25,6 @@ public class SuspensaoAdapter extends BaseAdapter {
     private Context context;
 
     public SuspensaoAdapter(Suspensao[] suspensaos, Context context) {
-        Log.d( "teste", "construtor" );
         this.listaSuspensao = suspensaos;
         this.context = context;
     }
@@ -50,9 +49,7 @@ public class SuspensaoAdapter extends BaseAdapter {
         View view = convertView;
         if (view == null) {
 
-            Log.d( "teste", "hahahaha" );
             LayoutInflater inflater = (LayoutInflater) context.getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-            Log.d( "teste", "Embaixo do inflater" );
             view = inflater.inflate( R.layout.linha_suspensos, parent, false );
 
             ImageView escudo = (ImageView) view.findViewById( R.id.escudo );
@@ -62,19 +59,15 @@ public class SuspensaoAdapter extends BaseAdapter {
             TextView criterio = (TextView) view.findViewById( R.id.criterio );
             TextView jogos = (TextView) view.findViewById( R.id.jogos );
             ImageView motivo = (ImageView) view.findViewById( R.id.motivo );
-            Log.d( "teste", "Abaixo dos Find" );
 
             ViewHolderSuspensao viewHolderSuspensao = new ViewHolderSuspensao( escudo, jogador, numero, categoria, criterio, jogos, motivo );
-            Log.d( "teste", "Abaixo do viewholder" );
 
             view.setTag( viewHolderSuspensao );
-            Log.d( "teste", "Seto a tag" );
         }
 
         distintivoService = new DistintivoService();
 
         ViewHolderSuspensao viewHolderSuspensao = (ViewHolderSuspensao) view.getTag();
-        Log.d( "teste", "Pego a tag" );
         try {
 
             viewHolderSuspensao.getEscudo().setImageBitmap( distintivoService.carregarImagemDoArmazenamentoInterno( distintivoService.getDiretorio(), listaSuspensao[position].getEquipe() ) );
@@ -83,20 +76,14 @@ public class SuspensaoAdapter extends BaseAdapter {
         }
 
         viewHolderSuspensao.getJogador().setText( String.valueOf( listaSuspensao[position].getJogador() ) );
-        Log.d( "teste", "Carregou o viewholder 2" );
 
         viewHolderSuspensao.getNumero().setText( String.valueOf( listaSuspensao[position].getNumero() ) );
-        Log.d( "teste", "Carregou o viewholder 3" );
 
         viewHolderSuspensao.getCategoria().setText(listaSuspensao[position].getCategoria().toUpperCase());
 
-        Log.d( "teste", "CRITERIOOOOOOOOOOOO: " + listaSuspensao[position].getCriterio());
-
         viewHolderSuspensao.getCriterio().setText( String.valueOf( listaSuspensao[position].getCriterio() ) );
-        Log.d( "teste", "Carregou o viewholder 4" );
 
         viewHolderSuspensao.getJogos().setText( String.valueOf( listaSuspensao[position].getJogos() ) );
-        Log.d( "teste", "Carregou o viewholder 5" );
 
 
         if (listaSuspensao[position].getMotivo().equals( "cartao amarelo" )) {
@@ -108,16 +95,10 @@ public class SuspensaoAdapter extends BaseAdapter {
         } else if (listaSuspensao[position].getMotivo().equals( "julgamento" )) {
             viewHolderSuspensao.getMotivo().setImageDrawable( ContextCompat.getDrawable( context, R.drawable.ic_julgamento ) );
         }
+        return view;
 
-
-            Log.d( "teste", "Carregou o viewholder final" );
-
-            // viewHolderSuspensao.getMotivo().setImageDrawable(drawable);
-
-            return view;
-
-        }
     }
+}
 
 
 

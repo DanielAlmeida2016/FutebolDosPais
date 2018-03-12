@@ -12,7 +12,7 @@ import br.com.futeboldospais.futeboldospais.R;
 import br.com.futeboldospais.futeboldospais.model.Classificacao;
 
 /**
- * Created by ThirdSystem on 24/10/2017.
+ * Created by Daniel Almeida on 24/10/2017.
  */
 
 public class ClassificacaoAdapterDireita extends BaseAdapter {

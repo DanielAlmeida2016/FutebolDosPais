@@ -60,7 +60,7 @@
                     android:id="@+id/valor_busca"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="Buscar jogador ou aquipe"
+                    android:hint="@string/lbl_buscar_jogador"
                     android:textSize="15sp"
                     android:paddingStart="10dp"
                     android:layout_marginBottom="-4dp"
@@ -81,7 +81,7 @@
 
                 <RadioButton
                     android:id="@+id/rbt_master"
-                    android:layout_width="60dp"
+                    android:layout_width="62dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="1dp"
                     android:layout_marginStart="1dp"
@@ -98,7 +98,7 @@
 
                 <RadioButton
                     android:id="@+id/rbt_senior"
-                    android:layout_width="60dp"
+                    android:layout_width="62dp"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="1dp"
                     android:layout_marginEnd="1dp"
@@ -130,7 +130,7 @@
             android:layout_height="50dp"
             android:layout_marginStart="25dp"
             android:gravity="center"
-            android:text="RANKING" />
+            android:text="@string/lbl_ranking" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -138,7 +138,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="25dp"
             android:gravity="center"
-            android:text="GOLS" />
+            android:text="@string/lbl_gols" />
 
     </RelativeLayout>
 

@@ -6,6 +6,7 @@ import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -15,7 +16,7 @@ import br.com.futeboldospais.futeboldospais.service.ResultadoService;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by ThirdSystem on 15/11/2017.
+ * Created by Daniel Almeida on 15/11/2017.
  */
 
 @RunWith(AndroidJUnit4.class)
@@ -30,13 +31,20 @@ public class RodadasInstrumentedTest {
         resultadoService = new ResultadoService();
     }
 
-    @Test
+    @Ignore
     public void testaUltimaRodada() {
 
         assertEquals(25, resultadoService.listarDadosRodadaAtual(appContext));
     }
 
     @Test
+    public void getTurnoJogado() {
+
+        assertEquals(4, resultadoService.getTurnoJogado(appContext, 5));
+    }
+
+
+    @Ignore
     public void testaUrlSumula() {
 
         int position = 0;

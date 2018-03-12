@@ -43,6 +43,10 @@ public class CampeaoFragment extends Fragment {
     ResultadoService resultadoService;
     DistintivoService distintivoService;
 
+    /**
+     * Created by Daniel Almeida on 08/09/2017.
+     * Cria um singleton da classe
+     */
     private static CampeaoFragment fragment = null;
 
     public static CampeaoFragment newInstance() {
@@ -86,123 +90,124 @@ public class CampeaoFragment extends Fragment {
         resultadoService = new ResultadoService();
         distintivoService = new DistintivoService();
 
-        String equipe1;
-        String equipe2;
-        String equipe3;
-        String equipe4;
-        String equipe5;
-        String equipe6;
-        String equipe7;
-        String equipe8;
+        if (resultadoService.getTurnoJogado(getActivity().getBaseContext(), 5) == 4) {
+            String equipe1;
+            String equipe2;
+            String equipe3;
+            String equipe4;
+            String equipe5;
+            String equipe6;
+            String equipe7;
+            String equipe8;
 
-        String equipeI;
-        String equipeII;
-        String equipeIII;
-        String equipeIV;
+            String equipeI;
+            String equipeII;
+            String equipeIII;
+            String equipeIV;
 
-        try {
-            equipe1 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "master", "principal", 1);
-            equipe2 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "master", "repescagem", 1);
-            equipe3 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "master", "principal", 2);
-            equipe4 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "master", "principal", 3);
-            equipe5 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "senior", "principal", 1);
-            equipe6 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "senior", "repescagem", 1);
-            equipe7 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "senior", "principal", 2);
-            equipe8 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "senior", "principal", 3);
+            try {
+                equipe1 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "master", "principal", 1);
+                equipe2 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "master", "repescagem", 1);
+                equipe3 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "master", "principal", 2);
+                equipe4 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "master", "principal", 3);
+                equipe5 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "senior", "principal", 1);
+                equipe6 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "senior", "repescagem", 1);
+                equipe7 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "senior", "principal", 2);
+                equipe8 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "senior", "principal", 3);
 
-            Resultado resultado;
+                Resultado resultado;
 
-            resultado = resultadoService.getEquipeVencedora(getActivity().getBaseContext(), equipe1, equipe2, "Master");
-            if (resultado.getVencedor() == 1) {
+                resultado = resultadoService.getEquipeVencedora(getActivity().getBaseContext(), equipe1, equipe2, "Master");
+                if (resultado.getVencedor() == 1) {
 
-                equipeI = equipe1;
-                equipeII = equipe2;
-            } else {
+                    equipeI = equipe1;
+                    equipeII = equipe2;
+                } else {
 
-                equipeI = equipe2;
-                equipeII = equipe1;
+                    equipeI = equipe2;
+                    equipeII = equipe1;
+                }
+
+                resultado = resultadoService.getEquipeVencedora(getActivity().getBaseContext(), equipe3, equipe4, "Master");
+                if (resultado.getVencedor() == 1) {
+
+                } else {
+
+                }
+
+                resultado = resultadoService.getEquipeVencedora(getActivity().getBaseContext(), equipe5, equipe6, "Senior");
+                if (resultado.getVencedor() == 1) {
+
+                    equipeIII = equipe5;
+                    equipeIV = equipe6;
+                } else {
+
+                    equipeIII = equipe6;
+                    equipeIV = equipe5;
+                }
+
+                resultado = resultadoService.getEquipeVencedora(getActivity().getBaseContext(), equipe7, equipe8, "Senior");
+                if (resultado.getVencedor() == 1) {
+
+                } else {
+
+                }
+
+
+                //-----------------------------------------------------------------------------------------------------------------
+
+                resultado = resultadoService.getVencedorPorEquipeUnica(getActivity().getBaseContext(), equipeI, "Master", 5);
+                if (resultado.getVencedor() == 1) {
+                    imgCampeaoMaster.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe1()));
+                    txtCampeaoMaster.setText(resultado.getEquipe1());
+
+                    imgSegundoMaster.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe2()));
+                    txtSegundoMaster.setText(resultado.getEquipe2());
+                } else {
+                    imgCampeaoMaster.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe2()));
+                    txtCampeaoMaster.setText(resultado.getEquipe2());
+
+                    imgSegundoMaster.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe1()));
+                    txtSegundoMaster.setText(resultado.getEquipe1());
+                }
+
+                resultado = resultadoService.getVencedorPorEquipeUnica(getActivity().getBaseContext(), equipeII, "Master", 5);
+                if (resultado.getVencedor() == 1) {
+                    imgTerceiroMaster.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe1()));
+                    txtTerceiroMaster.setText(resultado.getEquipe1());
+                } else {
+                    imgTerceiroMaster.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe2()));
+                    txtTerceiroMaster.setText(resultado.getEquipe2());
+                }
+
+                resultado = resultadoService.getVencedorPorEquipeUnica(getActivity().getBaseContext(), equipeIII, "Senior", 5);
+                if (resultado.getVencedor() == 1) {
+                    imgCampeaoSenior.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe1()));
+                    txtCampeaoSenior.setText(resultado.getEquipe1());
+
+                    imgSegundoSenior.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe2()));
+                    txtSegundoSenior.setText(resultado.getEquipe2());
+                } else {
+                    imgCampeaoSenior.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe2()));
+                    txtCampeaoSenior.setText(resultado.getEquipe2());
+
+                    imgSegundoSenior.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe1()));
+                    txtSegundoSenior.setText(resultado.getEquipe1());
+                }
+
+                resultado = resultadoService.getVencedorPorEquipeUnica(getActivity().getBaseContext(), equipeIV, "Senior", 5);
+                if (resultado.getVencedor() == 1) {
+                    imgTerceiroSenior.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe1()));
+                    txtTerceiroSenior.setText(resultado.getEquipe1());
+                } else {
+                    imgTerceiroSenior.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe2()));
+                    txtTerceiroSenior.setText(resultado.getEquipe2());
+                }
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
-            resultado = resultadoService.getEquipeVencedora(getActivity().getBaseContext(), equipe3, equipe4, "Master");
-            if (resultado.getVencedor() == 1) {
-
-            } else {
-
-            }
-
-            resultado = resultadoService.getEquipeVencedora(getActivity().getBaseContext(), equipe5, equipe6, "Senior");
-            if (resultado.getVencedor() == 1) {
-
-                equipeIII = equipe5;
-                equipeIV = equipe6;
-            } else {
-
-                equipeIII = equipe6;
-                equipeIV = equipe5;
-            }
-
-            resultado = resultadoService.getEquipeVencedora(getActivity().getBaseContext(), equipe7, equipe8, "Senior");
-            if (resultado.getVencedor() == 1) {
-
-            } else {
-
-            }
-            Log.d("teste", equipe1 + equipe2);
-
-            //-----------------------------------------------------------------------------------------------------------------
-
-            resultado = resultadoService.getVencedorPorEquipeUnica(getActivity().getBaseContext(), equipeI, "Master", 5);
-            if (resultado.getVencedor() == 1) {
-                imgCampeaoMaster.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe1()));
-                txtCampeaoMaster.setText(resultado.getEquipe1());
-
-                imgSegundoMaster.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe2()));
-                txtSegundoMaster.setText(resultado.getEquipe2());
-            } else {
-                imgCampeaoMaster.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe2()));
-                txtCampeaoMaster.setText(resultado.getEquipe2());
-
-                imgSegundoMaster.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe1()));
-                txtSegundoMaster.setText(resultado.getEquipe1());
-            }
-
-            resultado = resultadoService.getVencedorPorEquipeUnica(getActivity().getBaseContext(), equipeII, "Master", 5);
-            if (resultado.getVencedor() == 1) {
-                imgTerceiroMaster.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe1()));
-                txtTerceiroMaster.setText(resultado.getEquipe1());
-            } else {
-                imgTerceiroMaster.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe2()));
-                txtTerceiroMaster.setText(resultado.getEquipe2());
-            }
-
-            resultado = resultadoService.getVencedorPorEquipeUnica(getActivity().getBaseContext(), equipeIII, "Senior", 5);
-            if (resultado.getVencedor() == 1) {
-                imgCampeaoSenior.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe1()));
-                txtCampeaoSenior.setText(resultado.getEquipe1());
-
-                imgSegundoSenior.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe2()));
-                txtSegundoSenior.setText(resultado.getEquipe2());
-            } else {
-                imgCampeaoSenior.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe2()));
-                txtCampeaoSenior.setText(resultado.getEquipe2());
-
-                imgSegundoSenior.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe1()));
-                txtSegundoSenior.setText(resultado.getEquipe1());
-            }
-
-            resultado = resultadoService.getVencedorPorEquipeUnica(getActivity().getBaseContext(), equipeIV, "Senior", 5);
-            if (resultado.getVencedor() == 1) {
-                imgTerceiroSenior.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe1()));
-                txtTerceiroSenior.setText(resultado.getEquipe1());
-            } else {
-                imgTerceiroSenior.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), resultado.getEquipe2()));
-                txtTerceiroSenior.setText(resultado.getEquipe2());
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-
 
         return view;
     }

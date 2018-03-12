@@ -34,7 +34,7 @@
                         android:layout_height="50dp"
                         android:gravity="center"
                         android:paddingStart="15dp"
-                        android:text="EQUIPE" />
+                        android:text="@string/lbl_equipe" />
 
                 </LinearLayout>
 
@@ -72,67 +72,67 @@
                             android:layout_height="50dp"
                             android:layout_marginStart="5dp"
                             android:gravity="center"
-                            android:text="PG" />
+                            android:text="@string/lbl_pontos_ganhos_sigla" />
 
                         <TextView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:gravity="center"
-                            android:text="J" />
+                            android:text="@string/lbl_jogos_sigla" />
 
                         <TextView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:gravity="center"
-                            android:text="V" />
+                            android:text="@string/lbl_vitorias_sigla" />
 
                         <TextView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:gravity="center"
-                            android:text="E" />
+                            android:text="@string/lbl_empate_sigla" />
 
                         <TextView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:gravity="center"
-                            android:text="D" />
+                            android:text="@string/lbl_derrota_sigla" />
 
                         <TextView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:gravity="center"
-                            android:text="GP" />
+                            android:text="@string/lbl_golsPro_sigla" />
 
                         <TextView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:gravity="center"
-                            android:text="GC" />
+                            android:text="@string/lbl_golsContra_sigla" />
 
                         <TextView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:gravity="center"
-                            android:text="SG" />
+                            android:text="@string/lbl_saldo_sigla" />
 
                         <TextView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:gravity="center"
-                            android:text="CA" />
+                            android:text="@string/lbl_c_amarelos_sigla" />
 
                         <TextView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:gravity="center"
-                            android:text="CV" />
+                            android:text="@string/lbl_c_vermelhos_sigla" />
 
                         <TextView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:gravity="center"
-                            android:text="PD" />
+                            android:text="@string/lbl_pontos_disciplinares_sigla" />
                     </LinearLayout>
 
                     <ListView

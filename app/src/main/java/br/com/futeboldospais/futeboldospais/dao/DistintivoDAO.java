@@ -28,7 +28,6 @@ public class DistintivoDAO {
      * @return
      */
     public void salvarImagemNoArmazenamentoInterno(Bitmap b, Context context, String nome){
-        Log.d("teste", "fui chamado salvar");
 
         ContextWrapper contextWrapper = new ContextWrapper(context);
         //Caminho para /data/data/yourapp/app_data/imageDir
@@ -60,7 +59,6 @@ public class DistintivoDAO {
      * @return
      */
     public Bitmap carregarImagemDoArmazenamentoInterno(String diretorio, String nome) {
-        Log.d("teste", "fui chamado mostrar");
         Bitmap b;
 
         try {

@@ -20,7 +20,7 @@ import br.com.futeboldospais.futeboldospais.model.Atualizacao;
 import static org.junit.Assert.assertEquals;
 
 /**
- * Created by ThirdSystem on 05/11/2017.
+ * Created by Daniel Almeida on 05/11/2017.
  */
 
 @RunWith(AndroidJUnit4.class)

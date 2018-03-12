@@ -57,6 +57,10 @@ public class FinalFragment extends Fragment {
     ResultadoService resultadoService;
     DistintivoService distintivoService;
 
+    /**
+     * Created by Daniel Almeida on 08/09/2017.
+     * Cria um singleton da classe
+     */
     private static FinalFragment fragment = null;
 
     public static FinalFragment newInstance() {
@@ -114,10 +118,11 @@ public class FinalFragment extends Fragment {
         txtSeniorTerceiro2 = (TextView) view.findViewById(R.id.txt_senior_terceiro_2);
         golsSeniorTerceiro2 = (TextView) view.findViewById(R.id.gols_senior_terceiro_2);
 
-        if (4/*resultadoService.getTurnoJogado(getActivity().getBaseContext(), 4)*/ > 0) {
+        resultadoService = new ResultadoService();
+
+        if (resultadoService.getTurnoJogado(getActivity().getBaseContext(), 4) == 4) {
 
             classificacaoQuartasService = new ClassificacaoQuartasService();
-            resultadoService = new ResultadoService();
             distintivoService = new DistintivoService();
 
             String equipe1;
@@ -135,14 +140,14 @@ public class FinalFragment extends Fragment {
             String equipeIV;
 
             try {
-                equipe1 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "master", "principal", 1);
-                equipe2 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "master", "repescagem", 1);
-                equipe3 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "master", "principal", 2);
-                equipe4 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "master", "principal", 3);
-                equipe5 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "senior", "principal", 1);
-                equipe6 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "senior", "repescagem", 1);
-                equipe7 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "senior", "principal", 2);
-                equipe8 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), "senior", "principal", 3);
+                equipe1 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), getString(R.string.str_master_minuscula), getString(R.string.str_principal_minuscula), 1);
+                equipe2 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), getString(R.string.str_master_minuscula), getString(R.string.str_repescagem_minuscula), 1);
+                equipe3 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), getString(R.string.str_master_minuscula), getString(R.string.str_principal_minuscula), 2);
+                equipe4 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), getString(R.string.str_master_minuscula), getString(R.string.str_principal_minuscula), 3);
+                equipe5 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), getString(R.string.str_senior_minuscula), getString(R.string.str_principal_minuscula), 1);
+                equipe6 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), getString(R.string.str_senior_minuscula), getString(R.string.str_repescagem_minuscula), 1);
+                equipe7 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), getString(R.string.str_senior_minuscula), getString(R.string.str_principal_minuscula), 2);
+                equipe8 = classificacaoQuartasService.buscarEquipeNaPosicao(getActivity().getBaseContext(), getString(R.string.str_senior_minuscula), getString(R.string.str_principal_minuscula), 3);
 
                 Resultado resultado;
 
@@ -227,7 +232,7 @@ public class FinalFragment extends Fragment {
 
                 Log.d("teste", equipe1 + equipe2);
 
-                if (4/*resultadoService.getTurnoJogado(getActivity().getBaseContext(), 5)*/ > 0) {
+                if (resultadoService.getTurnoJogado(getActivity().getBaseContext(), 5) == 4) {
 
                     resultado = resultadoService.getGolsPorEquipeUnica(getActivity().getBaseContext(), equipeI, "Master", 5);
                     Log.d("teste", resultado.toString());
@@ -280,6 +285,7 @@ public class FinalFragment extends Fragment {
 
 
         }
+
         return view;
     }
 

@@ -12,7 +12,7 @@ import br.com.futeboldospais.futeboldospais.model.Resultado;
 import br.com.futeboldospais.futeboldospais.model.Suspensao;
 
 /**
- * Created by ThirdSystem on 12/11/2017.
+ * Created by Daniel Almeida on 12/11/2017.
  */
 
 public abstract class AtualizacaoServiceInterface {

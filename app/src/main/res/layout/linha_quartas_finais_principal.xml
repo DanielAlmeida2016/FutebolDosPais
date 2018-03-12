@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/posicao_m"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_alignParentStart="true"
+        android:gravity="center" />
+
+    <ImageView
+        android:id="@+id/escudo_m"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/posicao_m"
+        android:gravity="center"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:id="@+id/equipe_m"
+        android:layout_width="95dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@id/escudo_m"
+        android:gravity="center|start" />
+
+
+    <TextView
+        android:id="@+id/saldo_gols_m"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:background="@color/superGrayLight"/>
+
+    <TextView
+        android:id="@+id/vitorias_m"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_toStartOf="@id/saldo_gols_m"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/jogos_m"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_toStartOf="@id/vitorias_m"
+        android:gravity="center"
+        android:background="@color/superGrayLight" />
+
+    <TextView
+        android:id="@+id/pontos_ganhos_m"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="5dp"
+        android:layout_toStartOf="@id/jogos_m"
+        android:gravity="center"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

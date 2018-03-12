@@ -95,7 +95,6 @@ public class SuspensaoDAO {
                     suspensao.setJogos(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_SUSPENSAO_JOGOS)));
                     suspensao.setMotivo(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_SUSPENSAO_MOTIVO)));
 
-                    Log.d("teste", suspensao.toString());
                     retLista.add(suspensao);
                 }
                 lista = retLista.toArray(new Suspensao[0]);

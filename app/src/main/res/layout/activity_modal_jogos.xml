@@ -30,7 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="Informações"
+                android:text="@string/lbl_informacoes"
                 android:textSize="16dp"/>
 
         </RelativeLayout>
@@ -56,7 +56,7 @@
             android:layout_alignParentTop="true"
             android:layout_toEndOf="@+id/img_swipe"
             android:gravity="center|start"
-            android:text="Você pode navegar entre as rodadas utilizando os botões ou deslizando o dedo sobre o título das rodadas!" />
+            android:text="@string/lbl_modal_jogos_1" />
 
     </RelativeLayout>
 
@@ -81,7 +81,7 @@
             android:layout_alignParentTop="true"
             android:gravity="center|start"
             android:layout_toEndOf="@+id/img_touch"
-            android:text="Você pode ver a súmula tocando no jogo que deseja ver!" />
+            android:text="@string/lbl_modal_jogos_2" />
 
     </RelativeLayout>
 

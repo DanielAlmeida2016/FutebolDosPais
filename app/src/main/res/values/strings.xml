@@ -1,3 +1,4 @@
+<!--Incluído por: Pamela Fidelis em 04/12/17 -->
 <resources>
     <string name="app_name">Futebol Dos Pais</string>
     <string name="item_jogos">Jogos</string>
@@ -10,9 +11,152 @@
     <string name="btn_senior">Sênior</string>
     <string name="btn_todos">Todos</string>
 
+    <string name="str_master_maiuscula">Master</string>
+    <string name="str_senior_maiscula">Senior</string>
+    <string name="str_principal_maiuscula">Principal</string>
+    <string name="str_repescagem_maiuscula">Repescagem</string>
+
+    <string name="lbl_master">Master</string>
+    <string name="lbl_senior">Sênior</string>
+
+
+    <!-- Atualização -->
+    <string name="lbl_prosseguir">Prosseguir   </string>
+    <string name="lbl_ultima_atualizacao">Última atualização:  </string>
+    <string name="lbl_tentar_novamente">Tentar novamente   </string>
+    <string name="lbl_tentando_verificar_atualizacao">Tentando verificar atualizações...</string>
+    <string name="lbl_erro_atualizacao">Ocorreu um erro ao tentar atualizar</string>
+    <string name="lbl_verificando_atualizacao">Verificando atualizações...</string>
+    <string name="lbl_verificar_conexao">Favor verifique sua conexão com a internet</string>
+    <string name="lbl_atualizando_dados">Atualizando dados...</string>
+    <string name="lbl_sem_atualizacao">Sem atualizações disponíveis.</string>
+    <string name="lbl_dados_atualizados">Dados atualizados com sucesso</string>
+
+    <!-- Artilharia -->
+    <string name="lbl_gols">GOLS</string>
+    <string name="lbl_ranking">RANKING</string>
+    <string name="lbl_busca_jogador_equipe">Buscar jogador ou equipe</string>
+
+    <!-- Mensagens -->
+    <string name="lbl_sem_dados">Opa, não tem ninguem aqui ainda!</string>
+    <string name="lbl_insucesso_dados">Opa, ninguem foi encontrado!</string>
+    <string name="lbl_erro_rodada">Ocorreu um erro nesta rodada!</string>
+    <string name="lbl_rodada_nao_alcancada">Opa, não chegamos aqui ainda!</string>
     <string name="ok">Ok</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Fui Criado!!!</string>
+    <!-- Classificacao  -->
+    <string name="lbl_rbt_geral">Geral</string>
+    <string name="lbl_rbt_quartas">Quartas</string>
+    <string name="lbl_rbt_finais">Finais</string>
+
+    <string name="lbl_empate_sigla">E</string>
+    <string name="lbl_derrota_sigla">D</string>
+    <string name="lbl_golsPro_sigla">GP</string>
+    <string name="lbl_golsContra_sigla">GC</string>
+    <string name="lbl_c_amarelos_sigla">CA</string>
+    <string name="lbl_c_vermelhos_sigla">CV</string>
+    <string name="lbl_pontos_disciplinares_sigla">PD</string>
+
+    <!-- String Quartas Finais -->
+    <string name="str_master_minuscula">master</string>
+    <string name="str_senior_minuscula">senior</string>
+    <string name="str_principal_minuscula">principal</string>
+    <string name="str_repescagem_minuscula">repescagem</string>
+
+    <string name="lbl_repescagem">Repescagem</string>
+    <string name="lbl_principal">Principal</string>
+
+    <string name="lbl_pontos_ganhos_sigla">PG</string>
+    <string name="lbl_jogos_sigla">J</string>
+    <string name="lbl_vitorias_sigla">V</string>
+    <string name="lbl_saldo_sigla">SG</string>
+    <string name="lbl_equipe">EQUIPE</string>
+
+    <!-- SemiFinal -->
+    <string name="lbl_primeiro_master_principal">1º Master Principal</string>
+    <string name="lbl_primeiro_senior_principal">1º Sênior Principal</string>
+    <string name="lbl_segundo_master_principal">2º Master Principal</string>
+    <string name="lbl_segundo_senior_principal">2º Sênior Principal</string>
+    <string name="lbl_terceiro_master_principal">3º Master Principal</string>
+    <string name="lbl_terceiro_senior_principal">3º Sênior Principal</string>
+    <string name="lbl_primeiro_master_repescagem">1º Master Repescagem</string>
+    <string name="lbl_primeiro_senior_repescagem">1º Sênior Repescagem</string>
+
+    <!-- Finais -->
+    <string name="lbl_final_master">Final Master</string>
+    <string name="lbl_final_senior">Final Sênior</string>
+    <string name="lbl_finais">FINAIS</string>
+
+    <string name="lbl_versus">x</string>
+
+    <!-- Supensos -->
+    <string name="lbl_jogador">JOGADOR</string>
+    <string name="lbl_jogos">JOGOS</string>
+    <string name="lbl_criterio">CRITÉRIO</string>
+    <string name="lbl_cartao_vermelho">Cartão Vermelho</string>
+    <string name="lbl_cartao_amarelo">Cartão Amarelo</string>
+    <string name="lbl_julgamento">julgamento</string>
+    <string name="lbl_motivo">MOTIVO</string>
+
+    <!-- Sumula -->
+    <string name="title_activity_document_viewer">Document Viewer</string>
+    <string name="lbl_caregando_sumula">Carregando súmula ...</string>
+    <string name="lbl_erro_sumula">Ocorreu um erro ao carregar a súmula</string>
+    <string name="lbl_carregando_regulamento">Carregando regulamento...</string>
+    <string name="lbl_erro_regulamento">Ocorreu um erro ao carregar o regulamento</string>
+    <string name="lbl_erro_conexao_sumula">Para visualizar a súmula é necessário estar conectado à internet</string>
+
+    <!-- Cartoes -->
+    <string name="lbl_buscar_jogador">Buscar jogador</string>
+    <string name="lbl_rbt_amarelo">Amarelo</string>
+    <string name="lbl_rbt_vermelho">Vermelho</string>
+    <string name="lbl_data">DATA</string>
+    <string name="lbl_tempo">TEMPO</string>
+    <string name="lbl_jogo">JOGO</string>
+
+    <string name="lbl_campeoes">CAMPEÕES</string>
+    <string name="lbl_campeao_master">Campeão Master</string>
+    <string name="lbl_campeao_senior">Campeão Sênior</string>
+    <string name="lbl_segundo_lugar_master">Segundo Lugar Master</string>
+    <string name="lbl_segundo_lugar_senior">Segundo Lugar Sênior</string>
+    <string name="lbl_terceiro_lugar_master">Terceiro Lugar Master</string>
+    <string name="lbl_terceiro_lugar_senior">Terceiro Lugar Sênior</string>
+
+    <!-- Modal Suspensos -->
+    <string name="lbl_s_2">Suspenso de sua categoria, mas liberado para jogar pelo Master.</string>
+    <string name="lbl_s_1">Suspenso de sua categoria.</string>
+    <string name="lbl_s_3">Suspenso de sua categoria, mas liberado para jogar na linha pelo Senior.</string>
+    <string name="lbl_s_4">Suspenso de sua categoria, mas liberado para jogar no gol pelo Senior.</string>
+    <string name="lbl_s_5">Suspenso em ambas categorias (Master e Senior).</string>
+    <string name="lbl_legendas">Legendas</string>
+
+    <!-- Modal jogos -->
+    <string name="lbl_informacoes">Informações</string>
+    <string name="lbl_modal_jogos_1">Você pode navegar entre as rodadas utilizando os botões ou deslizando o dedo sobre o título das rodadas!</string>
+    <string name="lbl_modal_jogos_2">Você pode ver a súmula tocando no jogo que deseja ver!</string>
+
+    <!-- Modal Configuracao -->
+    <string name="lbl_opcoes">Opções</string>
+    <string name="lbl_bt_regulamento">Regulamento do Campeonato</string>
+    <string name="lbl_bt_termos">Termos e Condições</string>
+    <string name="lbl_bt_politica">Política de Privacidade</string>
+    <string name="lbl_bt_licencas">Licenças</string>
+    <string name="lbl_bt_sobre">Sobre</string>
+
+    <!-- Modal Classificacao-->
+    <string name="lbl_criterio_desempate">Critérios de Desempate</string>
+    <string name="lbl_menor_pontos_disciplinares">Menor número de pontos disciplinares.</string>
+    <string name="lbl_maior_vitoria">Maior número de vitórias.</string>
+    <string name="lbl_confronto_direto">Confronto direto, sem computar-se saldo de gols</string>
+    <string name="lbl_menor_n_c_vermelho">Menor número de cartões vermelhos.</string>
+    <string name="lbl_maior_saldo_gols">Maior saldo de gols.</string>
+    <string name="lbl_saldo_a_favor">Maior número de gols a favor.</string>
+    <string name="lbl_sorteio">Sorteio.</string>
+
+    <!-- Rodadas -->
+    <string name="lbl_turno">TURNO</string>
+    <string name="lbl_rodada">RODADA</string>
+    <string name="lbl_quartas_maiuscula">QUARTAS</string>
+    <string name="lbl_semifinais_maiuscula">SEMIFINAIS</string>
 
 </resources>

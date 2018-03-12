@@ -141,7 +141,6 @@ public class ResultadoDAO {
                     resultado.setGolsEquipe2(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE2)));
                     resultado.setCategoria(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_CATEGORIA)));
 
-                    Log.d("teste", resultado.toString());
                     retLista.add(resultado);
                 }
                 lista = retLista.toArray(new Resultado[0]);
@@ -234,7 +233,7 @@ public class ResultadoDAO {
                 resultado = new Resultado();
                 resultado.setGolsEquipe1(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE1)));
                 resultado.setGolsEquipe2(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE2)));
-                Log.d("teste", "" + resultado.toString());
+
             } else {
                 resultado = new Resultado();
             }
@@ -339,7 +338,7 @@ public class ResultadoDAO {
                 resultado.setEquipe2(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE2)));
                 resultado.setGolsEquipe1(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE1)));
                 resultado.setGolsEquipe2(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_GOLS_EQUIPE2)));
-                Log.d("teste", "" + resultado.toString());
+
             } else {
                 resultado = new Resultado();
             }
@@ -392,7 +391,7 @@ public class ResultadoDAO {
                 resultado.setEquipe1(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE1)));
                 resultado.setEquipe2(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_EQUIPE2)));
                 resultado.setVencedor(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_RESULTADO_VENCEDOR)));
-                Log.d("teste", "" + resultado.toString());
+
             } else {
                 resultado = new Resultado();
             }
@@ -424,7 +423,7 @@ public class ResultadoDAO {
             String[] valorWhere =
                     {String.valueOf(turno)};
 
-            String groupBy = BancoDados.Tabela.COLUNA_RESULTADO_TURNO;
+            String groupBy = BancoDados.Tabela.COLUNA_RESULTADO_RODADA;
 
             c = bd.query(BancoDados.Tabela.TABELA_RESULTADO,
                     selectColunasFrom,

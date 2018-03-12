@@ -34,25 +34,16 @@ public class AtualizacaoService extends AtualizacaoServiceInterface{
      */
     @Override
     public int verificarAtualizacao() {
-        Log.d("teste", "entrou no verificar atualização");
 
         int verificarAtualizacao;
 
         try {
             configuracaoService = new ConfiguracaoService();
-            Log.d("teste", "1 - instanciou configuracao service");
+
             atualizacao.setConfiguracaoServidor(configuracaoService.getConfiguracaoServidor());
-            Log.d("teste", atualizacao.getConfiguracaoServidor().toString());
 
             atualizacao.setVersaoLocal(configuracaoService.getVersaoLocal(context));
             atualizacao.setCampeonatoAnoLocal(configuracaoService.getCampeonatoAnoLocal(context));
-            Log.d("teste", "versao local: " + atualizacao.getVersaoLocal());
-            //atualizacao.setVersaoServidor(atualizacao.getConfiguracaoServidor().getVersao());
-            Log.d("teste", "versao atual: " + atualizacao.getConfiguracaoServidor().getVersaoAtualizacao());
-            Log.d("teste", "campeonato ano local: " + atualizacao.getCampeonatoAnoLocal());
-            //atualizacao.setCampeonatoAnoServidor(atualizacao.getConfiguracaoServidor().getCampeonatoAno());
-            Log.d("teste", "campeonato ano servidor: " + atualizacao.getConfiguracaoServidor().getCampeonatoAno());
-            Log.d("teste", "ultima atualizacao: " + configuracaoService.getUltimaAtualizacao(context));
 
             if (atualizacao.getCampeonatoAnoLocal() == -1) {
                 atualizacao.setTipoAtualizacao(1);
@@ -67,8 +58,6 @@ public class AtualizacaoService extends AtualizacaoServiceInterface{
                 atualizacao.setTipoAtualizacao(0);
                 verificarAtualizacao = 1;
             }
-
-            Log.d("teste", "tipo atualizacao: " + atualizacao.getTipoAtualizacao());
         } catch (Exception e) {
             verificarAtualizacao = 0;
         }
@@ -95,7 +84,6 @@ public class AtualizacaoService extends AtualizacaoServiceInterface{
      */
     @Override
     public boolean executarAtualizacaoPorTipo() {
-        Log.d("teste", "1 - entrou no executar atualizacao");
 
         boolean atualizacaoStatus = false;
 
@@ -104,26 +92,17 @@ public class AtualizacaoService extends AtualizacaoServiceInterface{
             if (atualizacao.getTipoAtualizacao() == 1) {
                 configuracaoServidor = atualizacao.getConfiguracaoServidor();
                 atualizacaoStatus = atualizarDados(atualizacao.getCampeonatoAnoLocal());
-                Log.d("teste", "tipo att: " + atualizacao.getTipoAtualizacao());
-                Log.d("teste", "versao local: " + atualizacao.getVersaoLocal());
-                Log.d("teste", "campeonato ano local: " + atualizacao.getCampeonatoAnoLocal());
-                Log.d("teste", "executou primeira atualizacao");
+
             } else if (atualizacao.getTipoAtualizacao() == 2) {
                 configuracaoServidor = atualizacao.getConfiguracaoServidor();
                 atualizacaoStatus = atualizarDados(atualizacao.getCampeonatoAnoLocal());
-                Log.d("teste", "tipo att: " + atualizacao.getTipoAtualizacao());
-                Log.d("teste", "versao local: " + atualizacao.getVersaoLocal());
-                Log.d("teste", "campeonato ano local: " + atualizacao.getCampeonatoAnoLocal());
-                Log.d("teste", "executou atualizacao anual");
+
             } else if (atualizacao.getTipoAtualizacao() == 3) {
                 configuracaoServidor = atualizacao.getConfiguracaoServidor();
                 atualizacaoStatus = atualizarDados(atualizacao.getCampeonatoAnoLocal());
-                Log.d("teste", "tipo att: " + atualizacao.getTipoAtualizacao());
-                Log.d("teste", "versao local: " + atualizacao.getVersaoLocal());
-                Log.d("teste", "campeonato ano local: " + atualizacao.getCampeonatoAnoLocal());
-                Log.d("teste", "executou atualizacao semanal");
+
             } else {
-                Log.d("teste", "nao executou atualizacao");
+
             }
 
         } catch (Exception e) {
@@ -150,12 +129,10 @@ public class AtualizacaoService extends AtualizacaoServiceInterface{
      */
     @Override
     public boolean atualizarDados(int campeonatoAnoLocal) throws Exception {
-        Log.d("teste", "entrou no atualizar dados");
 
         boolean atualizacaoStatus = false;
 
         SQLiteDatabase bd = null;
-        Log.d("teste", "criou sqlitehelper");
 
         try {
             distintivoService = new DistintivoService();
@@ -165,10 +142,8 @@ public class AtualizacaoService extends AtualizacaoServiceInterface{
             suspensaoService = new SuspensaoService();
             resultadoService = new ResultadoService();
             classificacaoQuartasService = new ClassificacaoQuartasService();
-            Log.d("teste", "instanciou os services");
 
             bd = BancoDadosHelper.FabricaDeConexao.getConexaoServico(context);
-            Log.d("teste", "recebeu uma conexao de servico");
 
             listaClassificacao = classificacaoService.getClassificacao(configuracaoServidor.getCampeonatoAno());
             listaArtilharia = artilhariaService.getArtilharia(configuracaoServidor.getCampeonatoAno());
@@ -178,14 +153,10 @@ public class AtualizacaoService extends AtualizacaoServiceInterface{
             listaResutado = resultadoService.getResultado(configuracaoServidor.getCampeonatoAno());
             listaJogo = resultadoService.getJogo(configuracaoServidor.getCampeonatoAno());
             listaClassificacaoQuartas = classificacaoQuartasService.getClassificacaoQuartas(configuracaoServidor.getCampeonatoAno());
-            Log.d("teste", "carregou as listas");
+
 
             distintivoService.atualizarDistintivos(context, configuracaoServidor.getCampeonatoAno(), campeonatoAnoLocal, listaClassificacao);
-
-            Log.d("teste", "deu pau");
-
             bd.beginTransaction();
-            Log.d("teste", "iniciou a transacao");
 
             classificacaoService.deletarDados(bd);
             artilhariaService.deletarDados(bd);
@@ -193,20 +164,17 @@ public class AtualizacaoService extends AtualizacaoServiceInterface{
             suspensaoService.deletarDados(bd);
             resultadoService.deletarDados(bd);
             classificacaoQuartasService.deletarDados(bd);
-            Log.d("teste", "deletou dados antigos");
+
             classificacaoService.inserirDados(bd, listaClassificacao);
             artilhariaService.inserirDados(bd, listaArtilharia);
             cartaoService.inserirDados(bd, listaCartaoAmarelo, listaCartaoVermelho);
             suspensaoService.inserirDados(bd, listaSuspensao);
             resultadoService.inserirDados(bd, listaResutado, listaJogo);
             classificacaoQuartasService.inserirDados(bd, listaClassificacaoQuartas);
-            Log.d("teste", "inseriu novos dados");
 
             configuracaoService.atualizarVersaoLocal(bd, configuracaoServidor, campeonatoAnoLocal);
-            Log.d("teste", "atualizou a versao");
 
             bd.setTransactionSuccessful();
-            Log.d("teste", "1 - deu commit");
 
             atualizacaoStatus = true;
 
@@ -222,11 +190,9 @@ public class AtualizacaoService extends AtualizacaoServiceInterface{
                 atualizacaoStatus = false;
             }
             atualizacaoStatus = false;
-            Log.d("teste", " 2 - transacao falhou");
         } finally {
             if (bd != null) {
                 bd.endTransaction();
-                Log.d("teste", "1 - finalizou transacao com sucesso, 2 - deu rollback");
             }
         }
         return atualizacaoStatus;

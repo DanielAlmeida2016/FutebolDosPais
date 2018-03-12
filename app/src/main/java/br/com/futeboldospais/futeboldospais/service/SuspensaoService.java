@@ -48,35 +48,6 @@ public class SuspensaoService {
 
         String json = suspensaoRest.getSuspensao(FabricaDeUrl.urlBase(campeonatoAno));
 
-        /*String json = "[" +
-                "  {" +
-                "   \"equipe\": \"Ponte-Preta\"," +
-                "   \"jogador\": \"Amaro\"," +
-                "   \"numero\": \"10\"," +
-                "   \"categoria\": \"Master\"," +
-                "   \"criterio\": \"1\"," +
-                "   \"jogos\": \"1/1\"," +
-                "   \"motivo\": \"cartao vermelho\"" +
-                "  }," +
-                "  {" +
-                "   \"equipe\": \"Botafogo\"," +
-                "   \"jogador\": \"Pina\"," +
-                "   \"numero\": \"9\"," +
-                "   \"categoria\": \"Master\"," +
-                "   \"criterio\": \"2\"," +
-                "   \"jogos\": \"1/2\"," +
-                "   \"motivo\": \"cartao amarelo\"" +
-                "  }," +
-                "  {" +
-                "   \"equipe\": \"Sao-Bento\"," +
-                "   \"jogador\": \"Nelson\"," +
-                "   \"numero\": \"23\"," +
-                "   \"categoria\": \"Senior\"," +
-                "   \"criterio\": \"3\"," +
-                "   \"jogos\": \"1/1\"," +
-                "   \"motivo\": \"julgamento\"" +
-                "  }" +
-                "]";*/
         Gson gson = new Gson();
         JSONArray jsonArray = null;
         try {

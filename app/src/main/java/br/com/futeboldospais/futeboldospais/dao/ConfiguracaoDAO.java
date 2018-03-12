@@ -34,10 +34,7 @@ public class ConfiguracaoDAO {
         ContentValues valores = new ContentValues();
         //SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-        Log.d("teste", "versao passada: " + campeonatoAnoLocal);
         if (campeonatoAnoLocal == -1) {
-            Log.d("teste", "entrou no if");
-            //Log.d("teste", dateFormat.format(dataHora));
             valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_ULTIMA_ATUALIZACAO, configuracaoServidor.getDataAtualizacao());
             valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_CAMPEONATO_ANO, configuracaoServidor.getCampeonatoAno());
             valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_HOMENAGEADO, configuracaoServidor.getHomenageado());
@@ -45,16 +42,13 @@ public class ConfiguracaoDAO {
             valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_VERSAO_ATUALIZACAO, configuracaoServidor.getVersaoAtualizacao());
 
             bd.insert(BancoDados.Tabela.TABELA_CONFIGURACAO, null, valores);
-            Log.d("teste", "inseriu a versao");
         } else {
-            Log.d("teste", "entrou no else");
-            //Log.d("teste", dateFormat.format(dataHora));
             valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_ULTIMA_ATUALIZACAO, configuracaoServidor.getDataAtualizacao());
             valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_CAMPEONATO_ANO, configuracaoServidor.getCampeonatoAno());
             valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_HOMENAGEADO, configuracaoServidor.getHomenageado());
             valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_TEMA, configuracaoServidor.getTema());
             valores.put(BancoDados.Tabela.COLUNA_CONFIGURACAO_VERSAO_ATUALIZACAO, configuracaoServidor.getVersaoAtualizacao());
-            Log.d("teste", "inseriu os valores");
+
             int count = bd.update(
                     BancoDados.Tabela.TABELA_CONFIGURACAO,
                     valores,
@@ -93,7 +87,6 @@ public class ConfiguracaoDAO {
                 configuracao.setHomenageado(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CONFIGURACAO_HOMENAGEADO)));
                 configuracao.setTema(c.getString(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_CONFIGURACAO_TEMA)));
 
-                Log.d("teste", configuracao.toString());
             } else {
                 configuracao = new Configuracao();
             }

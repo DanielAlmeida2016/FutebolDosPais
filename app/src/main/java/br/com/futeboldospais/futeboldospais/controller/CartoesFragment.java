@@ -19,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import br.com.futeboldospais.futeboldospais.R;
 import br.com.futeboldospais.futeboldospais.model.Cartao;
@@ -63,7 +62,12 @@ public class CartoesFragment extends Fragment {
         // Required empty public constructor
     }
 
-
+    /**
+     * Created by Daniel Almeida on 08/09/2017.
+     * <p>
+     * Alterado por: Pamela Fidelis em 04/12/17
+     * Objetivo: removeção de string e log no código
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,7 +86,8 @@ public class CartoesFragment extends Fragment {
 
         rbtAmarelo = (RadioButton) view.findViewById(R.id.rbt_amarelo);
         rbtAmarelo.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
-        rbtAmarelo.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_esq_cinza));
+        rbtAmarelo.setBackground(ContextCompat.getDrawable(getContext(),
+                R.drawable.arredondar_borda_esq_cinza));
 
         tabelaCartao = (ListView) view.findViewById(R.id.cartoes_tabela);
 
@@ -94,7 +99,8 @@ public class CartoesFragment extends Fragment {
             adapter = new CartaoAdapter(listaCartao, getActivity());
             tabelaCartao.setAdapter(adapter);
         } else {
-            AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, não tem ninguem aqui ainda!");
+            AdapterPadrao adapterPadrao = new AdapterPadrao(
+                    getActivity(), getString(R.string.lbl_sem_dados));
             tabelaCartao.setAdapter(adapterPadrao);
         }
 
@@ -103,10 +109,13 @@ public class CartoesFragment extends Fragment {
             public void onClick(View view) {
 
                 rbtAmarelo.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
-                rbtAmarelo.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_esq_cinza));
+                rbtAmarelo.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_esq_cinza));
 
-                rbtVermelho.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
-                rbtVermelho.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_dir_branco));
+                rbtVermelho.setTextColor(ContextCompat.getColor(
+                        getContext(), R.color.black));
+                rbtVermelho.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_dir_branco));
 
                 listaCartao = cartaoService.listarDadosCartaoaAmarelo(getActivity().getBaseContext());
                 tipoBusca = 0;
@@ -115,7 +124,8 @@ public class CartoesFragment extends Fragment {
                     adapter = new CartaoAdapter(listaCartao, getActivity());
                     tabelaCartao.setAdapter(adapter);
                 } else {
-                    AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, não tem ninguem aqui ainda!");
+                    AdapterPadrao adapterPadrao = new AdapterPadrao(
+                            getActivity(), getString(R.string.lbl_sem_dados));
                     tabelaCartao.setAdapter(adapterPadrao);
                 }
             }
@@ -126,19 +136,23 @@ public class CartoesFragment extends Fragment {
             public void onClick(View view) {
 
                 rbtAmarelo.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
-                rbtAmarelo.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_esq_branco));
+                rbtAmarelo.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_esq_branco));
 
                 rbtVermelho.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
-                rbtVermelho.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_dir_cinza));
+                rbtVermelho.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_dir_cinza));
 
-                listaCartao = cartaoService.listarDadosCartaoVermelho(getActivity().getBaseContext());
+                listaCartao = cartaoService.listarDadosCartaoVermelho(
+                        getActivity().getBaseContext());
                 tipoBusca = 1;
 
                 if (listaCartao.length > 0) {
                     adapter = new CartaoAdapter(listaCartao, getActivity());
                     tabelaCartao.setAdapter(adapter);
                 } else {
-                    AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, não tem ninguem aqui ainda!");
+                    AdapterPadrao adapterPadrao = new AdapterPadrao(
+                            getActivity(), getString(R.string.lbl_sem_dados));
                     tabelaCartao.setAdapter(adapterPadrao);
                 }
             }
@@ -183,30 +197,36 @@ public class CartoesFragment extends Fragment {
                                       int before, int count) {
                 if (s.length() != 0) {
                     if (tipoBusca == 0) {
-                        listaCartao = cartaoService.listarDadosCartaoaAmareloPorJogadorEEquipe(getActivity().getBaseContext(), valorBusca.getText().toString());
+                        listaCartao = cartaoService.listarDadosCartaoaAmareloPorJogadorEEquipe(
+                                getActivity().getBaseContext(), valorBusca.getText().toString());
                     } else {
-                        listaCartao = cartaoService.listarDadosCartaoVermelhoPorJogadorEEquipe(getActivity().getBaseContext(), valorBusca.getText().toString());
+                        listaCartao = cartaoService.listarDadosCartaoVermelhoPorJogadorEEquipe(
+                                getActivity().getBaseContext(), valorBusca.getText().toString());
                     }
 
                     if (listaCartao.length > 0) {
                         adapter = new CartaoAdapter(listaCartao, getActivity());
                         tabelaCartao.setAdapter(adapter);
                     } else {
-                        AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, ninguem foi encontrado!");
+                        AdapterPadrao adapterPadrao = new AdapterPadrao(
+                                getActivity(), getString(R.string.lbl_insucesso_dados));
                         tabelaCartao.setAdapter(adapterPadrao);
                     }
                 } else {
                     if (tipoBusca == 0) {
-                        listaCartao = cartaoService.listarDadosCartaoaAmarelo(getActivity().getBaseContext());
+                        listaCartao = cartaoService.listarDadosCartaoaAmarelo(
+                                getActivity().getBaseContext());
                     } else {
-                        listaCartao = cartaoService.listarDadosCartaoVermelho(getActivity().getBaseContext());
+                        listaCartao = cartaoService.listarDadosCartaoVermelho(
+                                getActivity().getBaseContext());
                     }
 
                     if (listaCartao.length > 0) {
                         adapter = new CartaoAdapter(listaCartao, getActivity());
                         tabelaCartao.setAdapter(adapter);
                     } else {
-                        AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, não tem ninguem aqui ainda!");
+                        AdapterPadrao adapterPadrao = new AdapterPadrao(
+                                getActivity(), getString(R.string.lbl_insucesso_dados));
                         tabelaCartao.setAdapter(adapterPadrao);
                     }
                 }
@@ -220,7 +240,8 @@ public class CartoesFragment extends Fragment {
     public static void mostrarTecladoComFocus(View view, Activity activity) {
         try {
             view.requestFocus();
-            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(
+                    Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
             activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         } catch (Exception e) {
@@ -229,7 +250,8 @@ public class CartoesFragment extends Fragment {
     }
 
     public static void fecharTeclado(View view, Activity activity) {
-        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(
+                Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
     }
 }

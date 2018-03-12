@@ -28,7 +28,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="SEMIFINAIS" />
+                    android:text="@string/lbl_semifinais_maiuscula" />
 
             </RelativeLayout>
 
@@ -42,7 +42,7 @@
                     android:id="@+id/time_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/todas_bordas"
                     android:orientation="horizontal">
 
@@ -359,7 +359,7 @@
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="20dp"
-                    android:text="1º Master Principal"
+                    android:text="@string/lbl_primeiro_master_principal"
                     android:textSize="10dp"
                     android:layout_alignTop="@+id/time_1"
                     android:layout_toEndOf="@+id/time_1"
@@ -369,7 +369,7 @@
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="20dp"
-                    android:text="1º Master Repescagem"
+                    android:text="@string/lbl_primeiro_master_repescagem"
                     android:textSize="10dp"
                     android:layout_alignTop="@+id/time_2"
                     android:layout_toEndOf="@+id/time_2"
@@ -379,7 +379,7 @@
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="20dp"
-                    android:text="2º Master Principal"
+                    android:text="@string/lbl_segundo_master_principal"
                     android:textSize="10dp"
                     android:layout_alignTop="@+id/time_3"
                     android:layout_toEndOf="@+id/time_3"
@@ -389,7 +389,7 @@
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="20dp"
-                    android:text="3º Master Principal"
+                    android:text="@string/lbl_terceiro_master_principal"
                     android:textSize="10dp"
                     android:layout_alignTop="@+id/time_4"
                     android:layout_toEndOf="@+id/time_4"
@@ -399,7 +399,7 @@
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="20dp"
-                    android:text="1º Senior Principal"
+                    android:text="@string/lbl_primeiro_senior_principal"
                     android:textSize="10dp"
                     android:layout_alignTop="@+id/time_5"
                     android:layout_toEndOf="@+id/time_5"
@@ -409,7 +409,7 @@
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="20dp"
-                    android:text="1º Senior Respescagem"
+                    android:text="@string/lbl_primeiro_senior_repescagem"
                     android:textSize="10dp"
                     android:layout_alignTop="@+id/time_6"
                     android:layout_toEndOf="@+id/time_6"
@@ -419,7 +419,7 @@
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="20dp"
-                    android:text="2º Senior Principal"
+                    android:text="@string/lbl_segundo_senior_principal"
                     android:textSize="10dp"
                     android:layout_alignTop="@+id/time_7"
                     android:layout_toEndOf="@+id/time_7"
@@ -429,7 +429,7 @@
                 <TextView
                     android:layout_width="110dp"
                     android:layout_height="20dp"
-                    android:text="3º Senior Principal"
+                    android:text="@string/lbl_terceiro_senior_principal"
                     android:textSize="10dp"
                     android:layout_alignTop="@+id/time_8"
                     android:layout_toEndOf="@+id/time_8"

@@ -12,7 +12,7 @@ import br.com.futeboldospais.futeboldospais.service.AtualizacaoService;
 import br.com.futeboldospais.futeboldospais.util.GerenciadorDeConectividade;
 
 /**
- * Created by ThirdSystem on 12/10/2017.
+ * Created by Daniel Almeida on 12/10/2017.
  */
 
 public class ServicoAtualizacao extends IntentService {
@@ -24,7 +24,6 @@ public class ServicoAtualizacao extends IntentService {
 
     public ServicoAtualizacao() {
         super("AtualizationServicePlus");
-        Log.d("teste", "1 - fui iniciado");
     }
 
     /**
@@ -34,12 +33,10 @@ public class ServicoAtualizacao extends IntentService {
      */
     public ServicoAtualizacao(String name) {
         super(name);
-        Log.d("teste", "1 - fui iniciado");
     }
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        Log.d("teste", "1 - fui iniciado aqui");
 
         boolean status;
         int verificarAtualizacao;
@@ -58,7 +55,6 @@ public class ServicoAtualizacao extends IntentService {
                 resultReceiver.send(Atualizacao.RESULT_CODE_STATUS_CONEXAO, dados);
 
                 atualizacaoService = new AtualizacaoService(getBaseContext());
-                Log.d("teste", "1 - instanciou atualizacaoService");
 
                 verificarAtualizacao = atualizacaoService.verificarAtualizacao();
 
@@ -84,7 +80,6 @@ public class ServicoAtualizacao extends IntentService {
             }
         }
         stopSelf();
-        Log.d("teste", "serviço auto destruido");
     }
 
 }

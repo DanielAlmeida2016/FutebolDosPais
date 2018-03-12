@@ -57,6 +57,9 @@ public class SemifinalFragment extends Fragment {
     ResultadoService resultadoService;
     DistintivoService distintivoService;
 
+    /**
+     * Created by Daniel Almeida on 08/09/2017.
+     **/
     private static SemifinalFragment fragment = null;
 
     public static SemifinalFragment newInstance() {
@@ -162,12 +165,14 @@ public class SemifinalFragment extends Fragment {
             imgSeniorPrincipal3.setImageBitmap(distintivoService.carregarImagemDoArmazenamentoInterno(distintivoService.getDiretorio(), equipe8));
             txtSeniorPrincipal3.setText(equipe8);
 
-            Resultado resultado;
 
-            if (4/*resultadoService.getTurnoJogado(getActivity().getBaseContext(), 4)*/ > 0) {
+
+            if (resultadoService.getTurnoJogado(getActivity().getBaseContext(), 4) == 4) {
+
+                Resultado resultado;
 
                 resultado = resultadoService.getGolsPorEquipe(getActivity().getBaseContext(), equipe1, equipe2, "Master", 4);
-                Log.d("teste", "" + resultado.toString());
+
                 golsMasterPrincipal1.setText(String.valueOf(resultado.getGolsEquipe1()));
                 golsMasterRepescagem1.setText(String.valueOf(resultado.getGolsEquipe2()));
 
@@ -182,7 +187,7 @@ public class SemifinalFragment extends Fragment {
                 resultado = resultadoService.getGolsPorEquipe(getActivity().getBaseContext(), equipe7, equipe8, "Senior", 4);
                 golsSeniorPrincipal2.setText(String.valueOf(resultado.getGolsEquipe1()));
                 golsSeniorPrincipal3.setText(String.valueOf(resultado.getGolsEquipe2()));
-            }
+           }
         } catch (Exception e) {
             e.printStackTrace();
         }

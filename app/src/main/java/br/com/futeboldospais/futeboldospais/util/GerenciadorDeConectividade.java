@@ -4,7 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 
 /**
- * Created by ThirdSystem on 25/10/2017.
+ * Created by Daniel Almeida on 25/10/2017.
  */
 
 public class GerenciadorDeConectividade {

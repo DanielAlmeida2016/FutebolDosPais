@@ -49,45 +49,6 @@ public class CartaoService {
 
         String json = cartaoRest.getCartaoAmarelo(FabricaDeUrl.urlBase(campeonatoAno));
 
-        /*String json = "[" +
-                "  {" +
-                "   \"equipe\": \"Botafogo\"," +
-                "   \"numero\": \"4\"," +
-                "   \"jogador\": \"Adriano Helena\"," +
-                "   \"data\": \"29/07/2017\"," +
-                "   \"tempo\": \"89\"," +
-                "   \"adversario\": \"Novorizontino\"," +
-                "   \"arbitro\": \"Marcos Silva Santos Gonçalves\"" +
-                "  }," +
-                "  {" +
-                "   \"equipe\": \"Botafogo\"," +
-                "   \"numero\": \"8\"," +
-                "   \"jogador\": \"Luis Claudio\"," +
-                "   \"data\": \"20/08/2017\"," +
-                "   \"tempo\": \"77\"," +
-                "   \"adversario\": \"São Bento\"," +
-                "   \"arbitro\": \"Leandro Leão\"" +
-                "  }," +
-                "  {" +
-                "   \"equipe\": \"Botafogo\"," +
-                "   \"numero\": \"9\"," +
-                "   \"jogador\": \"Pina\"," +
-                "   \"data\": \"12/03/2017\"," +
-                "   \"tempo\": \"90\"," +
-                "   \"adversario\": \"Mirassol\"," +
-                "   \"arbitro\": \"Marco Antônio\"" +
-                "  }," +
-                "  {" +
-                "   \"equipe\": \"Ferroviaria\"," +
-                "   \"numero\": \"6\"," +
-                "   \"jogador\": \"Elder Boy\"," +
-                "   \"data\": \"21/05/2017\"," +
-                "   \"tempo\": \"90\"," +
-                "   \"adversario\": \"São Bento\"," +
-                "   \"arbitro\": \"Vladimir Vassoler\"" +
-                "  }" +
-                "]";*/
-
         Gson gson = new Gson();
         JSONArray jsonArray = null;
         try {
@@ -114,45 +75,6 @@ public class CartaoService {
         List<Cartao> lista;
 
         String json = cartaoRest.getCartaoVermelho(FabricaDeUrl.urlBase(campeonatoAno));
-
-        /*String json = "[" +
-                "  {" +
-                "   \"equipe\": \"Botafogo\"," +
-                "   \"numero\": \"4\"," +
-                "   \"jogador\": \"Adriano Helena\"," +
-                "   \"data\": \"29/07/2017\"," +
-                "   \"tempo\": \"89\"," +
-                "   \"adversario\": \"Novorizontino\"," +
-                "   \"arbitro\": \"Marcos Silva Santos Gonçalves\"" +
-                "  }," +
-                "  {" +
-                "   \"equipe\": \"Botafogo\"," +
-                "   \"numero\": \"8\"," +
-                "   \"jogador\": \"Luis Claudio\"," +
-                "   \"data\": \"20/08/2017\"," +
-                "   \"tempo\": \"77\"," +
-                "   \"adversario\": \"São Bento\"," +
-                "   \"arbitro\": \"Leandro Leão\"" +
-                "  }," +
-                "  {" +
-                "   \"equipe\": \"Botafogo\"," +
-                "   \"numero\": \"9\"," +
-                "   \"jogador\": \"Pina\"," +
-                "   \"data\": \"12/03/2017\"," +
-                "   \"tempo\": \"90\"," +
-                "   \"adversario\": \"Mirassol\"," +
-                "   \"arbitro\": \"Marco Antônio\"" +
-                "  }," +
-                "  {" +
-                "   \"equipe\": \"Ferroviaria\"," +
-                "   \"numero\": \"6\"," +
-                "   \"jogador\": \"Elder Boy\"," +
-                "   \"data\": \"21/05/2017\"," +
-                "   \"tempo\": \"90\"," +
-                "   \"adversario\": \"São Bento\"," +
-                "   \"arbitro\": \"Vladimir Vassoler\"" +
-                "  }" +
-                "]";*/
 
         Gson gson = new Gson();
         JSONArray jsonArray = null;

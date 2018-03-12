@@ -21,6 +21,11 @@ import br.com.futeboldospais.futeboldospais.model.Atualizacao;
 import br.com.futeboldospais.futeboldospais.model.Configuracao;
 import br.com.futeboldospais.futeboldospais.service.ConfiguracaoService;
 
+/**
+ * Created by Daniel Almeida on 08/09/2017.
+ * Alterado por: Pamela Fidelis em 04/12/17
+ * Objetivo: remoção de string e log no código
+ **/
 public class MainActivity extends AppCompatActivity {
 
     private TextView lblStatus;
@@ -67,19 +72,16 @@ public class MainActivity extends AppCompatActivity {
             if (resultCode == Atualizacao.RESULT_CODE_STATUS_CONEXAO) {
 
                 int statusConexao = dados.getInt(Atualizacao.STATUS_CONEXAO);
-                Log.d("teste", "status conexao: " + String.valueOf(statusConexao));
 
                 verificarStatusConexao(statusConexao);
             } else if (resultCode == Atualizacao.RESULT_CODE_VERIFICAR_ATUALIZACAO) {
 
                 int verificarAtualizacao = dados.getInt(Atualizacao.VERIFICAR_ATUALIZACAO);
-                Log.d("teste", "atualizacao verificada: " + String.valueOf(verificarAtualizacao));
 
                 verificarExistenciaAtualizacao(verificarAtualizacao);
             } else if (resultCode == Atualizacao.RESULT_CODE_STATUS_ATUALIZACAO) {
 
                 int statusAtualizacao = dados.getInt(Atualizacao.STATUS_ATUALIZACAO);
-                Log.d("teste", "status atualizacao: " + String.valueOf(statusAtualizacao));
 
                 verificarStatusAtualizacao(statusAtualizacao);
             }
@@ -88,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         private void verificarStatusConexao(int statusConexao) {
 
             if (statusConexao == 1) {
-                lblStatus.setText("Verificando atualizações...");
+                lblStatus.setText(getString(R.string.lbl_verificando_atualizacao));
                 btnProseguirDadosLocais.setVisibility(View.INVISIBLE);
                 div3.setVisibility(View.VISIBLE);
                 div2.setVisibility(View.INVISIBLE);
@@ -98,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 div3.setVisibility(View.INVISIBLE);
                 div2.setVisibility(View.VISIBLE);
-                Toast.makeText(activity, "Favor verifique sua conexão com a internet", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, getString(R.string.lbl_verificar_conexao), Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -106,9 +108,9 @@ public class MainActivity extends AppCompatActivity {
         private void verificarExistenciaAtualizacao(int verificarAtualizacao) {
 
             if (verificarAtualizacao == 2) {
-                lblStatus.setText("Atualizando dados...");
+                lblStatus.setText(getString(R.string.lbl_atualizando_dados));
             } else if (verificarAtualizacao == 1) {
-                lblStatus.setText("Sem atualizações disponíveis.");
+                lblStatus.setText(getString(R.string.lbl_sem_atualizacao));
                 if (!activity.isDestroyed()) {
                     iniciarMenuPrincipalComAtraso();
                 }
@@ -118,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 div3.setVisibility(View.INVISIBLE);
                 div2.setVisibility(View.VISIBLE);
-                Toast.makeText(activity, "Erro ao tentar verificar atualizações", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, getString(R.string.lbl_erro_atualizacao), Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -126,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         private void verificarStatusAtualizacao(int statusAtualizacao) {
 
             if (statusAtualizacao == 1) {
-                lblStatus.setText("Dados atualizados com sucesso.");
+                lblStatus.setText(getString(R.string.lbl_dados_atualizados));
                 if (!activity.isDestroyed()) {
                     iniciarMenuPrincipalComAtraso();
                 }
@@ -136,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 div3.setVisibility(View.INVISIBLE);
                 div2.setVisibility(View.VISIBLE);
-                Toast.makeText(activity, "Ocorreu um erro ao tentar atualizar", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, getString(R.string.lbl_erro_atualizacao), Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -177,26 +179,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 configuracaoService = new ConfiguracaoService();
-                Log.d("teste", "instanciou configuracao service");
                 ultimaAtualizacao = configuracaoService.getUltimaAtualizacao(getBaseContext());
-                Log.d("teste", "carregou ultima atualizacao: " + ultimaAtualizacao);
                 configuracao = configuracaoService.listarDados(getBaseContext());
 
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.d("teste", "ira iniciar o serviço");
                         iniciarServiço();
 
-                        Log.d("teste", "entrou na ui thread");
                         if (ultimaAtualizacao != null) {
                             lblUltimaAtualizacaoDir.setText(ultimaAtualizacao);
                             String temaCampeonato = configuracao.getTema() + " " + String.valueOf(configuracao.getCampeonatoAno());
                             lblCampeonato.setText(temaCampeonato.toUpperCase());
                             lblHomenageado.setText(configuracao.getHomenageado().toUpperCase());
-                            Log.d("teste", "setou ultima atualizacao");
                         } else {
-                            Log.d("teste", "ultima atualizacao esta nulo");
                             div4.setVisibility(View.INVISIBLE);
                         }
                     }

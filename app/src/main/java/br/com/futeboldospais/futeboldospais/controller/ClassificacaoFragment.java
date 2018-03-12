@@ -19,7 +19,9 @@ import android.widget.RadioGroup;
 import br.com.futeboldospais.futeboldospais.R;
 import br.com.futeboldospais.futeboldospais.model.Classificacao;
 import br.com.futeboldospais.futeboldospais.model.ClassificacaoQuartas;
+import br.com.futeboldospais.futeboldospais.model.Resultado;
 import br.com.futeboldospais.futeboldospais.service.ClassificacaoService;
+import br.com.futeboldospais.futeboldospais.service.ResultadoService;
 import br.com.futeboldospais.futeboldospais.util.ClassificacaoAdapterDireita;
 import br.com.futeboldospais.futeboldospais.util.ClassificacaoAdapterEsquerda;
 import br.com.futeboldospais.futeboldospais.util.ModalClassificacao;
@@ -46,62 +48,72 @@ public class ClassificacaoFragment extends Fragment {
     private RadioButton rbtGeral;
     private RadioButton rbtQuartas;
     private RadioButton rbtFinais;
-    /*private ListView tabelaClassificacaoEsq;
-    private ListView tabelaClassificacaoDir;
-    private Classificacao[] listaClassificacao;
-    private ClassificacaoService classificacaoService;
-    private ClassificacaoAdapterEsquerda adapterEsq;
-    private ClassificacaoAdapterDireita adapterDir;*/
+    private RadioButton rbtQuartas2;
+    private RadioButton rbtGeral2;
+    private ResultadoService resultadoService;
 
     public ClassificacaoFragment() {
         // Required empty public constructor
     }
 
+    /** Alterado por: Pâmela Fidelis
+     * Objetivo: Remoção de string "chumbada" no código, código comentado e logs
+     * Dt. alteração: 24/11/2017
+     */
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.d("teste", "criou");
         final View view = inflater.inflate(R.layout.fragment_classificacao, container, false);
+
+        resultadoService = new ResultadoService();
+
+        RadioGroup toggle = (RadioGroup) view.findViewById(R.id.toggle);
+        RadioGroup toggle2 = (RadioGroup) view.findViewById(R.id.toggle2);
+
+        toggle.setVisibility(View.INVISIBLE);
+        toggle2.setVisibility(View.INVISIBLE);
+
+        if(resultadoService.listarDadosRodadaAtual(getContext()) >= 20 && resultadoService.listarDadosRodadaAtual(getContext()) < 26){
+            toggle2.setVisibility(View.VISIBLE);
+
+        }else if(resultadoService.listarDadosRodadaAtual(getContext()) >= 26){
+            toggle.setVisibility(View.VISIBLE);
+        }
 
         FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_classificacao, ClassificacaoGeralFragment.newInstance());
         transaction.commit();
 
-        /*tabelaClassificacaoEsq = (ListView) view.findViewById(R.id.classificacao_tabela_esq);
-        tabelaClassificacaoDir = (ListView) view.findViewById(R.id.classificacao_tabela_dir);
-        Log.d("teste", "adapter fragment");
-
-
-        classificacaoService = new ClassificacaoService();
-        listaClassificacao = classificacaoService.listarDados(getActivity().getBaseContext());
-
-        adapterDir = new ClassificacaoAdapterDireita(listaClassificacao, getActivity());
-        tabelaClassificacaoDir.setAdapter(adapterDir);
-        setListViewHeightBasedOnChildren(tabelaClassificacaoDir);
-
-        adapterEsq = new ClassificacaoAdapterEsquerda(listaClassificacao, getActivity());
-        tabelaClassificacaoEsq.setAdapter(adapterEsq);
-        setListViewHeightBasedOnChildren(tabelaClassificacaoEsq);*/
-
         rbtGeral = (RadioButton) view.findViewById(R.id.rbt_geral);
         rbtGeral.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
-        rbtGeral.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_esq_cinza));
+        rbtGeral.setBackground(ContextCompat.getDrawable(getContext(),
+                R.drawable.arredondar_borda_esq_cinza));
 
         rbtQuartas = (RadioButton) view.findViewById(R.id.rbt_quartas);
         rbtFinais = (RadioButton) view.findViewById(R.id.rbt_finais);
+
+        rbtQuartas2 = (RadioButton) view.findViewById(R.id.rbt_quartas2);
+        rbtGeral2 = (RadioButton) view.findViewById(R.id.rbt_geral2);
+        rbtGeral2.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+        rbtGeral2.setBackground(ContextCompat.getDrawable(getContext(),
+                R.drawable.arredondar_borda_esq_cinza));
 
         rbtGeral.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 rbtGeral.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
-                rbtGeral.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_esq_cinza));
+                rbtGeral.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_esq_cinza));
 
                 rbtQuartas.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
-                rbtQuartas.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.meio_branco));
+                rbtQuartas.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.meio_branco));
 
                 rbtFinais.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
-                rbtFinais.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_dir_branco));
+                rbtFinais.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_dir_branco));
 
                 FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_classificacao, ClassificacaoGeralFragment.newInstance());
@@ -114,16 +126,19 @@ public class ClassificacaoFragment extends Fragment {
             public void onClick(View view) {
 
                 rbtGeral.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
-                rbtGeral.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_esq_branco));
+                rbtGeral.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_esq_branco));
 
                 rbtQuartas.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
-                rbtQuartas.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.meio_cinza));
+                rbtQuartas.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.meio_cinza));
 
                 rbtFinais.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
-                rbtFinais.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_dir_branco));
+                rbtFinais.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_dir_branco));
 
                 FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-                transaction.replace(R.id.frame_classificacao, ClassificacaoQuartasFragment.newInstance());
+                transaction.replace(R.id.frame_classificacao, new ClassificacaoQuartasFragment());
                 transaction.commit();
             }
         });
@@ -133,13 +148,18 @@ public class ClassificacaoFragment extends Fragment {
             public void onClick(View view) {
 
                 rbtGeral.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
-                rbtGeral.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_esq_branco));
+                rbtGeral.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_esq_branco));
 
-                rbtQuartas.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
-                rbtQuartas.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.meio_branco));
+                rbtQuartas.setTextColor(ContextCompat.getColor(getContext(),
+                        R.color.black));
+                rbtQuartas.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.meio_branco));
 
-                rbtFinais.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
-                rbtFinais.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_dir_cinza));
+                rbtFinais.setTextColor(ContextCompat.getColor(getContext(),
+                        R.color.white));
+                rbtFinais.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_dir_cinza));
 
                 FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
                 transaction.replace(R.id.frame_classificacao, FinaisFragment.newInstance());
@@ -157,31 +177,43 @@ public class ClassificacaoFragment extends Fragment {
             }
         });
 
+
+        rbtGeral2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                rbtGeral2.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+                rbtGeral2.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_esq_cinza));
+
+                rbtQuartas2.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                rbtQuartas2.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_dir_branco));
+
+                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_classificacao, ClassificacaoGeralFragment.newInstance());
+                transaction.commit();
+            }
+        });
+
+        rbtQuartas2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                rbtGeral2.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
+                rbtGeral2.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_esq_branco));
+
+                rbtQuartas2.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+                rbtQuartas2.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_dir_cinza));
+
+                FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+                transaction.replace(R.id.frame_classificacao, new ClassificacaoQuartasFragment());
+                transaction.commit();
+            }
+        });
+
         return view;
     }
-
-    /**** Method for Setting the Height of the ListView dynamically.
-     **** Hack to fix the issue of not showing all the items of the ListView
-     **** when placed inside a ScrollView  ****/
-/*    public void setListViewHeightBasedOnChildren(ListView listView) {
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null)
-            return;
-
-        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
-        int totalHeight = 0;
-        View view = null;
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            view = listAdapter.getView(i, view, listView);
-            if (i == 0) {
-                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, ViewGroup.LayoutParams.WRAP_CONTENT));
-            }
-            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-            totalHeight += view.getMeasuredHeight();
-        }
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        listView.setLayoutParams(params);
-    }
-*/
 }

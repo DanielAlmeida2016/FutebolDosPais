@@ -12,7 +12,7 @@ import br.com.futeboldospais.futeboldospais.model.Classificacao;
 import br.com.futeboldospais.futeboldospais.model.ClassificacaoQuartas;
 
 /**
- * Created by ThirdSystem on 20/11/2017.
+ * Created by Daniel Almeida on 20/11/2017.
  */
 
 public class ClassificacaoQuartasDAO {
@@ -88,13 +88,15 @@ public class ClassificacaoQuartasDAO {
             String[] valorWhere =
                     { categoria, grupo };
 
+            String orderBy = BancoDados.Tabela.COLUNA_CLASSIFICACAO_QUARTAS_POSICAO;
+
             c = db.query(BancoDados.Tabela.TABELA_CLASSIFICACAO_QUARTAS,
                     selectColunasFrom,
                     where,
                     valorWhere,
                     null,
                     null,
-                    null
+                    orderBy
             );
 
             if (c.getCount() != 0) {

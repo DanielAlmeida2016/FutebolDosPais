@@ -48,6 +48,11 @@ public class SuspensosFragment extends Fragment {
         // Required empty public constructor
     }
 
+    /**
+     * Alterado por: Pamela Fidelis em 04/12/17
+     * Objetivo: removeção de string e log no código
+     **/
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -64,7 +69,7 @@ public class SuspensosFragment extends Fragment {
             tabelaSuspensao.setAdapter(adapter);
 
         } else {
-            AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, não tem ninguem aqui ainda!");
+            AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), getString(R.string.lbl_sem_dados));
             tabelaSuspensao.setAdapter(adapterPadrao);
         }
 

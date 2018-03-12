@@ -9,14 +9,14 @@ import br.com.futeboldospais.futeboldospais.controller.FinalFragment;
 import br.com.futeboldospais.futeboldospais.controller.SemifinalFragment;
 
 /**
- * Created by ThirdSystem on 03/12/2017.
+ * Created by Daniel Almeidaon 03/12/2017.
  */
 
-public class PageAdapter extends FragmentPagerAdapter {
+public class FinaisPageAdapter extends FragmentPagerAdapter {
 
     private int num_itens = 3;
 
-    public PageAdapter(FragmentManager fragmentManager) {
+    public FinaisPageAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
     }
 
@@ -29,19 +29,15 @@ public class PageAdapter extends FragmentPagerAdapter {
             case 0:
                 fragment = SemifinalFragment.newInstance();
                 break;
-                //return SemifinalFragment.newInstance();
             case 1:
                 fragment = FinalFragment.newInstance();
                 break;
-                //return FinalFragment.newInstance();
             case 2:
                 fragment = CampeaoFragment.newInstance();
                 break;
-                //return CampeaoFragment.newInstance();
             default:
                 fragment = null;
                 break;
-                //return null;
         }
 
         return fragment;

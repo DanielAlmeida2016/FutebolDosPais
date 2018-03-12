@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Created by Administrador on 29/09/2017.
+ * Created by Daniel Almeida on 29/09/2017.
  */
 
 public class ViewHolderClassificacaoEsquerda {

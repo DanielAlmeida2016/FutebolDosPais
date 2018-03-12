@@ -74,9 +74,6 @@ public class ResultadoAdapter extends BaseAdapter {
         }
 
         count = count + 1;
-        Log.d("Teste", "Contador: " + String.valueOf(count));
-        Log.d("Teste", "Position: " + String.valueOf(position));
-        Log.d("Teste", "Tamanho passado: " + String.valueOf(listaResultado.length));
 
         ViewHolderResultado viewHolderResultado = (ViewHolderResultado) view.getTag();
 
@@ -98,8 +95,6 @@ public class ResultadoAdapter extends BaseAdapter {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //viewHolderResultado.getEscudoCasa().setImageDrawable(null);
-        //viewHolderResultado.getEscudoCasa().setImageDrawable(null);
 
         return view;
     }

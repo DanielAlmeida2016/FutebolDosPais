@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context="br.com.futeboldospais.futeboldospais.controller.QuartasFinaisSeniorPrincipalFragment">
+
+    <RelativeLayout
+        android:id="@+id/titulo_tabela"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/borda_inferior"
+        android:textColor="@color/grayLight">
+
+        <TextView
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="5dp"
+            android:gravity="center"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/equipe"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="20dp"
+            android:layout_alignParentStart="true"
+            android:gravity="center"
+            android:text="@string/lbl_equipe" />
+
+
+        <TextView
+            android:id="@+id/sg"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_alignParentEnd="true"
+            android:text="@string/lbl_saldo_sigla" />
+
+        <TextView
+            android:id="@+id/v"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_toStartOf="@id/sg"
+            android:text="@string/lbl_vitorias_sigla" />
+
+        <TextView
+            android:id="@+id/j"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_toStartOf="@id/v"
+            android:text="@string/lbl_jogos_sigla" />
+
+        <TextView
+            android:id="@+id/pg"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_toStartOf="@id/j"
+            android:text="@string/lbl_pontos_ganhos_sigla" />
+
+    </RelativeLayout>
+        <ListView
+            android:id="@+id/quartas_tabela_senior_principal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/titulo_tabela"
+            android:fastScrollEnabled="false"
+            android:scrollbars="none" />
+
+</RelativeLayout>

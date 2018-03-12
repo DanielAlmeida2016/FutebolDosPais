@@ -2,12 +2,14 @@ package br.com.futeboldospais.futeboldospais.controller;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
+import android.graphics.PixelFormat;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +21,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
 
 import br.com.futeboldospais.futeboldospais.R;
 import br.com.futeboldospais.futeboldospais.util.AdapterPadrao;
@@ -73,6 +75,9 @@ public class ArtilhariaFragment extends Fragment {
      * Alterado por: Pâmela e Vinicius
      * Objetivo: inclusão da lista de artilharias
      * Dt. alteração: 18.10.2017
+     * <p>
+     * Alterado por: Pamela Fidelis em 04/12/17
+     * Objetivo: removeção de string e log no código
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -93,43 +98,49 @@ public class ArtilhariaFragment extends Fragment {
 
         rbtMaster = (RadioButton) view.findViewById(R.id.rbt_master);
         rbtMaster.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
-        rbtMaster.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_esq_cinza));
+        rbtMaster.setBackground(ContextCompat.getDrawable(getContext(),
+                R.drawable.arredondar_borda_esq_cinza));
 
         tabelaArtilharia = (ListView) view.findViewById(R.id.lista_melhores_jogadores);
 
         artilhariaService = new ArtilhariaService();
-        listaArtilharia = artilhariaService.listarDadosPorCategoria(getActivity().getBaseContext(), "Master");
+        listaArtilharia = artilhariaService.listarDadosPorCategoria(
+                getActivity().getBaseContext(), getString(R.string.str_master_maiuscula));
         tipoBusca = 0;
-        Log.d("teste", "lista por categoria");
-        Log.d("teste", "listaartilharia: " + listaArtilharia.length);
 
         if (listaArtilharia.length > 0) {
             adapter = new ArtilhariaAdapter(listaArtilharia, getActivity());
-            Log.d("teste", "adapter");
+
             tabelaArtilharia.setAdapter(adapter);
         } else {
-            AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, não tem ninguem aqui ainda!");
+            AdapterPadrao adapterPadrao = new AdapterPadrao(
+                    getActivity(), getString(R.string.lbl_sem_dados));
             tabelaArtilharia.setAdapter(adapterPadrao);
         }
 
         rbtMaster.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listaArtilharia = artilhariaService.listarDadosPorCategoria(getActivity().getBaseContext(), "Master");
+                listaArtilharia = artilhariaService.listarDadosPorCategoria(
+                        getActivity().getBaseContext(), getString(R.string.str_master_maiuscula));
 
                 if (listaArtilharia.length > 0) {
                     adapter = new ArtilhariaAdapter(listaArtilharia, getActivity());
                     tabelaArtilharia.setAdapter(adapter);
                 } else {
-                    AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, não tem ninguem aqui ainda!");
+                    AdapterPadrao adapterPadrao = new AdapterPadrao(
+                            getActivity(), getString(R.string.lbl_sem_dados));
                     tabelaArtilharia.setAdapter(adapterPadrao);
                 }
 
                 rbtMaster.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
-                rbtMaster.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_esq_cinza));
+                rbtMaster.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_esq_cinza));
 
-                rbtSenior.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
-                rbtSenior.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_dir_branco));
+                rbtSenior.setTextColor(ContextCompat.getColor(getContext(),
+                        R.color.black));
+                rbtSenior.setBackground(ContextCompat.getDrawable(getContext(),
+                        R.drawable.arredondar_borda_dir_branco));
 
                 tipoBusca = 0;
             }
@@ -139,21 +150,25 @@ public class ArtilhariaFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                listaArtilharia = artilhariaService.listarDadosPorCategoria(getActivity().getBaseContext(), "Senior");
+                listaArtilharia = artilhariaService.listarDadosPorCategoria(
+                        getActivity().getBaseContext(), getString(R.string.str_senior_maiscula));
 
                 if (listaArtilharia.length > 0) {
                     adapter = new ArtilhariaAdapter(listaArtilharia, getActivity());
                     tabelaArtilharia.setAdapter(adapter);
                 } else {
-                    AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, não tem ninguem aqui ainda!");
+                    AdapterPadrao adapterPadrao = new AdapterPadrao(
+                            getActivity(), getString(R.string.lbl_sem_dados));
                     tabelaArtilharia.setAdapter(adapterPadrao);
                 }
 
                 rbtMaster.setTextColor(ContextCompat.getColor(getContext(), R.color.black));
-                rbtMaster.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_esq_branco));
+                rbtMaster.setBackground(ContextCompat.getDrawable(
+                        getContext(), R.drawable.arredondar_borda_esq_branco));
 
                 rbtSenior.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
-                rbtSenior.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.arredondar_borda_dir_cinza));
+                rbtSenior.setBackground(ContextCompat.getDrawable(
+                        getContext(), R.drawable.arredondar_borda_dir_cinza));
 
                 tipoBusca = 1;
             }
@@ -198,30 +213,44 @@ public class ArtilhariaFragment extends Fragment {
                                       int before, int count) {
                 if (s.length() != 0) {
                     if (tipoBusca == 0) {
-                        listaArtilharia = artilhariaService.listarDadosPorCategoriaENome(getActivity().getBaseContext(), "Master", valorBusca.getText().toString());
+                        listaArtilharia = artilhariaService.listarDadosPorCategoriaENome(
+                                getActivity()
+                                        .getBaseContext(),
+                                getString(R.string.str_master_maiuscula),
+                                valorBusca.getText().toString());
                     } else {
-                        listaArtilharia = artilhariaService.listarDadosPorCategoriaENome(getActivity().getBaseContext(), "Senior", valorBusca.getText().toString());
+                        listaArtilharia = artilhariaService.listarDadosPorCategoriaENome(
+                                getActivity()
+                                        .getBaseContext(),
+                                getString(R.string.str_senior_maiscula),
+                                valorBusca
+                                        .getText()
+                                        .toString());
                     }
 
                     if (listaArtilharia.length > 0) {
                         adapter = new ArtilhariaAdapter(listaArtilharia, getActivity());
                         tabelaArtilharia.setAdapter(adapter);
                     } else {
-                        AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, ninguem foi encontrado!");
+                        AdapterPadrao adapterPadrao = new AdapterPadrao(
+                                getActivity(), getString(R.string.lbl_insucesso_dados));
                         tabelaArtilharia.setAdapter(adapterPadrao);
                     }
                 } else {
                     if (tipoBusca == 0) {
-                        listaArtilharia = artilhariaService.listarDadosPorCategoria(getActivity().getBaseContext(), "Master");
+                        listaArtilharia = artilhariaService.listarDadosPorCategoria(
+                                getActivity().getBaseContext(), getString(R.string.str_master_maiuscula));
                     } else {
-                        listaArtilharia = artilhariaService.listarDadosPorCategoria(getActivity().getBaseContext(), "Senior");
+                        listaArtilharia = artilhariaService.listarDadosPorCategoria(
+                                getActivity().getBaseContext(), getString(R.string.str_senior_maiscula));
                     }
 
                     if (listaArtilharia.length > 0) {
                         adapter = new ArtilhariaAdapter(listaArtilharia, getActivity());
                         tabelaArtilharia.setAdapter(adapter);
                     } else {
-                        AdapterPadrao adapterPadrao = new AdapterPadrao(getActivity(), "Opa, não tem ninguem aqui ainda!");
+                        AdapterPadrao adapterPadrao = new AdapterPadrao(
+                                getActivity(), getString(R.string.lbl_insucesso_dados));
                         tabelaArtilharia.setAdapter(adapterPadrao);
                     }
                 }
@@ -234,7 +263,8 @@ public class ArtilhariaFragment extends Fragment {
     public static void mostrarTecladoComFocus(View view, Activity activity) {
         try {
             view.requestFocus();
-            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(
+                    Context.INPUT_METHOD_SERVICE);
             imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT);
             activity.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         } catch (Exception e) {
@@ -243,7 +273,8 @@ public class ArtilhariaFragment extends Fragment {
     }
 
     public static void fecharTeclado(View view, Activity activity) {
-        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
+        InputMethodManager imm = (InputMethodManager) activity.getSystemService(
+                Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(view.getApplicationWindowToken(), 0);
     }
 }

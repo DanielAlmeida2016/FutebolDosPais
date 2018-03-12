@@ -83,7 +83,7 @@
             android:layout_marginTop="5dp"
             android:gravity="center|end"
             android:textSize="15sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/numero"
@@ -91,7 +91,8 @@
             android:layout_height="20dp"
             android:layout_marginBottom="5dp"
             android:gravity="center|start"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textStyle="bold"/>
 
     </LinearLayout>
 

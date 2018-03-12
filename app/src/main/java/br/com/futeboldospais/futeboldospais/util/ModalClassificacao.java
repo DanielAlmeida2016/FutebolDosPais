@@ -5,6 +5,10 @@ import android.os.Bundle;
 
 import br.com.futeboldospais.futeboldospais.R;
 
+/**
+ * Created by Daniel Almeida on 12/10/2017.
+ */
+
 public class ModalClassificacao extends Activity {
 
     @Override

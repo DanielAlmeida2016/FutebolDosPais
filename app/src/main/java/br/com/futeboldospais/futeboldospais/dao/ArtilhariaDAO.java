@@ -116,7 +116,6 @@ public class ArtilhariaDAO {
                     artilharia.setCartoesAmarelos(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_ARTILHARIA_CARTOES_AMARELOS)));
                     artilharia.setCartoesVermelhos(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_ARTILHARIA_CARTOES_VERMELHOS)));
 
-                    Log.d("teste", artilharia.toString());
                     retLista.add(artilharia);
                 }
                 lista = retLista.toArray(new Artilharia[0]);
@@ -153,8 +152,6 @@ public class ArtilhariaDAO {
                     BancoDados.Tabela.COLUNA_ARTILHARIA_CATEGORIA,
                     BancoDados.Tabela.COLUNA_ARTILHARIA_CARTOES_AMARELOS,
                     BancoDados.Tabela.COLUNA_ARTILHARIA_CARTOES_VERMELHOS};
-
-            Log.d("teste", "Cat: " + categoria + " - Busca: " + valorBusca);
 
             String where =
                     BancoDados.Tabela.COLUNA_ARTILHARIA_CATEGORIA + " = ? "
@@ -193,7 +190,6 @@ public class ArtilhariaDAO {
                     artilharia.setCartoesAmarelos(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_ARTILHARIA_CARTOES_AMARELOS)));
                     artilharia.setCartoesVermelhos(c.getInt(c.getColumnIndexOrThrow(BancoDados.Tabela.COLUNA_ARTILHARIA_CARTOES_VERMELHOS)));
 
-                    Log.d("teste", artilharia.toString());
                     retLista.add(artilharia);
                 }
                 lista = retLista.toArray(new Artilharia[0]);
